@@ -90,7 +90,7 @@ public class Player {
 		this.animate.add(e);
 	}
 	
-	public void bombAnimate() {
+	public void Animate() {
 		int nx = 0,ny=0;
 		Boolean removed = false;
 		Boolean smoke = false;

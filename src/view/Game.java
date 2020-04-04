@@ -25,6 +25,7 @@ import javafx.util.Duration;
 import logic.Cell;
 import logic.GameMap;
 import model.MAP;
+import item.*;
 
 public class Game {
 	private final static int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
@@ -55,9 +56,9 @@ public class Game {
 	private SmallInfoLabel player1Label, player2Label;
 	private ImageView[] player1lifes, player2lifes;
 	private int player1life, player2life;
-
+	private List<Cell> itemList;
 	public Game(MAP choosenMap) {
-
+		this.itemList = new ArrayList<Cell>();
 		this.allPlayer = new ArrayList<Player>();
 
 		this.choosenMap = choosenMap;
@@ -98,8 +99,7 @@ public class Game {
 
 		gamePane.getChildren().add(0, player2Label);
 		gamePane.getChildren().add(0, player1Label);
-		player1.setSpeed(4);
-		player2.setSpeed(3);
+
 		player1.movePlayer(DOWN);
 		player2.movePlayer(DOWN);
 		// System.out.println("Chreate Element");
@@ -229,15 +229,27 @@ public class Game {
 
 		if (!gameCell[y][x].getIsEmpty()&& (gameCell[y][x].getEntity() instanceof Tree || gameCell[y][x].getEntity() instanceof Box)) {
 			if (gameCell[y][x].getEntity() instanceof Box) {
-				player1.addBombMax();
+				gameCell[y][x].removeEntity();
+				gameCell[y][x].setEntity(new Speed(gamePane, x,y, "map1/"));
+				itemList.add(gameCell[y][x]);
+				rewrite(x,y);
+				System.out.println("add");
+				
+				
+				/*player1.addBombMax();
 				player1.addBombRadius();
 				player1Label.setText("PLAYER 1 BOMB : " + player1.getBombMax());
+				
+				*/
+			}else {
+				gameCell[y][x].removeEntity();
+				
+				gameCell[y][x].setEntity(new Smoke(gamePane,x,y,"map1/"));
+				rewrite(x,y);
+				player1.addAnimate(gameCell[y][x]);
+				
 			}
-			gameCell[y][x].removeEntity();
-		
-			gameCell[y][x].setEntity(new Smoke(gamePane,x,y,"map1/"));
-			rewrite(x,y);
-			player1.addAnimate(gameCell[y][x]);
+
 			
 		}
 		
@@ -245,15 +257,86 @@ public class Game {
 	}
 
 	private void createGameLoop() {
-
+		
 		timer = new AnimationTimer() {
 
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
+	
+	
 				move();
-				player1.bombAnimate();
-				player2.bombAnimate();
+				player1.Animate();
+				player2.Animate();
+				checkItemUse();
+			}
+
+			private void checkItemUse() {
+				// TODO Auto-generated method stub
+				for(Cell tmp : itemList) {
+	
+					AnimateAble anm = (AnimateAble) tmp.getEntity();
+					Boolean used = anm.tick();
+			
+					if(anm instanceof Speed) {	
+					
+						used = checkUseItem(player1,player2,"Speed",tmp);
+				
+					}
+					if(anm instanceof AddBomb ) {
+						used =checkUseItem(player1,player2,"AddBomb",tmp);
+					}
+					
+					if(used) break;
+					
+				
+					
+				}
+			}
+
+		
+
+			private boolean checkUseItem(Player player1, Player player2, String type, Cell item) {
+				// TODO Auto-generated method stub
+				int item_x  = item.getEntity().getX();
+				int item_y = item.getEntity().getY();
+				int p1_x = player1.getX();
+				int p1_y = player1.getY();
+				int p2_x = player2.getX();
+				int p2_y = player2.getY();
+			
+				if(item_x == p1_x && item_y == p1_y) {
+					useitem(player1,type);
+					itemList.remove(item);
+					return true;
+				}
+				if(item_x == p2_x && item_y == p2_y) {
+				
+					useitem(player2,type);
+			
+					itemList.remove(item);
+					item.removeEntity();
+			
+					return true;
+				}
+				return false;
+			}
+
+			private void useitem(Player player, String item) {
+				// TODO Auto-generated method stub
+				switch (item) {
+				case "Speed": {
+					System.out.println("Seting speed to 4");
+					player.setSpeed(player.getSpeed()+ 1  );
+					System.out.println("Seted speed to 4");
+					break;
+				}
+				case "AddBomb":{
+					player.addBombMax();
+				}
+				default:
+					System.out.println("Unexpected value: " + item);
+				}
 			}
 
 			private void move() {
@@ -284,6 +367,8 @@ public class Game {
 
 		timer.start();
 	}
+	
+
 
 	public void rewrite(int x, int y) {
 
