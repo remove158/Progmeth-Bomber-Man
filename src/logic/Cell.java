@@ -7,10 +7,11 @@ public class Cell {
 	private Entity myEntity;
 	private Boolean isEmpty;
 	private Boolean isItem;
-	
+
 	public Cell() {
 		isEmpty = true;
 		isItem = false;
+		
 	}
 	
 	public boolean setEntity(Entity e) {

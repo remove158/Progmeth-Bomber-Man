@@ -6,11 +6,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import logic.Sprite;
 
-public class Speed extends Entity implements AnimateAble {
+public class AddRadius extends Entity implements AnimateAble {
 	private int counter = 0;
 	private int speed = 14;
 	private boolean used= false;
-	public Speed(Pane gamePane, int x, int y,String mapStyle) {
+	public AddRadius(Pane gamePane, int x, int y,String mapStyle) {
 		super(gamePane, x, y,mapStyle);
 		// TODO Auto-generated constructor stub
 		setSolid(false);
@@ -19,7 +19,7 @@ public class Speed extends Entity implements AnimateAble {
 	@Override
 	public String getSymbol() {
 		// TODO Auto-generated method stub
-		return Sprite.SPEED;
+		return Sprite.ADDRADIUS;
 	}
 	
 	public boolean tick() {

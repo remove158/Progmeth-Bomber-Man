@@ -24,8 +24,8 @@ public class Player {
 	private int count_bomb=0;
 	private  int BOMB_MAX=2;
 	private Game game;
-	private List<Cell> animate;
-	private int LIFE = 2;
+	private List<Cell> animate; //[
+	private int LIFE = 1;
 	private Boolean isDie;
 	private int bombRadius =1;
 	
@@ -94,6 +94,8 @@ public class Player {
 		int nx = 0,ny=0;
 		Boolean removed = false;
 		Boolean smoke = false;
+		
+		//code for set image;
 		for (Cell tmp : animate) {
 			removed = false;
 			smoke = false;
@@ -108,16 +110,12 @@ public class Player {
 					break;
 				}
 			}
-			if (tmp.getEntity() instanceof Smoke) {
-				smoke = ((Smoke) tmp.getEntity()).tick();
-				if (smoke) {
-					tmp.removeEntity();
-					break;
-				}
-			}
+
 	
 
 		}
+		
+		
 		if (removed) {
 			game.bombThis(nx,ny);
 			int radius = bombRadius;
@@ -198,41 +196,41 @@ public class Player {
 		gamePane.getChildren().remove(avatar);
 		gamePane.getChildren().add(avatar);
 		// bringAvatartoTop
-		
+	
 		
 		rewrite(x, y);
 		// brinBelowCelltoTop
-	
+		int corner=speedNorm;
 		if (dir == UP) {
 			set(UP);
-			int ny = (pos_top - speedNorm) / CELL_WIDTH;
+			int ny = (pos_top - speedNorm ) / CELL_WIDTH;
 			
-			return (gameCell[ny][x].getIsEmpty()) && (gameCell[ny][((pos_left + speedNorm) / CELL_WIDTH)].getIsEmpty())
-					&& (gameCell[ny][(pos_right - speedNorm) / CELL_WIDTH].getIsEmpty());
+			return (gameCell[ny][x].getIsEmpty()) && (gameCell[ny][((pos_left + corner) / CELL_WIDTH)].getIsEmpty())
+					&& (gameCell[ny][(pos_right - corner) / CELL_WIDTH].getIsEmpty());
 
 		} //
 		if (dir == RIGHT) {
 			set(RIGHT);
-			int nx = (pos_right + speedNorm) / CELL_WIDTH;
+			int nx = (pos_right + speedNorm ) / CELL_WIDTH;
 
-			return (gameCell[y][nx].getIsEmpty()) && (gameCell[((pos_top + speedNorm) / CELL_WIDTH)][nx].getIsEmpty())
-					&& (gameCell[(pos_down - speedNorm) / CELL_WIDTH][nx].getIsEmpty());
+			return (gameCell[y][nx].getIsEmpty()) && (gameCell[((pos_top + corner) / CELL_WIDTH)][nx].getIsEmpty())
+					&& (gameCell[(pos_down - corner) / CELL_WIDTH][nx].getIsEmpty());
 
 		}
 		if (dir == DOWN) {
 			set(DOWN);
-			int ny = (pos_down + speedNorm) / CELL_WIDTH;
+			int ny = (pos_down + speedNorm ) / CELL_WIDTH;
 
-			return (gameCell[ny][x].getIsEmpty()) && (gameCell[ny][((pos_left + speedNorm) / CELL_WIDTH)].getIsEmpty())
-					&& (gameCell[ny][(pos_right - speedNorm) / CELL_WIDTH].getIsEmpty());
+			return (gameCell[ny][x].getIsEmpty()) && (gameCell[ny][((pos_left + corner) / CELL_WIDTH)].getIsEmpty())
+					&& (gameCell[ny][(pos_right - corner) / CELL_WIDTH].getIsEmpty());
 
 		}
 		if (dir == LEFT) {
 			set(LEFT);
-			int nx = (pos_left - speedNorm) / CELL_WIDTH;
+			int nx = (pos_left - speedNorm ) / CELL_WIDTH;
 
-			return (gameCell[y][nx].getIsEmpty()) && (gameCell[((pos_top + speedNorm) / CELL_WIDTH)][nx].getIsEmpty())
-					&& (gameCell[(pos_down - speedNorm) / CELL_WIDTH][nx].getIsEmpty());
+			return (gameCell[y][nx].getIsEmpty()) && (gameCell[((pos_top + corner) / CELL_WIDTH)][nx].getIsEmpty())
+					&& (gameCell[(pos_down - corner) / CELL_WIDTH][nx].getIsEmpty());
 
 		}
 		return false;
@@ -261,9 +259,13 @@ public class Player {
 
 		if (direction == LEFT && checkMove(LEFT))
 			avatar.setLayoutX(avatar.getLayoutX() - speedNorm);
+		
 		int ox=x,oy=y;
 		updatePosition();
 		if(ox!=x || oy!= y) {
+			if(gameCell[oy][ox].getEntity() instanceof Bomb) {
+				gameCell[oy][ox].getEntity().setSolid(true);
+			}
 			System.out.println("Player move" +"(" +ox +","+ oy+") -> ("  + x+ ","+ y+ ")");
 		}
 		return true;

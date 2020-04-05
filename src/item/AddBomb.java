@@ -8,18 +8,18 @@ import logic.Sprite;
 
 public class AddBomb extends Entity implements AnimateAble {
 	private int counter = 0;
-	private int speed = 15;
+	private int speed = 14;
 	private boolean used= false;
 	public AddBomb(Pane gamePane, int x, int y,String mapStyle) {
 		super(gamePane, x, y,mapStyle);
 		// TODO Auto-generated constructor stub
-		setSolid(true);
+		setSolid(false);
 	}
 
 	@Override
 	public String getSymbol() {
 		// TODO Auto-generated method stub
-		return Sprite.BOX;
+		return Sprite.ADDBOMB;
 	}
 	
 	public boolean tick() {

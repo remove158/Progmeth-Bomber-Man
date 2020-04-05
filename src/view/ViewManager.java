@@ -33,7 +33,7 @@ public class ViewManager {
 	private final static int MENU_BUTTON_START_Y = 200;
 	List<GameButton> menuButton;
 	List<GameSubScene> allPanel;
-	List<MapPicker> charList;
+	List<MapPicker> mapList;
 	private MAP choosenMap;
 	private GameSubScene creditsSubScene;
 	private GameSubScene helpSubScene;
@@ -64,15 +64,15 @@ public class ViewManager {
 		HBox box = new HBox();
 		box.setSpacing(20);
 		box.setPadding(new Insets(0, 50, 50, 50));
-		charList = new ArrayList<>();
+		mapList = new ArrayList<>();
 		box.setLayoutX(500);
 		for(MAP e: MAP.values()) {
 			MapPicker mapToPick = new MapPicker(e);
 			box.getChildren().add(mapToPick);
-			charList.add(mapToPick);
+			mapList.add(mapToPick);
 			
 			mapToPick.setOnMouseClicked( f -> {
-				for(MapPicker tmp : charList) {
+				for(MapPicker tmp : mapList) {
 					tmp.setIsCirCleChoosen(false);
 				}
 				mapToPick.setIsCirCleChoosen(true);
@@ -88,7 +88,7 @@ public class ViewManager {
 	}
 	
 
-	private void creatCharChooserSubScene() {
+	private void createMapChooserSubScene() {
 		// TODO Auto-generated method stub
 		chooseSubScene = new GameSubScene();
 		mainPane.getChildren().add(chooseSubScene);
@@ -135,7 +135,7 @@ public class ViewManager {
 		helpSubScene = new GameSubScene();
 		scoreSubScene = new GameSubScene();
 		
-		creatCharChooserSubScene();
+		createMapChooserSubScene();
 		
 		mainPane.getChildren().add(creditsSubScene);
 		mainPane.getChildren().add(helpSubScene);

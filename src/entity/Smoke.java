@@ -8,7 +8,7 @@ import logic.Sprite;
 
 public class Smoke extends Entity implements AnimateAble {
 	private int counter = 0;
-	private int speed = 25;
+	private int speed = 4;
 
 	public Smoke(Pane gamePane, int x, int y,String mapStyle) {
 		super(gamePane, x, y,mapStyle);
@@ -28,12 +28,11 @@ public class Smoke extends Entity implements AnimateAble {
 		if (counter % speed == 0) {
 			update();
 			counter=0;
-			speed--;
+			speed++;
 	
-			if (speed == 23) {
-
-				speed = 30;
-				counter = 0;
+			if (speed == 8) {
+					
+				
 				
 				return true;
 			}
@@ -44,8 +43,10 @@ public class Smoke extends Entity implements AnimateAble {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+	
 		ImageView a = this.getImage();
 		countframe();
+		a.setImage(new Image(getMapStyle() + getSymbol() + this.getframe() % 4 + ".png"));
 		
 		
 

@@ -6,6 +6,7 @@ public class Sprite {
 	public static String BOX = "/itemblock";
 	public static String BOMB = "/bomb";
 	public static String SMOKE = "/smoke";
-
-
+	public static String SPEED = "/speed";
+	public static String ADDBOMB = "/addbomb";
+	public static String ADDRADIUS = "/addradius";
 }

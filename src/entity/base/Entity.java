@@ -61,10 +61,23 @@ abstract public class Entity  {
 	}
 	
 	public void drawEntity() {
-		System.out.println("Put" + "("+mapStyle + getSymbol() + frame + ".png) -> (" + x +","+ y  +")" );
-		myImage = new ImageView(mapStyle +  getSymbol() + frame +".png");
+	
+		myImage = new ImageView(mapStyle +  getSymbol() + frame +".png"); //map1/tree0.png
 		setPos(myImage);
 		gamePane.getChildren().add(myImage);
+		
+		
+		
+		/*
+		
+		getChildren  =[1,2,3,4,5]
+		
+		children.remove(3);
+		children.add(3);
+		
+		getChildren = [1,2,4,5,3]
+		
+		*/
 		
 	}
 	public void rewrite() {

@@ -13,7 +13,7 @@ public class Bomb extends Entity implements AnimateAble {
 	public Bomb(Pane gamePane, int x, int y,String mapStyle) {
 		super(gamePane, x, y,mapStyle);
 		// TODO Auto-generated constructor stub
-		setSolid(true);
+		setSolid(false);
 	}
 
 	@Override

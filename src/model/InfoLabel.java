@@ -21,7 +21,6 @@ public class InfoLabel extends Label {
 	public InfoLabel(String text) {
 		setPrefWidth(380);
 		setPrefHeight(49);
-		
 		setText(text);
 		setWrapText(true);
 		setLabelFont();
