@@ -1,12 +1,12 @@
 package entity;
 
-import entity.base.*;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import logic.Sprite;
 
-public class Smoke extends Entity implements AnimateAble {
+public class Smoke extends Element {
 	private int counter = 0;
 	private int speed = 4;
 

@@ -1,15 +1,12 @@
 package item;
 
-import entity.base.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
+import entity.Player;
 import javafx.scene.layout.Pane;
 import logic.Sprite;
 
-public class AddBomb extends Entity implements AnimateAble {
-	private int counter = 0;
-	private int speed = 14;
-	private boolean used= false;
+public class AddBomb extends Item {
+
 	public AddBomb(Pane gamePane, int x, int y,String mapStyle) {
 		super(gamePane, x, y,mapStyle);
 		// TODO Auto-generated constructor stub
@@ -21,28 +18,12 @@ public class AddBomb extends Entity implements AnimateAble {
 		// TODO Auto-generated method stub
 		return Sprite.ADDBOMB;
 	}
-	
-	public boolean tick() {
-		counter += 1;
-		
-		if (counter % speed == 0) {
-			update();
-			counter=0;
-		}
-		return used;
-	}
-	
-	public void useItem() {
-		this.used = true;
-	}
 
 	@Override
-	public void update() {
+	public void use(Player player) {
 		// TODO Auto-generated method stub
-		ImageView a = this.getImage();
-		countframe();
-		a.setImage(new Image(getMapStyle() + getSymbol() + this.getframe() % 4 + ".png"));
-
+		player.addBombMax();
 	}
+	
 
 }

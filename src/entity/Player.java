@@ -93,12 +93,12 @@ public class Player {
 	public void Animate() {
 		int nx = 0,ny=0;
 		Boolean removed = false;
-		Boolean smoke = false;
+	
 		
 		//code for set image;
 		for (Cell tmp : animate) {
 			removed = false;
-			smoke = false;
+		
 			
 			if (tmp.getEntity() instanceof Bomb) {
 				removed = ((Bomb) tmp.getEntity()).tick();
@@ -266,7 +266,7 @@ public class Player {
 			if(gameCell[oy][ox].getEntity() instanceof Bomb) {
 				gameCell[oy][ox].getEntity().setSolid(true);
 			}
-			System.out.println("Player move" +"(" +ox +","+ oy+") -> ("  + x+ ","+ y+ ")");
+			//System.out.println("Player move" +"(" +ox +","+ oy+") -> ("  + x+ ","+ y+ ")");
 		}
 		return true;
 	}

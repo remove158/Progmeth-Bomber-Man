@@ -1,10 +1,10 @@
 package entity;
 
-import entity.base.*;
+
 import javafx.scene.layout.Pane;
 import logic.Sprite;
 
-public class Tree extends Entity {
+public class Tree extends Element {
 
 	public Tree(Pane gamePane ,int x, int y,String mapStyle) {
 		super(gamePane,x,y,mapStyle);

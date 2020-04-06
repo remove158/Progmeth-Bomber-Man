@@ -1,12 +1,12 @@
 package entity;
 
-import entity.base.*;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import logic.Sprite;
 
-public class Bomb extends Entity implements AnimateAble {
+public class Bomb extends Element {
 	private int counter = 0;
 	private int speed = 25;
 
@@ -14,6 +14,7 @@ public class Bomb extends Entity implements AnimateAble {
 		super(gamePane, x, y,mapStyle);
 		// TODO Auto-generated constructor stub
 		setSolid(false);
+
 	}
 
 	@Override

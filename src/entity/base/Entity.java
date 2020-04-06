@@ -53,6 +53,9 @@ abstract public class Entity  {
 		}
 		this.frame +=1;
 	}
+	public void setframe(int frame) {
+		this.frame = frame;
+	}
 	public int getframe() {
 		return this.frame;
 	}
@@ -66,18 +69,6 @@ abstract public class Entity  {
 		setPos(myImage);
 		gamePane.getChildren().add(myImage);
 		
-		
-		
-		/*
-		
-		getChildren  =[1,2,3,4,5]
-		
-		children.remove(3);
-		children.add(3);
-		
-		getChildren = [1,2,4,5,3]
-		
-		*/
 		
 	}
 	public void rewrite() {
@@ -102,6 +93,8 @@ abstract public class Entity  {
 	public ImageView getImage() {
 		return myImage;
 	}
+	
+	
 	
 	
 }

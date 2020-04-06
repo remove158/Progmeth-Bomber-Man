@@ -1,10 +1,10 @@
 package entity;
 
-import entity.base.*;
+
 import javafx.scene.layout.Pane;
 import logic.Sprite;
 
-public class Box extends Entity {
+public class Box extends Element {
 
 	public Box(Pane gamePane ,int x, int y,String mapStyle) {
 		super(gamePane,x,y,mapStyle);

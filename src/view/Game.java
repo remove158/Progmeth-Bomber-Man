@@ -16,6 +16,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -39,9 +41,9 @@ public class Game {
 	private static final int WIDTH = 19 * CELL_WIDTH;
 	private static final int HEIGHT = 11 * CELL_WIDTH + 40;
 	private static final int PLAYER1_X_SET = 6;
-	private static final int PLAYER1_Y_SET = 1+1;
+	private static final int PLAYER1_Y_SET = 1 + 1;
 	private static final int PLAYER2_X_SET = 12;
-	private static final int PLAYER2_Y_SET = 8+1;
+	private static final int PLAYER2_Y_SET = 8 + 1;
 	private Stage menuStage;
 	private AnimationTimer timer;
 	boolean up = false, down = false, right = false, left = false;
@@ -58,11 +60,12 @@ public class Game {
 	private ImageView[] player1lifes, player2lifes;
 	private int player1life, player2life;
 	private List<Cell> itemList;
+	private List<Cell> animate;
 
 	public Game(MAP choosenMap) {
 		this.itemList = new ArrayList<Cell>();
 		this.allPlayer = new ArrayList<Player>();
-
+		this.animate = new ArrayList<Cell>();
 		this.choosenMap = choosenMap;
 		this.BACKGROUND_IMAGE = choosenMap.getUrlMap().substring(0, 5) + "background1.png";
 		initializeStage();
@@ -78,12 +81,14 @@ public class Game {
 		player2life = player2.getLife();
 		player1lifes = new ImageView[player1life];
 		player2lifes = new ImageView[player2life];
-		player1Label = new SmallInfoLabel("Player1 Bomb : "+ player1.getBombMax() + "\n        Radius :"  + player1.getBombRadius());
+		player1Label = new SmallInfoLabel(
+				"Player1 Bomb : " + player1.getBombMax() + "\n        Radius :" + player1.getBombRadius());
 		player1Label.setLayoutX(0);
 		player1Label.setLayoutY(0);
 
-		player2Label = new SmallInfoLabel("Player2 Bomb : "+ player2.getBombMax() + "\n        Radius :"  + player2.getBombRadius());
-		player2Label.setLayoutX(16*65);
+		player2Label = new SmallInfoLabel(
+				"Player2 Bomb : " + player2.getBombMax() + "\n        Radius :" + player2.getBombRadius());
+		player2Label.setLayoutX(16 * 65);
 		player2Label.setLayoutY(0);
 
 		for (int i = 0; i < player1.getLife(); i++) {
@@ -95,7 +100,7 @@ public class Game {
 		for (int i = 0; i < player2.getLife(); i++) {
 			player2lifes[i] = new ImageView(choosenMap.getLife());
 			player2lifes[i].setLayoutY(90);
-			player2lifes[i].setLayoutX(30+(16*65) + CELL_WIDTH * i);
+			player2lifes[i].setLayoutX(30 + (16 * 65) + CELL_WIDTH * i);
 			gamePane.getChildren().add(player2lifes[i]);
 		}
 
@@ -123,6 +128,23 @@ public class Game {
 	}
 
 	private void createKeyListeners() {
+		gameScene.setOnMouseClicked(e ->{
+			int x = (int) e.getSceneX() /CELL_WIDTH ;
+			int y= (int) e.getSceneY()/CELL_WIDTH;
+			if(e.getButton() == MouseButton.PRIMARY) {
+				bombThis(x,y);
+			}
+			if(e.getButton() == MouseButton.SECONDARY) {
+				if(!gameCell[y][x].getIsEmpty()) {
+
+					Element element = (Element) gameCell[y][x].getEntity();
+					element.setSmoke();
+					animate.add(gameCell[y][x]);
+				}
+			}
+			
+			
+		});
 
 		gameScene.setOnKeyPressed(e -> {
 
@@ -208,7 +230,7 @@ public class Game {
 
 	public void bombThis(int x, int y) {
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < allPlayer.size(); i++) {
 
 			Player tmp = allPlayer.get(i);
 			if (tmp.getX() == x & tmp.getY() == y) {
@@ -224,27 +246,55 @@ public class Game {
 
 		}
 
-		if (gameCell[y][x].getEntity() == null) {
+		// case null or smoke => set new Smoke(x,y);
+		if (gameCell[y][x].getEntity() == null || gameCell[y][x].getEntity() instanceof Smoke) {
+			if (gameCell[y][x].getEntity() instanceof Smoke) {
+				animate.remove(gameCell[y][x]);
+				gameCell[y][x].removeEntity();
+			}
 			gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
 			rewrite(x, y);
-			itemList.add(gameCell[y][x]);
+			animate.add(gameCell[y][x]);
 		}
 
+		//remove if it is item
+		if (gameCell[y][x].getEntity() instanceof Item) {
+			
+			itemList.remove(gameCell[y][x]);
+			gameCell[y][x].removeEntity();
+			
+			gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
+			animate.add(gameCell[y][x]);
+		
+			rewrite(x, y);
+		}
+		
+		
+		
+		// if it can get item
 		if (!gameCell[y][x].getIsEmpty()
-				&& (gameCell[y][x].getEntity() instanceof Tree || gameCell[y][x].getEntity() instanceof Box)) {
+				&& (gameCell[y][x].getEntity() instanceof Tree || gameCell[y][x].getEntity() instanceof Box )) {
+
 			if (gameCell[y][x].getEntity() instanceof Box) {
+			
 				gameCell[y][x].removeEntity();
 				setItem(x, y);
-			}else if(gameCell[y][x].getEntity() instanceof Tree){
-				gameCell[y][x].removeEntity();
-				randomItem(x, y);
-			} else {
-				gameCell[y][x].removeEntity();
-				gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
+	
+				// 100% box get item
 
-				itemList.add(gameCell[y][x]);
-
-			}
+			} else if (gameCell[y][x].getEntity() instanceof Tree) {
+			
+				gameCell[y][x].removeEntity();
+				Boolean got = randomItem(x, y, 70);// random item with 70 percent
+				
+			
+				if(!got) {
+					
+					gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
+					animate.add(gameCell[y][x]);
+				}
+				
+			} 
 			rewrite(x, y);
 
 		}
@@ -254,35 +304,36 @@ public class Game {
 	private void setItem(int x, int y) {
 		// TODO Auto-generated method stub
 		Random rd = new Random();
-		int num = rd.nextInt(3)+1;
-		System.out.println("set Item (" + x +","+ y+")");
-		if ( num == 1) {
+		int num = rd.nextInt(3) + 1;
+		if (num == 1) {
 
 			gameCell[y][x].setEntity(new Speed(gamePane, x, y, "map1/"));
 			itemList.add(gameCell[y][x]);
-			System.out.println("add ItemSpeed");
+	
 
-		}else if(num==2) {
+		} else if (num == 2) {
 			gameCell[y][x].setEntity(new AddBomb(gamePane, x, y, "map1/"));
 			itemList.add(gameCell[y][x]);
-			System.out.println("add ItemAddBomb");
-		}else if(num==3) {
+		
+		} else if (num == 3) {
 			gameCell[y][x].setEntity(new AddRadius(gamePane, x, y, "map1/"));
 			itemList.add(gameCell[y][x]);
-			System.out.println("add Radius");
+	
 		}
-		
+		((Item) gameCell[y][x].getEntity()).setSmoke();
+
 	}
 
-	private void randomItem(int x, int y) {
+	private boolean randomItem(int x, int y, float percent) {
 		// TODO Auto-generated method stub
 		Random rd = new Random();
-		int num = rd.nextInt(3);
-		System.out.println("Random Item (" + x +","+ y+")");
-		if(num>0) {
-			setItem(x,y);
+		float num = rd.nextInt(10000) / 100;
+		System.out.println("Random Item (" + x + "," + y + ")");
+		if (num < percent) {
+			setItem(x, y);
+			return true;
 		}
-
+		return false;
 	}
 
 	private void createGameLoop() {
@@ -297,6 +348,32 @@ public class Game {
 				player1.Animate();
 				player2.Animate();
 				checkItemUse();
+				animate();
+			}
+
+			private void animate() {
+				// TODO Auto-generated method stub
+				for (Cell tmp : animate) {
+					AnimateAble anm = (AnimateAble) tmp.getEntity();
+					Boolean used = anm.tick();
+					if (anm instanceof Smoke) {
+						// used smoke = smoke time out
+						if (used) {
+							tmp.removeEntity();
+							animate.remove(tmp);
+						}
+					}
+					if(anm instanceof Element) {
+						if (used) {
+					
+							animate.remove(tmp);
+						}
+					}
+
+					if (used)
+						break;
+				}
+
 			}
 
 			private void checkItemUse() {
@@ -306,29 +383,20 @@ public class Game {
 					AnimateAble anm = (AnimateAble) tmp.getEntity();
 					Boolean used = anm.tick();
 
-					if (anm instanceof Speed) {
+					if (anm instanceof Item) {
 
-						used = checkUseItem(player1, player2, "Speed", tmp);
+						used = checkUseItem(player1, player2, tmp);
 
-					} else if (anm instanceof AddBomb) {
-						used = checkUseItem(player1, player2, "AddBomb", tmp);
-					} else if (anm instanceof Smoke) {
-						//used smoke = smoke time out
-						if (used) {
-							tmp.removeEntity();
-							itemList.remove(tmp);
-						}
-					}else if (anm instanceof AddRadius) {
-						used = checkUseItem(player1, player2, "AddRadius", tmp);
 					} 
 
 					if (used)
 						break;
 
 				}
+
 			}
 
-			private boolean checkUseItem(Player player1, Player player2, String type, Cell item) {
+			private boolean checkUseItem(Player player1, Player player2, Cell item) {
 				// TODO Auto-generated method stub
 				int item_x = item.getEntity().getX();
 				int item_y = item.getEntity().getY();
@@ -338,7 +406,7 @@ public class Game {
 				int p2_y = player2.getY();
 
 				if (item_x == p1_x && item_y == p1_y) {
-					useitem(player1, type, item);
+					useitem(player1, item);
 
 					itemList.remove(item);
 
@@ -346,7 +414,7 @@ public class Game {
 				}
 				if (item_x == p2_x && item_y == p2_y) {
 
-					useitem(player2, type, item);
+					useitem(player2, item);
 
 					itemList.remove(item);
 
@@ -355,31 +423,15 @@ public class Game {
 				return false;
 			}
 
-			private void useitem(Player player, String item, Cell tmp) {
+			private void useitem(Player player, Cell tmp) {
 				// TODO Auto-generated method stub
-				tmp.removeEntity();
-				switch (item) {
-				case "Speed": {
-					if(player.getSpeed() ==3) {
-						player.setSpeed(player.getSpeed() + 1);
-					}
-					
-					break;
-				}
-				case "AddBomb": {
-					player.addBombMax();
-					player1Label.setText("Player1 Bomb : "+ player1.getBombMax() + "\n        Radius :"  + player1.getBombRadius());
-					player2Label.setText("Player2 Bomb : "+ player2.getBombMax() + "\n        Radius :"  + player2.getBombRadius());
-					break;
-				}case "AddRadius": {
-					player.addBombRadius();
-					player1Label.setText("Player1 Bomb : "+ player1.getBombMax() + "\n        Radius :"  + player1.getBombRadius());
-					player2Label.setText("Player2 Bomb : "+ player2.getBombMax() + "\n        Radius :"  + player2.getBombRadius());
-					break;
-				}
-				default:
-					System.out.println("Unexpected value: " + item);
-				}
+				//player used item 
+				Item item = (Item) tmp.getEntity();
+				item.use(player);
+				tmp.removeEntity(); //remove item that used
+				
+				
+
 			}
 
 			private void move() {
