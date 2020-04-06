@@ -1,6 +1,6 @@
 package view;
 
-import java.awt.Color;
+import javafx.scene.paint.Color;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,8 +24,10 @@ public class SmallInfoLabel extends Label {
 		setPrefHeight(CELL_WIDTH*3);
 		setAlignment(Pos.TOP_LEFT);
 		setPadding(new Insets(75,25,25,40));
+		setTextFill(Color.web("#000000"));
+		setLabelFont();
 		setText(text);
-	
+		
 		BackgroundImage bg = new BackgroundImage(new Image("/score.png",CELL_WIDTH*3,CELL_WIDTH*3,false,true),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT,null);
 		setBackground(new Background(bg));
 	}
@@ -33,9 +35,9 @@ public class SmallInfoLabel extends Label {
 	
 	private void setLabelFont() {
 		try {
-			setFont(Font.loadFont(new FileInputStream(new File(FONT_PATH)), 15));
+			setFont(Font.loadFont(new FileInputStream(new File(FONT_PATH)), 14));
 		} catch(FileNotFoundException e) {
-			setFont(Font.font("verdana",15));
+			setFont(Font.font("verdana",14));
 		}
 	}
 }

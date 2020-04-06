@@ -1,18 +1,24 @@
 package view;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+
 
 import entity.*;
 import entity.base.AnimateAble;
 import javafx.animation.AnimationTimer;
 import javafx.animation.TranslateTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -23,6 +29,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logic.Cell;
@@ -61,7 +68,7 @@ public class Game {
 	private int player1life, player2life;
 	private List<Cell> itemList;
 	private List<Cell> animate;
-
+	private Label time ;
 	public Game(MAP choosenMap) {
 		this.itemList = new ArrayList<Cell>();
 		this.allPlayer = new ArrayList<Player>();
@@ -71,6 +78,7 @@ public class Game {
 		initializeStage();
 		createKeyListeners();
 		createGameLoop();
+		
 
 	}
 
@@ -79,6 +87,10 @@ public class Game {
 		// TODO Auto-generated method stub
 		player1life = player1.getLife();
 		player2life = player2.getLife();
+		
+		time = new TimeLabel(""+sec,WIDTH,HEIGHT);
+		gamePane.getChildren().add(time);
+		
 		player1lifes = new ImageView[player1life];
 		player2lifes = new ImageView[player2life];
 		player1Label = new SmallInfoLabel(
@@ -335,15 +347,21 @@ public class Game {
 		}
 		return false;
 	}
-
+	int sec = 90;
+	int count = 0;
 	private void createGameLoop() {
-
+		
 		timer = new AnimationTimer() {
 
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
-
+				count++;
+				if(count == 60) {
+					sec--;
+					time.setText(""+sec);
+					count=0;
+				}
 				move();
 				player1.Animate();
 				player2.Animate();
@@ -430,8 +448,8 @@ public class Game {
 				item.use(player);
 				tmp.removeEntity(); //remove item that used
 				
-				
-
+				player1Label.setText("Player1 Bomb : " + player1.getBombMax() + "\n        Radius :" + player1.getBombRadius());
+				player2Label.setText("Player2 Bomb : " + player2.getBombMax() + "\n        Radius :" + player2.getBombRadius());
 			}
 
 			private void move() {
