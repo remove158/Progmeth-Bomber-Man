@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
-
 import entity.*;
 import entity.base.AnimateAble;
+import entity.base.Entity;
 import javafx.animation.AnimationTimer;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
@@ -19,6 +18,7 @@ import javafx.scene.SubScene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -29,6 +29,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -68,7 +69,11 @@ public class Game {
 	private int player1life, player2life;
 	private List<Cell> itemList;
 	private List<Cell> animate;
-	private Label time ;
+	private Label time;
+	private List<Cell> out;
+	int sec = 25;
+	int count = 0;
+	
 	public Game(MAP choosenMap) {
 		this.itemList = new ArrayList<Cell>();
 		this.allPlayer = new ArrayList<Player>();
@@ -78,7 +83,10 @@ public class Game {
 		initializeStage();
 		createKeyListeners();
 		createGameLoop();
-		
+		// out = out(); // for last 10 second
+
+		out = out();
+		out.remove(97);
 
 	}
 
@@ -87,10 +95,10 @@ public class Game {
 		// TODO Auto-generated method stub
 		player1life = player1.getLife();
 		player2life = player2.getLife();
-		
-		time = new TimeLabel(""+sec,WIDTH,HEIGHT);
+
+		time = new TimeLabel("" + sec, WIDTH, HEIGHT);
 		gamePane.getChildren().add(time);
-		
+
 		player1lifes = new ImageView[player1life];
 		player2lifes = new ImageView[player2life];
 		player1Label = new SmallInfoLabel(
@@ -139,23 +147,25 @@ public class Game {
 		}
 	}
 
-	private void createKeyListeners() {
-		gameScene.setOnMouseClicked(e ->{
-			int x = (int) e.getSceneX() /CELL_WIDTH ;
-			int y= (int) e.getSceneY()/CELL_WIDTH;
-			if(e.getButton() == MouseButton.PRIMARY) {
-				bombThis(x,y);
-			}
-			if(e.getButton() == MouseButton.SECONDARY) {
-				if(!gameCell[y][x].getIsEmpty()) {
+	int bombx = 0;
 
-					Element element = (Element) gameCell[y][x].getEntity();
-					element.setSmoke();
-					animate.add(gameCell[y][x]);
-				}
+	private void createKeyListeners() {
+		gameScene.setOnMouseClicked(e -> {
+			int x = (int) e.getSceneX() / CELL_WIDTH;
+			int y = (int) e.getSceneY() / CELL_WIDTH;
+			if (e.getButton() == MouseButton.PRIMARY) {
+				bombThis(x, y);
 			}
+			if (e.getButton() == MouseButton.SECONDARY) {
 			
-			
+
+				/*
+				 * Element element = (Element) gameCell[yy][xx].getEntity(); element.setSmoke();
+				 * animate.add(gameCell[yy][xx]);
+				 */
+
+			}
+
 		});
 
 		gameScene.setOnKeyPressed(e -> {
@@ -269,44 +279,41 @@ public class Game {
 			animate.add(gameCell[y][x]);
 		}
 
-		//remove if it is item
+		// remove if it is item
 		if (gameCell[y][x].getEntity() instanceof Item) {
-			
+
 			itemList.remove(gameCell[y][x]);
 			gameCell[y][x].removeEntity();
-			
+
 			gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
 			animate.add(gameCell[y][x]);
-		
+
 			rewrite(x, y);
 		}
-		
-		
-		
+
 		// if it can get item
 		if (!gameCell[y][x].getIsEmpty()
-				&& (gameCell[y][x].getEntity() instanceof Tree || gameCell[y][x].getEntity() instanceof Box )) {
+				&& (gameCell[y][x].getEntity() instanceof Tree || gameCell[y][x].getEntity() instanceof Box)) {
 
 			if (gameCell[y][x].getEntity() instanceof Box) {
-			
+
 				gameCell[y][x].removeEntity();
 				setItem(x, y);
-	
+
 				// 100% box get item
 
 			} else if (gameCell[y][x].getEntity() instanceof Tree) {
-			
+
 				gameCell[y][x].removeEntity();
 				Boolean got = randomItem(x, y, 70);// random item with 70 percent
-				
-			
-				if(!got) {
-					
+
+				if (!got) {
+
 					gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
 					animate.add(gameCell[y][x]);
 				}
-				
-			} 
+
+			}
 			rewrite(x, y);
 
 		}
@@ -321,16 +328,15 @@ public class Game {
 
 			gameCell[y][x].setEntity(new Speed(gamePane, x, y, "map1/"));
 			itemList.add(gameCell[y][x]);
-	
 
 		} else if (num == 2) {
 			gameCell[y][x].setEntity(new AddBomb(gamePane, x, y, "map1/"));
 			itemList.add(gameCell[y][x]);
-		
+
 		} else if (num == 3) {
 			gameCell[y][x].setEntity(new AddRadius(gamePane, x, y, "map1/"));
 			itemList.add(gameCell[y][x]);
-	
+
 		}
 		((Item) gameCell[y][x].getEntity()).setSmoke();
 
@@ -347,26 +353,122 @@ public class Game {
 		}
 		return false;
 	}
-	int sec = 90;
-	int count = 0;
+
+	
+
 	private void createGameLoop() {
-		
+
 		timer = new AnimationTimer() {
 
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 				count++;
-				if(count == 60) {
-					sec--;
-					time.setText(""+sec);
-					count=0;
-				}
+				counttime();
+				endgame();
 				move();
 				player1.Animate();
 				player2.Animate();
 				checkItemUse();
 				animate();
+			}
+
+			private void counttime() {
+				// TODO Auto-generated method stub
+				if (count == 60) {
+					sec--;
+					time.setText("" + sec);
+					count = 0;
+					if (sec == 20) {
+						time.setEffect(new Glow());
+						time.setTextFill(Color.web("#FFA500"));
+					}
+					if (sec == 10) {
+						time.setTextFill(Color.web("#FF0000"));
+					}
+					if (sec == 0) {
+						count = -1000000;
+
+					}
+
+				}
+			}
+
+			private void endgame() {
+				// TODO Auto-generated method stub
+				if(sec <= 20 && count%12 ==0 ) {
+					
+					if(bombx<98) {
+						int xx = out.get(bombx).getx(), yy = out.get(bombx).getY();
+						
+
+						if (gameCell[yy][xx].getEntity() == null) {
+							bombThis(xx, yy);
+							
+							System.out.println("" + xx + "," + yy + "->"  + " null ,"
+									+ gameCell[yy][xx].getIsEmpty());
+
+						} else if (gameCell[yy][xx].getEntity() instanceof Block) {
+							Element element = (Element) gameCell[yy][xx].getEntity(); element.setSmoke();
+							animate.add(gameCell[yy][xx]);
+							System.out.println("" + xx + "," + yy + "->" + gameCell[yy][xx].getEntity().getClass() + ","
+									+ gameCell[yy][xx].getIsEmpty());
+
+
+						}else if (gameCell[yy][xx].getEntity() instanceof Element) {
+
+							System.out.println("" + xx + "," + yy + "->" + gameCell[yy][xx].getEntity().getClass() + ","
+									+ gameCell[yy][xx].getIsEmpty());
+							bombThis(xx, yy);
+							
+							
+
+						}else if (gameCell[yy][xx].getEntity() instanceof Item) {
+
+							System.out.println("" + xx + "," + yy + "->" + gameCell[yy][xx].getEntity().getClass() + ","
+									+ gameCell[yy][xx].getIsEmpty());
+							bombThis(xx, yy);
+							
+							
+
+						}
+						
+					}
+					
+					if(sec <= 19 && bombx-5<98) {
+						int xx = out.get(bombx-5).getx(), yy = out.get(bombx-5).getY();
+						
+
+						if (gameCell[yy][xx].getEntity() == null) {
+							System.out.println("null");
+							gameCell[yy][xx].setEntity(new Block(gamePane,xx,yy,choosenMap.getUrlMap().substring(0,4)));
+
+						} else if (gameCell[yy][xx].getEntity() instanceof Block) {
+							
+
+						}else if (gameCell[yy][xx].getEntity() instanceof Element) {
+
+							
+							
+
+						}else if (gameCell[yy][xx].getEntity() instanceof Item) {
+
+							gameCell[yy][xx].removeEntity();
+							gameCell[yy][xx].setEntity(new Block(gamePane,xx,yy,choosenMap.getUrlMap().substring(0,4)));
+
+						}
+						rewrite(xx, yy);
+					}
+					
+					bombx++;
+					
+				}
+				
+			
+				
+			
+				
+				
 			}
 
 			private void animate() {
@@ -381,9 +483,9 @@ public class Game {
 							animate.remove(tmp);
 						}
 					}
-					if(anm instanceof Element) {
+					if (anm instanceof Element) {
 						if (used) {
-					
+
 							animate.remove(tmp);
 						}
 					}
@@ -405,7 +507,7 @@ public class Game {
 
 						used = checkUseItem(player1, player2, tmp);
 
-					} 
+					}
 
 					if (used)
 						break;
@@ -443,13 +545,15 @@ public class Game {
 
 			private void useitem(Player player, Cell tmp) {
 				// TODO Auto-generated method stub
-				//player used item 
+				// player used item
 				Item item = (Item) tmp.getEntity();
 				item.use(player);
-				tmp.removeEntity(); //remove item that used
-				
-				player1Label.setText("Player1 Bomb : " + player1.getBombMax() + "\n        Radius :" + player1.getBombRadius());
-				player2Label.setText("Player2 Bomb : " + player2.getBombMax() + "\n        Radius :" + player2.getBombRadius());
+				tmp.removeEntity(); // remove item that used
+
+				player1Label.setText(
+						"Player1 Bomb : " + player1.getBombMax() + "\n        Radius :" + player1.getBombRadius());
+				player2Label.setText(
+						"Player2 Bomb : " + player2.getBombMax() + "\n        Radius :" + player2.getBombRadius());
 			}
 
 			private void move() {
@@ -508,6 +612,50 @@ public class Game {
 
 	}
 
+	private List<Cell> out() {
+		int start_x = 4, start_y = 2;
+		List<Cell> out = new ArrayList<Cell>();
+		int x = 11, y = 9;
+		int count = 0;
+		// loop for shell
+		for (int i = 0; i < (int) (y / 2); i++) {
+			for (int j = i; j < x - i; j++) {
+				out.add(gameCell[start_y + i][start_x + j]);
+				count++;
+				System.out.println("0 " + count);
+
+			}
+			for (int j = i + 1; j < y - i - 1; j++) {
+				out.add(gameCell[start_y + j][start_x + x - i - 1]);
+				count++;
+				System.out.println("1 " + count);
+
+			}
+			for (int j = x - i - 1; j > i - 1; j--) {
+				out.add(gameCell[start_y + y - 1 - i][start_x + j]);
+				count++;
+				System.out.println(count);
+
+			}
+			for (int j = y - i - 2; j > i; j--) {
+				out.add(gameCell[start_y + j][start_x + i]);
+				count++;
+				System.out.println(count);
+
+			}
+			if (i == (int) (y / 2) - 1 && y % 2 == 1) {
+				for (int j = i + 1; j < x - i - 1; j++) {
+					out.add(gameCell[start_y + i + 1][start_x + j]);
+					count++;
+					System.out.println(count);
+				}
+			}
+		}
+
+		return out;
+
+	}
+
 	private void drawGameBoard() {
 
 		String mapStyle = choosenMap.getUrlMap().substring(0, 4);
@@ -533,6 +681,9 @@ public class Game {
 	private void restore() {
 		player1 = new Player(gameCell, gamePane, PLAYER1_X_SET, PLAYER1_Y_SET, choosenMap.getAvatar1(), this);
 		player2 = new Player(gameCell, gamePane, PLAYER2_X_SET, PLAYER2_Y_SET, choosenMap.getAvatar2(), this);
+		this.sec=90;
+		this.count=0;
+		
 	}
 
 	private void createAvatar(MAP choosenMap) {

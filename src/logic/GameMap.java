@@ -21,7 +21,7 @@ public class GameMap {
 			for(String c : col) {
 				
 				//System.out.print(c);
-				myMap[county][countx] = new Cell();
+				myMap[county][countx] = new Cell(countx,county);
 				
 				if(c.equals("b")) {
 					myMap[county][countx].setEntity(new Block(gamePane,countx,county,mapStyle));

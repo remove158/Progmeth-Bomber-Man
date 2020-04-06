@@ -42,7 +42,6 @@ public abstract class Element extends Entity implements AnimateAble  {
 		this.smoke = true;
 		this.setframe(0);
 		this.speed=4;
-		System.out.println("setSmoke");
 		update();
 		
 		
@@ -57,7 +56,7 @@ public abstract class Element extends Entity implements AnimateAble  {
 		ImageView a = this.getImage();
 		countframe();
 		if(!smoke) this.setframe(0);
-		System.out.println("" + speed);
+	
 		a.setImage(new Image(getMapStyle() + show + this.getframe() % 4 + ".png"));
 
 	}

@@ -79,7 +79,7 @@ public class Player {
 		
 		if (gameCell[y][x].getEntity() == null && count_bomb < BOMB_MAX) {
 			System.out.println("setBomb (" + x +","+ y +")");
-			gameCell[y][x] = new Cell();
+			gameCell[y][x] = new Cell(x,y);
 			gameCell[y][x].setEntity(new Bomb(gamePane, x,y, "map1/"));
 			rewrite(x,y);
 			animate.add(gameCell[y][x]);
