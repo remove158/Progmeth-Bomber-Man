@@ -22,10 +22,9 @@ public class EndLabel extends Label {
 		setText(text);
 		setPadding(new Insets(0));
 		setAlignment(Pos.TOP_LEFT);
-		
+		setLayoutX(65 * 5);
+		setLayoutY(65 * 3);
 		setTextFill(Color.web("#FFFFFF"));
-	
-		
 	
 		setLabelFont();
 	

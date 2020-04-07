@@ -78,7 +78,7 @@ public class Player {
 		//i cell[][].getElement == null can set bomb;
 		
 		if (gameCell[y][x].getEntity() == null && count_bomb < BOMB_MAX) {
-			System.out.println("setBomb (" + x +","+ y +")");
+			System.out.println("Set Bomb At  (" + x +","+ y +")");
 			gameCell[y][x] = new Cell(x,y);
 			gameCell[y][x].setEntity(new Bomb(gamePane, x,y, "map1/"));
 			rewrite(x,y);

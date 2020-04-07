@@ -100,11 +100,10 @@ public class ViewManager {
 		GameButton go = new GameButton("GO!");
 		go.setButtonPos(450 ,350);
 		
-		go.setOnMousePressed(e -> {
+		go.setOnAction(e -> {
 			if( choosenMap != null) {
-
-				Game gameManager = new Game(choosenMap);
 	
+				Game gameManager = new Game(choosenMap);
 				gameManager.createNewGame(mainStage);
 				
 			}

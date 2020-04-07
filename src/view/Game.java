@@ -63,25 +63,25 @@ public class Game {
 
 	int pos_top, pos_down, pos_left, pos_right, p1_x, p1_y;
 	private Player player1, player2;
-	private  List<Player> allPlayer;
-	private  Game gameManager;
-	private  SmallInfoLabel player1Label, player2Label;
-	private  ImageView[] player1lifes, player2lifes;
+	private List<Player> allPlayer;
+	private Game gameManager;
+	private SmallInfoLabel player1Label, player2Label;
+	private ImageView[] player1lifes, player2lifes;
 	private int player1life, player2life;
 	private List<Cell> itemList;
-	private  List<Cell> animate;
-	private  Label time;
-	private  List<Cell> out;
-	private  int sec=90;
+	private List<Cell> animate;
+	private Label time;
+	private List<Cell> out;
+	private int sec = 90;
 	int count = 0;
-	private Label win, smallwin;
-	 ;// show win label;
-	private Boolean end_game,game_win ,out_game;
+	private Label win, smallwin;;// show win label;
+	private Boolean end_game, game_win, out_game;
+	private Label showDanger;
 	public Game(MAP choosenMap) {
 		
 		out_game = false;
 		game_win = false;
-		end_game =false;
+		end_game = false;
 		this.itemList = new ArrayList<Cell>();
 		this.allPlayer = new ArrayList<Player>();
 		this.animate = new ArrayList<Cell>();
@@ -166,8 +166,8 @@ public class Game {
 				bombThis(x, y);
 			}
 			if (e.getButton() == MouseButton.SECONDARY) {
-				if(!end_game) {
-					this.sec = 21;
+				if (!end_game) {
+					this.sec = 26;
 				}
 				/*
 				 * Element element = (Element) gameCell[yy][xx].getEntity(); element.setSmoke();
@@ -203,12 +203,11 @@ public class Game {
 
 			if (e.getCode() == KeyCode.R) {
 				gameStage.close();
-				
+
 				gameManager = new Game(choosenMap);
 				gameManager.createNewGame(menuStage);
-				
+
 				restore();
-				
 
 			}
 
@@ -267,70 +266,75 @@ public class Game {
 
 	public void bombThis(int x, int y) {
 
-		for (int i = 0; i < allPlayer.size(); i++) {
+		try {
+			if (x < 3)
+				throw new ArrayIndexOutOfBoundsException();
+			for (int i = 0; i < allPlayer.size(); i++) {
 
-			Player tmp = allPlayer.get(i);
-			if (tmp.getX() == x & tmp.getY() == y) {
+				Player tmp = allPlayer.get(i);
+				if (tmp.getX() == x & tmp.getY() == y) {
 
-				if (i == 0 && !tmp.isDie()) {
-					removePlayer1Life();
-					System.out.println("Player1" + (i + 1) + "got damage ( has " + (tmp.getLife()) + ")");
-				} else if (i == 1 && !tmp.isDie()) {
-					removePlayer2Life();
-					System.out.println("Player2" + (i + 1) + "got damage ( has " + (tmp.getLife()) + ")");
-				}
-			}
-
-		}
-
-		// case null or smoke => set new Smoke(x,y);
-		if (gameCell[y][x].getEntity() == null || gameCell[y][x].getEntity() instanceof Smoke) {
-			if (gameCell[y][x].getEntity() instanceof Smoke) {
-				animate.remove(gameCell[y][x]);
-				gameCell[y][x].removeEntity();
-			}
-			gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
-			rewrite(x, y);
-			animate.add(gameCell[y][x]);
-		}
-
-		// remove if it is item
-		if (gameCell[y][x].getEntity() instanceof Item) {
-
-			itemList.remove(gameCell[y][x]);
-			gameCell[y][x].removeEntity();
-
-			gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
-			animate.add(gameCell[y][x]);
-
-			rewrite(x, y);
-		}
-
-		// if it can get item
-		if (!gameCell[y][x].getIsEmpty()
-				&& (gameCell[y][x].getEntity() instanceof Tree || gameCell[y][x].getEntity() instanceof Box)) {
-
-			if (gameCell[y][x].getEntity() instanceof Box) {
-
-				gameCell[y][x].removeEntity();
-				setItem(x, y);
-
-				// 100% box get item
-
-			} else if (gameCell[y][x].getEntity() instanceof Tree) {
-
-				gameCell[y][x].removeEntity();
-				Boolean got = randomItem(x, y, 50);// random item with 50 percent
-
-				if (!got) {
-
-					gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
-					animate.add(gameCell[y][x]);
+					if (i == 0 && !tmp.isDie()) {
+						removePlayer1Life();
+						System.out.println("Player" + (i + 1) + " got damage ( has " + (tmp.getLife()) + ")");
+					} else if (i == 1 && !tmp.isDie()) {
+						removePlayer2Life();
+						System.out.println("Player" + (i + 1) + " got damage ( has " + (tmp.getLife()) + ")");
+					}
 				}
 
 			}
-			rewrite(x, y);
 
+			// case null or smoke => set new Smoke(x,y);
+			if (gameCell[y][x].getEntity() == null || gameCell[y][x].getEntity() instanceof Smoke) {
+				if (gameCell[y][x].getEntity() instanceof Smoke) {
+					animate.remove(gameCell[y][x]);
+					gameCell[y][x].removeEntity();
+				}
+				gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
+				rewrite(x, y);
+				animate.add(gameCell[y][x]);
+			}
+
+			// remove if it is item
+			if (gameCell[y][x].getEntity() instanceof Item) {
+
+				itemList.remove(gameCell[y][x]);
+				gameCell[y][x].removeEntity();
+
+				gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
+				animate.add(gameCell[y][x]);
+
+				rewrite(x, y);
+			}
+
+			// if it can get item
+			if (!gameCell[y][x].getIsEmpty()
+					&& (gameCell[y][x].getEntity() instanceof Tree || gameCell[y][x].getEntity() instanceof Box)) {
+
+				if (gameCell[y][x].getEntity() instanceof Box) {
+
+					gameCell[y][x].removeEntity();
+					setItem(x, y);
+
+					// 100% box get item
+
+				} else if (gameCell[y][x].getEntity() instanceof Tree) {
+
+					gameCell[y][x].removeEntity();
+					Boolean got = randomItem(x, y, 50);// random item with 50 percent
+
+					if (!got) {
+
+						gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
+						animate.add(gameCell[y][x]);
+					}
+
+				}
+				rewrite(x, y);
+			}
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("Cannot Bomb (" + x + "," + y + ") , index out of range.");
 		}
 
 	}
@@ -340,7 +344,6 @@ public class Game {
 		Random rd = new Random();
 		int num = rd.nextInt(3) + 1;
 		if (num == 1) {
-
 			gameCell[y][x].setEntity(new Speed(gamePane, x, y, "map1/"));
 			itemList.add(gameCell[y][x]);
 
@@ -372,16 +375,14 @@ public class Game {
 	private void createGameLoop() {
 
 		timer = new AnimationTimer() {
-
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 				count++;
 				counttime();
-				if(!end_game && !game_win && !out_game) {
+				if (!end_game && !game_win && !out_game) {
 					endgame();
 				}
-				
 				move();
 				player1.Animate();
 				player2.Animate();
@@ -395,107 +396,117 @@ public class Game {
 					sec--;
 					time.setText("" + sec);
 					count = 0;
-					if (sec == 20) {
+					if (sec == 25) {
 						time.setEffect(new Glow());
 						time.setTextFill(Color.web("#FFA500"));
-					}
+						
+						showDanger = new EndLabel("DANGER",WIDTH,HEIGHT);
+						showDanger.setLayoutX(20);
+						showDanger.setTextFill(Color.RED);
+						if(!game_win)gamePane.getChildren().add(showDanger);
+						}
+					
 					if (sec == 10) {
 						time.setTextFill(Color.web("#FF0000"));
 					}
 					if (sec == 0) {
 						count = -1000000;
-
 					}
-
 				}
 			}
 
 			private void endgame() {
 				// TODO Auto-generated method stub
-				if (sec <= 20 && count % 12 == 0) {
-					if (bombx < 98) {
-						int xx = out.get(bombx).getx(), yy = out.get(bombx).getY();
+				try {
+					if (sec <= 20 && count % 12 == 0) {
+						if (bombx < 98) {
 
-						if (gameCell[yy][xx].getEntity() == null) {
-							bombThis(xx, yy);
+							int xx = out.get(bombx).getx(), yy = out.get(bombx).getY();
 
-							System.out.println("" + xx + "," + yy + "->" + " null ," + gameCell[yy][xx].getIsEmpty());
+							if (gameCell[yy][xx].getEntity() == null) {
+								bombThis(xx, yy);
 
-						} else if (gameCell[yy][xx].getEntity() instanceof Block) {
-							Element element = (Element) gameCell[yy][xx].getEntity();
-							try {
-								element.setSmoke();
-							} catch (SetSmokeException e) {
-								System.out.println("Cannot SetSmoke ," + e.message);
+								// System.out.println("" + xx + "," + yy + "->" + " null ," +
+								// gameCell[yy][xx].getIsEmpty());
+
+							} else if (gameCell[yy][xx].getEntity() instanceof Block) {
+								Element element = (Element) gameCell[yy][xx].getEntity();
+								try {
+									element.setSmoke();
+								} catch (SetSmokeException e) {
+									System.out.println("Cannot SetSmoke ," + e.message);
+								}
+
+								animate.add(gameCell[yy][xx]);
+								// System.out.println("" + xx + "," + yy + "->" +
+								// gameCell[yy][xx].getEntity().getClass() + ","+
+								// gameCell[yy][xx].getIsEmpty());
+
+							} else if (gameCell[yy][xx].getEntity() instanceof Element) {
+
+								// System.out.println("" + xx + "," + yy + "->" +
+								// gameCell[yy][xx].getEntity().getClass() + ","
+								bombThis(xx, yy);
+
+							} else if (gameCell[yy][xx].getEntity() instanceof Item) {
+
+								// System.out.println("" + xx + "," + yy + "->" +
+								// gameCell[yy][xx].getEntity().getClass() + ","
+								bombThis(xx, yy);
+
 							}
-							
-							animate.add(gameCell[yy][xx]);
-							System.out.println("" + xx + "," + yy + "->" + gameCell[yy][xx].getEntity().getClass() + ","
-									+ gameCell[yy][xx].getIsEmpty());
 
-						} else if (gameCell[yy][xx].getEntity() instanceof Element) {
+						}
 
-							System.out.println("" + xx + "," + yy + "->" + gameCell[yy][xx].getEntity().getClass() + ","
-									+ gameCell[yy][xx].getIsEmpty());
+						if (sec <= 19 && bombx - 3 < 98) {
+
+							int xx = out.get(bombx - 3).getx(), yy = out.get(bombx - 3).getY();
 							bombThis(xx, yy);
+								
+							if (bombx == 5) {
+								bombThis(xx - 1, yy);
+								bombThis(xx - 2, yy);
+								gameCell[yy][xx - 1].removeEntity();
+								gameCell[yy][xx - 1].setEntity(
+										new Block(gamePane, xx - 1, yy, choosenMap.getUrlMap().substring(0, 4)));
+								gameCell[yy][xx - 2].removeEntity();
+								gameCell[yy][xx - 2].setEntity(
+										new Block(gamePane, xx - 2, yy, choosenMap.getUrlMap().substring(0, 4)));
+							}
+							if (gameCell[yy][xx].getEntity() == null) {
 
-						} else if (gameCell[yy][xx].getEntity() instanceof Item) {
+								gameCell[yy][xx]
+										.setEntity(new Block(gamePane, xx, yy, choosenMap.getUrlMap().substring(0, 4)));
 
-							System.out.println("" + xx + "," + yy + "->" + gameCell[yy][xx].getEntity().getClass() + ","
-									+ gameCell[yy][xx].getIsEmpty());
-							bombThis(xx, yy);
+							} else if (gameCell[yy][xx].getEntity() instanceof Block) {
 
+							} else if (gameCell[yy][xx].getEntity() instanceof Element) {
+								gameCell[yy][xx].removeEntity();
+								gameCell[yy][xx].setEntity(new Block(gamePane, xx, yy, choosenMap.getUrlMap().substring(0, 4)));
+							} else if (gameCell[yy][xx].getEntity() instanceof Item) {
+
+								gameCell[yy][xx].removeEntity();
+								gameCell[yy][xx]
+										.setEntity(new Block(gamePane, xx, yy, choosenMap.getUrlMap().substring(0, 4)));
+
+							}
+							rewrite(xx, yy);
 						}
 
-					}
-
-					if (sec <= 19 && bombx - 3 < 98) {
-
-						int xx = out.get(bombx - 3).getx(), yy = out.get(bombx - 3).getY();
-						bombThis(xx, yy);
-
-						if (bombx == 5) {
-							bombThis(xx - 1, yy);
-							bombThis(xx - 2, yy);
-							gameCell[yy][xx - 1].removeEntity();
-							gameCell[yy][xx - 1]
-									.setEntity(new Block(gamePane, xx - 1, yy, choosenMap.getUrlMap().substring(0, 4)));
-							gameCell[yy][xx - 2].removeEntity();
-							gameCell[yy][xx - 2]
-									.setEntity(new Block(gamePane, xx - 2, yy, choosenMap.getUrlMap().substring(0, 4)));
+						if (sec == 0) {
+							showwin();
+							end_game = true;
 						}
-						if (gameCell[yy][xx].getEntity() == null) {
 
-							gameCell[yy][xx]
-									.setEntity(new Block(gamePane, xx, yy, choosenMap.getUrlMap().substring(0, 4)));
+						bombx++;
 
-						} else if (gameCell[yy][xx].getEntity() instanceof Block) {
-
-						} else if (gameCell[yy][xx].getEntity() instanceof Element) {
-							gameCell[yy][xx].removeEntity();
-							gameCell[yy][xx]
-									.setEntity(new Block(gamePane, xx, yy, choosenMap.getUrlMap().substring(0, 4)));
-						} else if (gameCell[yy][xx].getEntity() instanceof Item) {
-
-							gameCell[yy][xx].removeEntity();
-							gameCell[yy][xx]
-									.setEntity(new Block(gamePane, xx, yy, choosenMap.getUrlMap().substring(0, 4)));
-
-						}
-						rewrite(xx, yy);
 					}
-
-					if (sec == 0) {
-						showwin();
-						end_game = true;
-					}
-
-					bombx++;
-
+				} catch (ArrayIndexOutOfBoundsException e) {
+					System.out.println("Cannot Set Endgame , Index out of range. ");
 				}
 
 			}
-			
+
 			private void animate() {
 				// TODO Auto-generated method stub
 				for (Cell tmp : animate) {
@@ -574,10 +585,10 @@ public class Game {
 				Item item = (Item) tmp.getEntity();
 				try {
 					item.use(player);
-				}catch (UseItemException e) {
+				} catch (UseItemException e) {
 					System.out.println("Cannot Use Item ," + e.message);
 				}
-				
+
 				tmp.removeEntity(); // remove item that used
 
 				player1Label.setText(
@@ -618,10 +629,8 @@ public class Game {
 	public void showwin() {
 		win = new EndLabel("WIN", WIDTH, HEIGHT);
 		smallwin = new Label("<< Press R to regame , Press ESC to select map >>");
-		win.setLayoutX(65 * 5);
-		win.setLayoutY(65 * 3);
-		smallwin.setLayoutX(WIDTH/2);
-		smallwin.setLayoutY(HEIGHT/2+65*2);
+		smallwin.setLayoutX(WIDTH / 2);
+		smallwin.setLayoutY(HEIGHT / 2 + 65 * 2);
 		smallwin.setTextFill(Color.WHITE);
 		game_win = true;
 		gamePane.getChildren().add(win);
@@ -658,6 +667,17 @@ public class Game {
 			gamePane.getChildren().add(win);
 			gamePane.getChildren().remove(smallwin);
 			gamePane.getChildren().add(smallwin);
+			gamePane.getChildren().remove(showDanger);
+		}
+		if(!game_win) {
+			if(sec<=25 && sec >=23) {
+				gamePane.getChildren().remove(showDanger);
+				gamePane.getChildren().add(showDanger);
+			}
+			
+		}
+		if(sec==23) {
+			gamePane.getChildren().remove(showDanger);
 		}
 
 	}
@@ -672,32 +692,28 @@ public class Game {
 			for (int j = i; j < x - i; j++) {
 				out.add(gameCell[start_y + i][start_x + j]);
 				count++;
-			
 
 			}
 			for (int j = i + 1; j < y - i - 1; j++) {
 				out.add(gameCell[start_y + j][start_x + x - i - 1]);
 				count++;
-			
 
 			}
 			for (int j = x - i - 1; j > i - 1; j--) {
 				out.add(gameCell[start_y + y - 1 - i][start_x + j]);
 				count++;
-			
 
 			}
 			for (int j = y - i - 2; j > i; j--) {
 				out.add(gameCell[start_y + j][start_x + i]);
 				count++;
-			
 
 			}
 			if (i == (int) (y / 2) - 1 && y % 2 == 1) {
 				for (int j = i + 1; j < x - i - 1; j++) {
 					out.add(gameCell[start_y + i + 1][start_x + j]);
 					count++;
-					
+
 				}
 			}
 		}
@@ -705,8 +721,9 @@ public class Game {
 		return out;
 
 	}
-	
+
 	GameMap map;
+
 	private void drawGameBoard() {
 
 		String mapStyle = choosenMap.getUrlMap().substring(0, 4);
@@ -730,18 +747,18 @@ public class Game {
 	}
 
 	private void restore() {
-		
+
 		sec = 900000000;
 		count = 0;
-		bombx= 0;
-		
+		bombx = 0;
+
 		game_win = false;
-		end_game =false;
+		end_game = false;
 		animate.removeAll(animate);
 		itemList.removeAll(itemList);
-		
-		out_game=false;
-		
+
+		out_game = false;
+
 	}
 
 	private void createAvatar(MAP choosenMap) {
