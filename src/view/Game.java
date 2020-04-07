@@ -423,7 +423,12 @@ public class Game {
 
 						} else if (gameCell[yy][xx].getEntity() instanceof Block) {
 							Element element = (Element) gameCell[yy][xx].getEntity();
-							element.setSmoke();
+							try {
+								element.setSmoke();
+							} catch (SetSmokeException e) {
+								System.out.println("Cannot SetSmoke ," + e.message);
+							}
+							
 							animate.add(gameCell[yy][xx]);
 							System.out.println("" + xx + "," + yy + "->" + gameCell[yy][xx].getEntity().getClass() + ","
 									+ gameCell[yy][xx].getIsEmpty());
