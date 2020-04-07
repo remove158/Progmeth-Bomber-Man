@@ -200,10 +200,10 @@ public class Player {
 		
 		rewrite(x, y);
 		// brinBelowCelltoTop
-		int corner=speedNorm;
+		int corner=2;
 		if (dir == UP) {
 			set(UP);
-			int ny = (pos_top - speedNorm ) / CELL_WIDTH;
+			int ny = (pos_top - 1 ) / CELL_WIDTH;
 			
 			return (gameCell[ny][x].getIsEmpty()) && (gameCell[ny][((pos_left + corner) / CELL_WIDTH)].getIsEmpty())
 					&& (gameCell[ny][(pos_right - corner) / CELL_WIDTH].getIsEmpty());
@@ -211,7 +211,7 @@ public class Player {
 		} //
 		if (dir == RIGHT) {
 			set(RIGHT);
-			int nx = (pos_right + speedNorm ) / CELL_WIDTH;
+			int nx = (pos_right + 1 ) / CELL_WIDTH;
 
 			return (gameCell[y][nx].getIsEmpty()) && (gameCell[((pos_top + corner) / CELL_WIDTH)][nx].getIsEmpty())
 					&& (gameCell[(pos_down - corner) / CELL_WIDTH][nx].getIsEmpty());
@@ -219,7 +219,7 @@ public class Player {
 		}
 		if (dir == DOWN) {
 			set(DOWN);
-			int ny = (pos_down + speedNorm ) / CELL_WIDTH;
+			int ny = (pos_down + 1 ) / CELL_WIDTH;
 
 			return (gameCell[ny][x].getIsEmpty()) && (gameCell[ny][((pos_left + corner) / CELL_WIDTH)].getIsEmpty())
 					&& (gameCell[ny][(pos_right - corner) / CELL_WIDTH].getIsEmpty());
@@ -227,7 +227,7 @@ public class Player {
 		}
 		if (dir == LEFT) {
 			set(LEFT);
-			int nx = (pos_left - speedNorm ) / CELL_WIDTH;
+			int nx = (pos_left - 1 ) / CELL_WIDTH;
 
 			return (gameCell[y][nx].getIsEmpty()) && (gameCell[((pos_top + corner) / CELL_WIDTH)][nx].getIsEmpty())
 					&& (gameCell[(pos_down - corner) / CELL_WIDTH][nx].getIsEmpty());
@@ -247,18 +247,20 @@ public class Player {
 	}
 	public boolean movePlayer(int direction) {
 
-		if (direction == UP && checkMove(UP))
-			avatar.setLayoutY(avatar.getLayoutY() - speedNorm);
-			
+		for(int i =0;i<speedNorm;i++) {
+			if (direction == UP && checkMove(UP))
+				avatar.setLayoutY(avatar.getLayoutY() - 1);
+				
 
-		if (direction == DOWN && checkMove(DOWN))
-			avatar.setLayoutY(avatar.getLayoutY() + speedNorm);
+			if (direction == DOWN && checkMove(DOWN))
+				avatar.setLayoutY(avatar.getLayoutY() + 1);
 
-		if (direction == RIGHT && checkMove(RIGHT))
-			avatar.setLayoutX(avatar.getLayoutX() + speedNorm);
+			if (direction == RIGHT && checkMove(RIGHT))
+				avatar.setLayoutX(avatar.getLayoutX() + 1);
 
-		if (direction == LEFT && checkMove(LEFT))
-			avatar.setLayoutX(avatar.getLayoutX() - speedNorm);
+			if (direction == LEFT && checkMove(LEFT))
+				avatar.setLayoutX(avatar.getLayoutX() - 1);
+		}
 		
 		int ox=x,oy=y;
 		updatePosition();
