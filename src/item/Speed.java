@@ -20,9 +20,10 @@ public class Speed extends Item {
 	}
 
 	@Override
-	public void use(Player player) {
-		// TODO Auto-generated method stub
-		if(player.getSpeed() ==3) {
+	public void use(Player player)  throws UseItemException {
+		if(player.getSpeed()  ==4) {
+			throw new UseItemException("Speed Limit.");
+		}else {
 			player.setSpeed(player.getSpeed() + 1);
 		}
 		

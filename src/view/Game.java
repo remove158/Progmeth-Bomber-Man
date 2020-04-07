@@ -63,21 +63,23 @@ public class Game {
 
 	int pos_top, pos_down, pos_left, pos_right, p1_x, p1_y;
 	private Player player1, player2;
-	private static List<Player> allPlayer;
-	private Game gameManager;
-	private SmallInfoLabel player1Label, player2Label;
-	private ImageView[] player1lifes, player2lifes;
+	private  List<Player> allPlayer;
+	private  Game gameManager;
+	private  SmallInfoLabel player1Label, player2Label;
+	private  ImageView[] player1lifes, player2lifes;
 	private int player1life, player2life;
 	private List<Cell> itemList;
-	private List<Cell> animate;
-	private Label time;
-	private List<Cell> out;
-	int sec = 40;
+	private  List<Cell> animate;
+	private  Label time;
+	private  List<Cell> out;
+	private  int sec=90;
 	int count = 0;
 	private Label win, smallwin;
-	private Boolean game_win ;// show win label;
-	private Boolean end_game ;
+	 ;// show win label;
+	private Boolean end_game,game_win ,out_game;
 	public Game(MAP choosenMap) {
+		
+		out_game = false;
 		game_win = false;
 		end_game =false;
 		this.itemList = new ArrayList<Cell>();
@@ -201,15 +203,20 @@ public class Game {
 
 			if (e.getCode() == KeyCode.R) {
 				gameStage.close();
+				
 				gameManager = new Game(choosenMap);
 				gameManager.createNewGame(menuStage);
+				
 				restore();
+				
 
 			}
 
 			if (e.getCode() == KeyCode.ESCAPE) {
+				restore();
 				gameStage.close();
 				menuStage.show();
+				out_game = true;
 				restore();
 			}
 
@@ -313,7 +320,7 @@ public class Game {
 			} else if (gameCell[y][x].getEntity() instanceof Tree) {
 
 				gameCell[y][x].removeEntity();
-				Boolean got = randomItem(x, y, 70);// random item with 70 percent
+				Boolean got = randomItem(x, y, 50);// random item with 50 percent
 
 				if (!got) {
 
@@ -371,7 +378,7 @@ public class Game {
 				// TODO Auto-generated method stub
 				count++;
 				counttime();
-				if(!end_game) {
+				if(!end_game && !game_win && !out_game) {
 					endgame();
 				}
 				
@@ -483,7 +490,7 @@ public class Game {
 				}
 
 			}
-
+			
 			private void animate() {
 				// TODO Auto-generated method stub
 				for (Cell tmp : animate) {
@@ -560,7 +567,12 @@ public class Game {
 				// TODO Auto-generated method stub
 				// player used item
 				Item item = (Item) tmp.getEntity();
-				item.use(player);
+				try {
+					item.use(player);
+				}catch (UseItemException e) {
+					System.out.println("Cannot Use Item ," + e.message);
+				}
+				
 				tmp.removeEntity(); // remove item that used
 
 				player1Label.setText(
@@ -688,11 +700,12 @@ public class Game {
 		return out;
 
 	}
-
+	
+	GameMap map;
 	private void drawGameBoard() {
 
 		String mapStyle = choosenMap.getUrlMap().substring(0, 4);
-		GameMap map = new GameMap(gamePane, mapStyle);
+		map = new GameMap(gamePane, mapStyle);
 		gameCell = map.getCell();
 
 	}
@@ -712,15 +725,17 @@ public class Game {
 	}
 
 	private void restore() {
-		player1 = new Player(gameCell, gamePane, PLAYER1_X_SET, PLAYER1_Y_SET, choosenMap.getAvatar1(), this);
-		player2 = new Player(gameCell, gamePane, PLAYER2_X_SET, PLAYER2_Y_SET, choosenMap.getAvatar2(), this);
-		this.sec = 90;
-		this.count = 0;
-		this.bombx=0;
+		
+		sec = 900000000;
+		count = 0;
+		bombx= 0;
+		
 		game_win = false;
 		end_game =false;
-		animate = new ArrayList<Cell>();
-		itemList = new ArrayList<Cell>();
+		animate.removeAll(animate);
+		itemList.removeAll(itemList);
+		
+		out_game=false;
 		
 	}
 

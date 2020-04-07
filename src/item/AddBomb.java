@@ -20,9 +20,14 @@ public class AddBomb extends Item {
 	}
 
 	@Override
-	public void use(Player player) {
+	public void use(Player player) throws UseItemException {
+		if(player.getBombMax()  >=5) {
+			throw new UseItemException("Bomb Limite At 5.");
+		}else {
+			player.addBombMax();
+		}
 		// TODO Auto-generated method stub
-		player.addBombMax();
+		
 	}
 	
 

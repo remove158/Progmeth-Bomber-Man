@@ -57,6 +57,6 @@ public abstract class Item extends Entity implements AnimateAble  {
 	@Override
 	abstract public String getSymbol();
 	
-	abstract public void use(Player player);
+	abstract public void use(Player player) throws UseItemException;
 
 }
