@@ -1,41 +1,33 @@
 package view;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import entity.*;
 import entity.base.AnimateAble;
-import entity.base.Entity;
+
 import javafx.animation.AnimationTimer;
-import javafx.animation.TranslateTransition;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
+
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
+
 import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+
 import javafx.stage.Stage;
-import javafx.util.Duration;
+
 import logic.Cell;
 import logic.GameMap;
 import model.MAP;
@@ -43,7 +35,7 @@ import item.*;
 
 public class Game {
 	private final static int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
-	private final static String FONT_PATH = "res/VAGRoundedBT-Regular.otf";
+
 	private static String BACKGROUND_IMAGE;
 	private AnchorPane gamePane;
 	private AnchorPane playerInfo;
@@ -68,7 +60,6 @@ public class Game {
 	private Game gameManager;
 	private SmallInfoLabel player1Label, player2Label;
 
-	
 	private List<Cell> itemList;
 	private List<Cell> animate;
 	private Label time;
@@ -96,28 +87,24 @@ public class Game {
 
 		out = out();
 		out.remove(97);
-		
+
 	}
 
 	private void createGameElements() {
 		// System.out.println("Chreating Element....");
 		// TODO Auto-generated method stub
 
-	
-
 		time = new TimeLabel("" + sec, 13 * CELL_WIDTH, 11 * CELL_WIDTH);
 		playerInfo.getChildren().add(time);
 
-	
 		player1Label = new SmallInfoLabel(player1);
 		player1Label.setLayoutX(25);
 		player1Label.setLayoutY(50);
 		player2Label = new SmallInfoLabel(player2);
 		player2Label.setLayoutX(25);
-		player2Label.setLayoutY(50 + 65*3);
+		player2Label.setLayoutY(50 + 65 * 3);
 		playerInfo.getChildren().add(player1Label);
 		playerInfo.getChildren().add(player2Label);
-
 
 		// System.out.println("Chreate Element");
 	}
@@ -133,7 +120,7 @@ public class Game {
 	}
 
 	private void removePlayer2Life() {
-		
+
 		player2.getHurt();
 		if (player2.getLife() == 0) {
 			player2.die();
@@ -240,7 +227,7 @@ public class Game {
 		ImageView border = new ImageView("map1/border.png");
 		gamePane.setLayoutX(playerInfo.getPrefWidth());
 
-		root.getChildren().addAll(gamePane,border, playerInfo);
+		root.getChildren().addAll(gamePane, border, playerInfo);
 
 		gameScene = new Scene(root, WIDTH, HEIGHT);
 		gameStage = new Stage();
@@ -332,7 +319,7 @@ public class Game {
 	private void setItem(int x, int y) {
 		// TODO Auto-generated method stub
 		Random rd = new Random();
-		int num = rd.nextInt(3) + 1;
+		int num = rd.nextInt(4) + 1;
 		if (num == 1) {
 			gameCell[y][x].setEntity(new Speed(gamePane, x, y, "map1/"));
 			itemList.add(gameCell[y][x]);
@@ -345,9 +332,11 @@ public class Game {
 			gameCell[y][x].setEntity(new AddRadius(gamePane, x, y, "map1/"));
 			itemList.add(gameCell[y][x]);
 
+		} else if (num == 4) {
+			gameCell[y][x].setEntity(new ShieldOnPlayer(gamePane, x, y, "map1/"));
+			itemList.add(gameCell[y][x]);
 		}
 		((Item) gameCell[y][x].getEntity()).setSmoke();
-
 	}
 
 	private boolean randomItem(int x, int y, float percent) {
@@ -395,7 +384,7 @@ public class Game {
 					if (sec == 25) {
 						time.setEffect(new Glow());
 						time.setTextFill(Color.web("#FFA500"));
-							
+
 						showDanger = new EndLabel("DANGER", 13 * CELL_WIDTH, 11 * CELL_WIDTH);
 
 						showDanger.setTextFill(Color.RED);
@@ -745,7 +734,7 @@ public class Game {
 		menuStage.close();
 
 		createAvatar(choosenMap);
-
+		gameStage.setTitle("FINAL Project");
 		gameStage.show();
 
 	}

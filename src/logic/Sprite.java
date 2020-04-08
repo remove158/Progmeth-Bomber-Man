@@ -9,4 +9,5 @@ public class Sprite {
 	public static String SPEED = "/speed";
 	public static String ADDBOMB = "/addbomb";
 	public static String ADDRADIUS = "/addradius";
+	public static String SHIELD = "/shield";
 }

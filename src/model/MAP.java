@@ -2,8 +2,8 @@ package model;
 
 public enum MAP {
 	MAP1("map1/map.png","char1/life.png"),
-	MAP2("map2/map.png","char1/life.png");
-	
+	MAP2("map2/map.png","char1/life.png"),
+	MAP3("map3/map.png","char1/life.png");
 	private String showMAP;
 	private String avatar;
 	private String life;
