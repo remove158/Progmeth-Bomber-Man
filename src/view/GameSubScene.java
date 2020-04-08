@@ -3,6 +3,7 @@ package view;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Parent;
 import javafx.scene.SubScene;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -30,7 +31,8 @@ public class GameSubScene extends SubScene {
 		
 		isHidden = true;
 		setLayoutX(1024);
-		setLayoutY(180);
+		setLayoutY(250);
+		
 	}
 	   public boolean getHidde() {
 		   return isHidden;

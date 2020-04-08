@@ -11,6 +11,7 @@ import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -30,7 +31,7 @@ public class ViewManager {
 	private Stage gameStage;
 
 	private final static int MENU_BUTTON_START_X = 175;
-	private final static int MENU_BUTTON_START_Y = 200;
+	private final static int MENU_BUTTON_START_Y = 250;
 	List<GameButton> menuButton;
 	List<GameSubScene> allPanel;
 	List<MapPicker> mapList;
@@ -54,7 +55,7 @@ public class ViewManager {
 		createSubSCenes();
 		createBackground();
 		createMenuButton();
-		creatLogo();
+		createLogo();
 		
 		
 		
@@ -157,7 +158,7 @@ public class ViewManager {
 		createButtons("SCORES").setOnAction(e -> showSubScene(scoreSubScene));
 		createButtons("HELP").setOnAction(e -> showSubScene(helpSubScene));
 		createButtons("CREDITS").setOnAction(e -> showSubScene(creditsSubScene));
-		createButtons("EXIT").setOnAction(e -> mainStage.close());
+		createButtons("EXIT").setOnAction(e -> System.exit(0));
 
 	}
 
@@ -166,17 +167,21 @@ public class ViewManager {
 		button.setButtonPos(MENU_BUTTON_START_X, MENU_BUTTON_START_Y + menuButton.size() * 100);
 		mainPane.getChildren().add(button);
 		menuButton.add(button);
+		
 		return button;
 
 	}
 
-	private void creatLogo() {
-		ImageView logo = new ImageView("logo.png");
-		logo.setLayoutX(400);
+	private void createLogo() {
+	
+	
+		ImageView logo = new ImageView("logo.gif");
+		
+		logo.setLayoutX(WIDTH/2 - 679/2 + 20);
 		logo.setLayoutY(50);
-		logo.setOnMouseEntered(e -> logo.setEffect(new DropShadow()));
+		logo.setOnMouseEntered(e -> logo.setEffect(new Glow()));
 		logo.setOnMouseExited(e -> logo.setEffect(null));
-		mainPane.getChildren().add(logo);
+		mainPane.getChildren().addAll(logo);
 	}
 
 	private void createBackground() {
@@ -184,5 +189,6 @@ public class ViewManager {
 		BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT,
 				BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, null);
 		mainPane.setBackground(new Background(background));
+		
 	}
 }

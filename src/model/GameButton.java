@@ -11,8 +11,10 @@ import java.io.FileInputStream;
 import javafx.scene.text.Font;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
+import javafx.scene.paint.Color;
 
 public class GameButton extends Button {
 	private final String FONT_PATH = "res/VAGRoundedBT-Regular.otf";
@@ -20,7 +22,7 @@ public class GameButton extends Button {
     private final String BUTTON_FREE_STYLE = "-fx-background-color: transparent; -fx-background-image: url('button1.png')";
   
     public GameButton(String text) {
- 
+    	setTextFill(Color.web("#FFFFFF"));
     	setText(text);
     	setButtonFont();
     	setPrefWidth(190);
@@ -53,11 +55,14 @@ public class GameButton extends Button {
     
 
    private void initializeButtonLusteners() {
-
+	  
+	   
+	   
 	   setOnMousePressed(e -> setButtonPressedStyle());
 	   setOnMouseReleased(e -> setButtonReleasedStyle());
-	   setOnMouseEntered(e -> setEffect(new DropShadow()));
-	   setOnMouseExited(e -> setEffect(null));
+	   setOnMouseEntered(e -> {setStyle(BUTTON_PRESSED_STYLE);setEffect(new DropShadow());});
+	   setOnMouseExited(e -> {setStyle(BUTTON_FREE_STYLE);setEffect(null);});
+	  
    }
    public void setButtonPos(int x,int y) {
 		x -= this.getPrefWidth()/2;

@@ -1,6 +1,8 @@
 package model;
 
 import javafx.geometry.Pos;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -25,6 +27,8 @@ public class MapPicker extends VBox {
 		this.setSpacing(20);
 		this.getChildren().add(circleImage);
 		this.getChildren().add(MapImage);
+		setOnMouseEntered(e -> {setEffect(new Glow());});
+		setOnMouseExited(e -> {setEffect(null);});
 		
 	}
 	public MAP getMap() {
