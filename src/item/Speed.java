@@ -21,7 +21,7 @@ public class Speed extends Item {
 
 	@Override
 	public void use(Player player)  throws UseItemException {
-		if(player.getSpeed()  ==4) {
+		if(player.getSpeed()  ==5) {
 			throw new UseItemException("Speed Limit.");
 		}else {
 			player.setSpeed(player.getSpeed() + 1);

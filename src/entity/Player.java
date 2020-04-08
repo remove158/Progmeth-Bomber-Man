@@ -22,7 +22,7 @@ public class Player {
 	private static final int WIDTH = 16 * 65;
 	private static final int HEIGHT = 11 * 65;
 	private int count_bomb=0;
-	private  int BOMB_MAX=2;
+	private  int BOMB_MAX=1;
 	private Game game;
 	private List<Cell> animate; //[
 	private int LIFE = 1;
@@ -49,6 +49,9 @@ public class Player {
 	}
 	public int getLife() {
 		return this.LIFE;
+	}
+	public String getImgUrl() {
+		return this.img_url;
 	}
 	public void addBombRadius() {
 		this.bombRadius +=1;
@@ -89,7 +92,7 @@ public class Player {
 	public void addAnimate(Cell e) {
 		this.animate.add(e);
 	}
-	
+
 	public void Animate() {
 		int nx = 0,ny=0;
 		Boolean removed = false;

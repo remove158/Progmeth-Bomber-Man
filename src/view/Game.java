@@ -30,6 +30,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -44,41 +46,41 @@ public class Game {
 	private final static String FONT_PATH = "res/VAGRoundedBT-Regular.otf";
 	private static String BACKGROUND_IMAGE;
 	private AnchorPane gamePane;
+	private AnchorPane playerInfo;
 	private Scene gameScene;
 	private Stage gameStage;
 	private static final int CELL_WIDTH = 65;
-	private static final int WIDTH = 19 * CELL_WIDTH;
+	private static final int WIDTH = 17 * CELL_WIDTH;
 	private static final int HEIGHT = 11 * CELL_WIDTH + 40;
-	private static final int PLAYER1_X_SET = 6;
-	private static final int PLAYER1_Y_SET = 1 + 1;
-	private static final int PLAYER2_X_SET = 12;
-	private static final int PLAYER2_Y_SET = 8 + 1;
+	private static final int PLAYER1_X_SET = 3;
+	private static final int PLAYER1_Y_SET = 2;
+	private static final int PLAYER2_X_SET = 9;
+	private static final int PLAYER2_Y_SET = 9;
 	private Stage menuStage;
 	private AnimationTimer timer;
 	boolean up = false, down = false, right = false, left = false;
 	boolean w = false, a = false, s = false, d = false;
 	private static Cell[][] gameCell;
-	private GraphicsContext gc;
 	private MAP choosenMap;
-
 	int pos_top, pos_down, pos_left, pos_right, p1_x, p1_y;
 	private Player player1, player2;
 	private List<Player> allPlayer;
 	private Game gameManager;
 	private SmallInfoLabel player1Label, player2Label;
-	private ImageView[] player1lifes, player2lifes;
-	private int player1life, player2life;
+
+	
 	private List<Cell> itemList;
 	private List<Cell> animate;
 	private Label time;
 	private List<Cell> out;
-	private int sec = 90;
+	private int sec = 180;
 	int count = 0;
 	private Label win, smallwin;;// show win label;
 	private Boolean end_game, game_win, out_game;
 	private Label showDanger;
+
 	public Game(MAP choosenMap) {
-		
+
 		out_game = false;
 		game_win = false;
 		end_game = false;
@@ -89,70 +91,53 @@ public class Game {
 		this.BACKGROUND_IMAGE = choosenMap.getUrlMap().substring(0, 5) + "background1.png";
 		initializeStage();
 		createKeyListeners();
+
 		createGameLoop();
-		// out = out(); // for last 10 second
 
 		out = out();
 		out.remove(97);
-
+		
 	}
 
 	private void createGameElements() {
 		// System.out.println("Chreating Element....");
 		// TODO Auto-generated method stub
-		player1life = player1.getLife();
-		player2life = player2.getLife();
 
-		time = new TimeLabel("" + sec, WIDTH, HEIGHT);
-		gamePane.getChildren().add(time);
+	
 
-		player1lifes = new ImageView[player1life];
-		player2lifes = new ImageView[player2life];
-		player1Label = new SmallInfoLabel(
-				"Player1 Bomb : " + player1.getBombMax() + "\n        Radius :" + player1.getBombRadius());
-		player1Label.setLayoutX(0);
-		player1Label.setLayoutY(0);
+		time = new TimeLabel("" + sec, 13 * CELL_WIDTH, 11 * CELL_WIDTH);
+		playerInfo.getChildren().add(time);
 
-		player2Label = new SmallInfoLabel(
-				"Player2 Bomb : " + player2.getBombMax() + "\n        Radius :" + player2.getBombRadius());
-		player2Label.setLayoutX(16 * 65);
-		player2Label.setLayoutY(0);
+	
+		player1Label = new SmallInfoLabel(player1);
+		player1Label.setLayoutX(25);
+		player1Label.setLayoutY(50);
+		player2Label = new SmallInfoLabel(player2);
+		player2Label.setLayoutX(25);
+		player2Label.setLayoutY(50 + 65*3);
+		playerInfo.getChildren().add(player1Label);
+		playerInfo.getChildren().add(player2Label);
 
-		for (int i = 0; i < player1.getLife(); i++) {
-			player1lifes[i] = new ImageView(choosenMap.getLife());
-			player1lifes[i].setLayoutY(90);
-			player1lifes[i].setLayoutX(30 + CELL_WIDTH * i);
-			gamePane.getChildren().add(player1lifes[i]);
-		}
-		for (int i = 0; i < player2.getLife(); i++) {
-			player2lifes[i] = new ImageView(choosenMap.getLife());
-			player2lifes[i].setLayoutY(90);
-			player2lifes[i].setLayoutX(30 + (16 * 65) + CELL_WIDTH * i);
-			gamePane.getChildren().add(player2lifes[i]);
-		}
-
-		gamePane.getChildren().add(0, player2Label);
-		gamePane.getChildren().add(0, player1Label);
 
 		// System.out.println("Chreate Element");
 	}
 
 	private void removePlayer1Life() {
-		gamePane.getChildren().remove(player1lifes[player1.getLife() - 1]); //
+
 		player1.getHurt();
 
 		if (player1.getLife() == 0) {
 			player1.die();
-			showwin();
+			showwin("WIN");
 		}
 	}
 
 	private void removePlayer2Life() {
-		gamePane.getChildren().remove(player2lifes[player2.getLife() - 1]);
+		
 		player2.getHurt();
 		if (player2.getLife() == 0) {
 			player2.die();
-			showwin();
+			showwin("WIN");
 		}
 	}
 
@@ -160,8 +145,8 @@ public class Game {
 
 	private void createKeyListeners() {
 		gameScene.setOnMouseClicked(e -> {
-			int x = (int) e.getSceneX() / CELL_WIDTH;
-			int y = (int) e.getSceneY() / CELL_WIDTH;
+			int x = (int) (e.getSceneX() - playerInfo.getPrefWidth()) / CELL_WIDTH;
+			int y = (int) (e.getSceneY()) / CELL_WIDTH;
 			if (e.getButton() == MouseButton.PRIMARY) {
 				bombThis(x, y);
 			}
@@ -202,6 +187,7 @@ public class Game {
 				player2.setBomb();
 
 			if (e.getCode() == KeyCode.R) {
+				timer.stop();
 				gameStage.close();
 
 				gameManager = new Game(choosenMap);
@@ -212,6 +198,7 @@ public class Game {
 			}
 
 			if (e.getCode() == KeyCode.ESCAPE) {
+				timer.stop();
 				restore();
 				gameStage.close();
 				menuStage.show();
@@ -245,13 +232,17 @@ public class Game {
 
 	private void initializeStage() {
 		// TODO Auto-generated method stub
+		AnchorPane root = new AnchorPane();
+
+		playerInfo = new AnchorPane();
+		playerInfo.setPrefWidth(65 * 4);
 		gamePane = new AnchorPane();
+		ImageView border = new ImageView("map1/border.png");
+		gamePane.setLayoutX(playerInfo.getPrefWidth());
 
-		Canvas canvas = new Canvas(WIDTH, HEIGHT);
-		gc = canvas.getGraphicsContext2D();
-		gamePane.getChildren().add(canvas);
+		root.getChildren().addAll(gamePane,border, playerInfo);
 
-		gameScene = new Scene(gamePane, WIDTH, HEIGHT);
+		gameScene = new Scene(root, WIDTH, HEIGHT);
 		gameStage = new Stage();
 		gameStage.setScene(gameScene);
 		gameStage.setResizable(false);
@@ -267,8 +258,7 @@ public class Game {
 	public void bombThis(int x, int y) {
 
 		try {
-			if (x < 3)
-				throw new ArrayIndexOutOfBoundsException();
+
 			for (int i = 0; i < allPlayer.size(); i++) {
 
 				Player tmp = allPlayer.get(i);
@@ -378,6 +368,7 @@ public class Game {
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
+
 				count++;
 				counttime();
 				if (!end_game && !game_win && !out_game) {
@@ -388,30 +379,36 @@ public class Game {
 				player2.Animate();
 				checkItemUse();
 				animate();
+
 			}
 
 			private void counttime() {
 				// TODO Auto-generated method stub
-				if (count == 60) {
+
+				if (count % 60 == 0) {
 					sec--;
+					if (sec < 0)
+						sec = 0;
 					time.setText("" + sec);
+
 					count = 0;
 					if (sec == 25) {
 						time.setEffect(new Glow());
 						time.setTextFill(Color.web("#FFA500"));
-						
-						showDanger = new EndLabel("DANGER",WIDTH,HEIGHT);
-						showDanger.setLayoutX(20);
+							
+						showDanger = new EndLabel("DANGER", 13 * CELL_WIDTH, 11 * CELL_WIDTH);
+
 						showDanger.setTextFill(Color.RED);
-						if(!game_win)gamePane.getChildren().add(showDanger);
-						}
-					
+						if (!game_win)
+							gamePane.getChildren().add(showDanger);
+					}
+					if (sec == 23) {
+						gamePane.getChildren().remove(showDanger);
+					}
 					if (sec == 10) {
 						time.setTextFill(Color.web("#FF0000"));
 					}
-					if (sec == 0) {
-						count = -1000000;
-					}
+
 				}
 			}
 
@@ -462,7 +459,7 @@ public class Game {
 
 							int xx = out.get(bombx - 3).getx(), yy = out.get(bombx - 3).getY();
 							bombThis(xx, yy);
-								
+
 							if (bombx == 5) {
 								bombThis(xx - 1, yy);
 								bombThis(xx - 2, yy);
@@ -482,7 +479,8 @@ public class Game {
 
 							} else if (gameCell[yy][xx].getEntity() instanceof Element) {
 								gameCell[yy][xx].removeEntity();
-								gameCell[yy][xx].setEntity(new Block(gamePane, xx, yy, choosenMap.getUrlMap().substring(0, 4)));
+								gameCell[yy][xx]
+										.setEntity(new Block(gamePane, xx, yy, choosenMap.getUrlMap().substring(0, 4)));
 							} else if (gameCell[yy][xx].getEntity() instanceof Item) {
 
 								gameCell[yy][xx].removeEntity();
@@ -494,7 +492,8 @@ public class Game {
 						}
 
 						if (sec == 0) {
-							showwin();
+
+							showwin("TIMEOUT");
 							end_game = true;
 						}
 
@@ -591,10 +590,8 @@ public class Game {
 
 				tmp.removeEntity(); // remove item that used
 
-				player1Label.setText(
-						"Player1 Bomb : " + player1.getBombMax() + "\n        Radius :" + player1.getBombRadius());
-				player2Label.setText(
-						"Player2 Bomb : " + player2.getBombMax() + "\n        Radius :" + player2.getBombRadius());
+				player1Label.update();
+				player2Label.update();
 			}
 
 			private void move() {
@@ -624,13 +621,14 @@ public class Game {
 		};
 
 		timer.start();
+
 	}
 
-	public void showwin() {
-		win = new EndLabel("WIN", WIDTH, HEIGHT);
+	public void showwin(String text) {
+		win = new EndLabel(text, 13 * CELL_WIDTH, 11 * CELL_WIDTH);
 		smallwin = new Label("<< Press R to regame , Press ESC to select map >>");
-		smallwin.setLayoutX(WIDTH / 2);
-		smallwin.setLayoutY(HEIGHT / 2 + 65 * 2);
+		smallwin.setLayoutX(WIDTH / 2 - 200);
+		smallwin.setLayoutY(HEIGHT / 2 + 65 * 2 - 25);
 		smallwin.setTextFill(Color.WHITE);
 		game_win = true;
 		gamePane.getChildren().add(win);
@@ -641,9 +639,14 @@ public class Game {
 	public void rewrite(int x, int y) {
 
 		for (int i = y + 1; i < gameCell.length; i++) {
-			for (int j = 3; j <= 15; j++) {
-				if (!gameCell[i][j].getIsEmpty())
-					gameCell[i][j].getEntity().rewrite();
+			for (int j = 1; j < gameCell[0].length; j++) {
+				try {
+
+					if (!gameCell[i][j].getIsEmpty())
+						gameCell[i][j].getEntity().rewrite();
+				} catch (ArrayIndexOutOfBoundsException e) {
+					System.out.println("rewrite out of range.");
+				}
 
 			}
 
@@ -662,6 +665,7 @@ public class Game {
 
 			}
 		}
+
 		if (game_win) {
 			gamePane.getChildren().remove(win);
 			gamePane.getChildren().add(win);
@@ -669,24 +673,24 @@ public class Game {
 			gamePane.getChildren().add(smallwin);
 			gamePane.getChildren().remove(showDanger);
 		}
-		if(!game_win) {
-			if(sec<=25 && sec >=23) {
+		if (!game_win) {
+			if (sec <= 25 && sec >= 23) {
 				gamePane.getChildren().remove(showDanger);
 				gamePane.getChildren().add(showDanger);
 			}
-			
+
 		}
-		if(sec==23) {
+		if (sec == 23) {
 			gamePane.getChildren().remove(showDanger);
 		}
 
 	}
 
 	private List<Cell> out() {
-		int start_x = 4, start_y = 2;
+		int start_x = 1, start_y = 2;
 		List<Cell> out = new ArrayList<Cell>();
+
 		int x = 11, y = 9;
-		int count = 0;
 		// loop for shell
 		for (int i = 0; i < (int) (y / 2); i++) {
 			for (int j = i; j < x - i; j++) {
@@ -747,8 +751,8 @@ public class Game {
 	}
 
 	private void restore() {
+		// timer.stop();
 
-		sec = 900000000;
 		count = 0;
 		bombx = 0;
 

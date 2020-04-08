@@ -24,8 +24,8 @@ public class TimeLabel extends Label {
 		setTextFill(Color.web("#FFFFFF"));
 	
 		
-		setLayoutX(w/2);
-		setLayoutY(0);
+		setLayoutX(150);
+		setLayoutY(660-60);
 		setLabelFont();
 	
 		

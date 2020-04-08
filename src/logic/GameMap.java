@@ -20,7 +20,7 @@ public class GameMap {
 			countx = 0;
 			for(String c : col) {
 				
-				//System.out.print(c);
+				System.out.print(c);
 				myMap[county][countx] = new Cell(countx,county);
 				
 				if(c.equals("b")) {
@@ -33,7 +33,7 @@ public class GameMap {
 				
 				countx++;
 			}
-			//System.out.println();
+			System.out.println();
 			county++;
 		}
 	}

@@ -20,13 +20,15 @@ public class EndLabel extends Label {
 
 		
 		setText(text);
-		setPadding(new Insets(0));
-		setAlignment(Pos.TOP_LEFT);
-		setLayoutX(65 * 5);
-		setLayoutY(65 * 3);
+		setLabelFont();
+		setPadding(new Insets(0,0,0,0));
+		setPrefWidth(w);
+		setPrefHeight(300);
+		setAlignment(Pos.CENTER);
+		setLayoutY(h/2 -120);
 		setTextFill(Color.web("#FFFFFF"));
 	
-		setLabelFont();
+		
 	
 		
 	}
@@ -34,7 +36,7 @@ public class EndLabel extends Label {
 	
 	private void setLabelFont() {
 		try {
-			setFont(Font.loadFont(new FileInputStream(new File(FONT_PATH)), 300));
+			setFont(Font.loadFont(new FileInputStream(new File(FONT_PATH)), 200));
 		} catch(FileNotFoundException e) {
 			setFont(Font.font("verdana",40));
 		}
