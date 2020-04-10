@@ -317,6 +317,15 @@ public class Game {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("Cannot Bomb (" + x + "," + y + ") , index out of range.");
 		}
+		
+		if (player1.getLife() == 0) {
+			player1.die();
+			showwin("WIN");
+		}
+		if (player2.getLife() == 0) {
+			player2.die();
+			showwin("WIN");
+		}
 
 	}
 
@@ -410,9 +419,14 @@ public class Game {
 				try {
 					if (sec <= 20 && count % 12 == 0) {
 						if (bombx < 98) {
-
+								
 							int xx = out.get(bombx).getx(), yy = out.get(bombx).getY();
-
+							int p1_x = player1.getX();
+							int p1_y = player1.getY();
+							int p2_x = player2.getX();
+							int p2_y = player2.getY();
+							if(p1_x == xx && p1_y == yy) player1.die();
+							if(p2_x == xx && p2_y == yy) player2.die();
 							if (gameCell[yy][xx].getEntity() == null) {
 								bombThis(xx, yy);
 

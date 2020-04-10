@@ -72,6 +72,7 @@ public class Player {
 		gamePane.getChildren().remove(avatar);
 		BOMB_MAX = 0;
 		isDie = true;
+		this.LIFE = 0;
 	}
 	public Boolean isDie() {
 		return isDie;
