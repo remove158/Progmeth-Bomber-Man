@@ -5,7 +5,6 @@ import entity.Block;
 import entity.Box;
 import entity.Tree;
 import javafx.scene.layout.Pane;
-import view.CSVParser;
 
 
 public class GameMap {

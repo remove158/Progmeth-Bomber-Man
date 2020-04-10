@@ -158,35 +158,38 @@ public class Player {
 			game.bombThis(nx,ny);
 			int radius = bombRadius;
 			for(int i=1 ; i<=radius;i++) {
+				game.bombThis(nx,ny+i);
 				if(ny+i >=10|| ! (gameCell[ny+i][nx].getIsEmpty() || gameCell[ny+i][nx].getEntity()  instanceof Bomb ||  gameCell[ny+i][nx].getEntity() instanceof Smoke)) {
-					game.bombThis(nx,ny+i);
 					break;
 				}
-				game.bombThis(nx,ny+i);
+				
 			
 			}
 			
 			for(int i=1 ; i<=radius;i++) {
+				game.bombThis(nx,ny-i);
 				if(ny-i <= 0 || !( gameCell[ny-i][nx].getIsEmpty()  || gameCell[ny-i][nx].getEntity()  instanceof Bomb ||  gameCell[ny-i][nx].getEntity() instanceof Smoke)) {
-					game.bombThis(nx,ny-i);
+					
 					break;
 				}
-				game.bombThis(nx,ny-i);
+				
 				
 			}
 			for(int i=1; i<=radius;i++) {
+				game.bombThis(nx+i,ny);
 				if(nx+i >=15|| ! (gameCell[ny][nx+i].getIsEmpty() || gameCell[ny][nx+i].getEntity()  instanceof Bomb ||  gameCell[ny][nx+i].getEntity() instanceof Smoke)) {
-					game.bombThis(nx+i,ny);
+					
 					break;
 				}
-				game.bombThis(nx+i,ny);
+				
 			}
 			for(int i=1 ; i<=radius;i++) {
+				game.bombThis(nx-i,ny);
 				if(nx-i<=0 || ! (gameCell[ny][nx-i].getIsEmpty() || gameCell[ny][nx-i].getEntity()  instanceof Bomb ||  gameCell[ny][nx-i].getEntity() instanceof Smoke)) {
-					game.bombThis(nx-i,ny);
+
 					break;
 				}
-				game.bombThis(nx-i,ny);
+				
 			}
 		
 			animate.remove(gameCell[ny][nx]);
@@ -338,6 +341,7 @@ public class Player {
 			this.speed=30;
 		}
 	}
+	
 	
 	public boolean isImmune() {
 		return this.immune;
