@@ -13,7 +13,7 @@ import javafx.scene.text.Font;
 
 
 public class TimeLabel extends Label {
-	private final static String FONT_PATH = "res/VAGRoundedBT-Regular.otf";
+	private final static String FONT_PATH  = ClassLoader.getSystemResource("VAGRoundedBT-Regular.otf").toString();
 	
 	public TimeLabel(String text,int w,int h) {
 
@@ -34,8 +34,8 @@ public class TimeLabel extends Label {
 	
 	private void setLabelFont() {
 		try {
-			setFont(Font.loadFont(new FileInputStream(new File(FONT_PATH)), 40));
-		} catch(FileNotFoundException e) {
+			setFont(Font.loadFont(FONT_PATH, 40));
+		} catch(Exception e) {
 			setFont(Font.font("verdana",40));
 		}
 	}

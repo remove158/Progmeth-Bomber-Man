@@ -11,16 +11,20 @@ public class MapPicker extends VBox {
 
 	private ImageView circleImage;
 	private ImageView MapImage;
+	private final static String circleNotChoosen  = ClassLoader.getSystemResource("circle.png").toString();
+	private final static String circleChoosen  = ClassLoader.getSystemResource("choosed.png").toString();
 
-	private String circleNotChoosen = "circle.png";
-	private String circleChoosen = "choosed.png";
 
 	private MAP map;
 	private boolean isCircleChoosen;
 
 	public MapPicker(MAP map) {
+		
+	
 		circleImage = new ImageView(circleNotChoosen);
+
 		MapImage = new ImageView(map.getUrlMap());
+		
 		this.map = map;
 		isCircleChoosen = false;
 		this.setAlignment(Pos.CENTER);
@@ -40,6 +44,7 @@ public class MapPicker extends VBox {
 	}
 	
 	public void setIsCirCleChoosen(boolean isCircleChoosen) {
+		
 		this.isCircleChoosen = isCircleChoosen;
 		String imageToSet = this.isCircleChoosen ? circleChoosen : circleNotChoosen;
 		circleImage.setImage(new Image(imageToSet));

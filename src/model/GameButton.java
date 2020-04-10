@@ -17,9 +17,11 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
 public class GameButton extends Button {
-	private final String FONT_PATH = "res/VAGRoundedBT-Regular.otf";
-	private final String BUTTON_PRESSED_STYLE = "-fx-background-color: transparent; -fx-background-image: url('button2.png')";
-    private final String BUTTON_FREE_STYLE = "-fx-background-color: transparent; -fx-background-image: url('button1.png')";
+	private final static String FONT_PATH  = ClassLoader.getSystemResource("VAGRoundedBT-Regular.otf").toString();
+	private final static String btn1 = ClassLoader.getSystemResource("button1.png").toString();
+	private final static String btn2 = ClassLoader.getSystemResource("button2.png").toString();
+	private final String BUTTON_PRESSED_STYLE = "-fx-background-color: transparent; -fx-background-image: url(" + btn1 +")";
+    private final String BUTTON_FREE_STYLE = "-fx-background-color: transparent; -fx-background-image: url("+ btn2 +")";
   
     public GameButton(String text) {
     	setTextFill(Color.web("#FFFFFF"));
@@ -33,11 +35,14 @@ public class GameButton extends Button {
     
 
 	private void setButtonFont() {
+		
     	try {
-    		setFont(Font.loadFont(new FileInputStream(FONT_PATH), 23));
     		
-    	}catch(FileNotFoundException e) {
-    		System.out.println("Cannot Get Font");
+    		setFont(Font.loadFont(FONT_PATH, 23));
+    		
+    	}catch(Exception e) {
+    		
+    		System.out.println("Cannot Get Font   :   " + FONT_PATH);
     		setFont(Font.font("Verdana",23));
     	}
     }

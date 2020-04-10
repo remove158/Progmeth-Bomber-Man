@@ -50,7 +50,7 @@ public abstract class Item extends Entity implements AnimateAble  {
 		
 		ImageView a = this.getImage();
 		countframe();
-		a.setImage(new Image(getMapStyle() + show + this.getframe() % 4 + ".png"));
+		a.setImage(new Image(ClassLoader.getSystemResource( getMapStyle() + show + this.getframe() % 4 + ".png").toString()));
 
 	}
 	

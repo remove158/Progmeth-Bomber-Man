@@ -11,16 +11,17 @@ import view.CSVParser;
 public class GameMap {
 	private Cell[][] myMap;
 	public GameMap(Pane gamePane,String mapStyle) {
-		String[][] map= CSVParser.readCSV(mapStyle+".csv");
+		String[][] map= CSVParser.readCSV(mapStyle);
 		int y= map.length;
 		int x = map[0].length;
 		int countx=0,county=0;
 		myMap = new Cell[y][x];
+		System.out.println("loading map...");
 		for(String[] col : map) {
 			countx = 0;
 			for(String c : col) {
 				
-				System.out.print(c);
+				
 				myMap[county][countx] = new Cell(countx,county);
 				
 				if(c.equals("b")) {
@@ -33,7 +34,7 @@ public class GameMap {
 				
 				countx++;
 			}
-			System.out.println();
+			
 			county++;
 		}
 	}

@@ -79,11 +79,11 @@ public class Player {
 
 	public void drawPlayer() {
 
-		avatar = new ImageView(img_url);
+		avatar = new ImageView(new Image(ClassLoader.getSystemResource( img_url).toString()));
 		avatar.setLayoutX(65 * x);
 		avatar.setLayoutY(65 * y - 25);
 		gamePane.getChildren().add(avatar);
-
+		
 	}
 	
 	public String getImgUrl() {
@@ -94,7 +94,7 @@ public class Player {
 		//i cell[][].getElement == null can set bomb;
 		
 		if (gameCell[y][x].getEntity() == null && count_bomb < BOMB_MAX) {
-			System.out.println("setBomb (" + x +","+ y +")");
+			System.out.println("Bomb (" + x +","+ y +")");
 			gameCell[y][x] = new Cell(x,y);
 			gameCell[y][x].setEntity(new Bomb(gamePane, x,y, "map1/"));
 			rewrite(x,y);
@@ -209,7 +209,7 @@ public class Player {
 
 	private void set(int dir) {
 		String a =img_url.substring(0,6) + dir + ".png";
-		Image tmp = new Image(a);
+		Image tmp = new Image(ClassLoader.getSystemResource( a).toString());
 		avatar.setImage(tmp);
 		this.direction=dir;
 	}

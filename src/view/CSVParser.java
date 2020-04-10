@@ -10,7 +10,8 @@ public class CSVParser {
 	public static String[][] readCSV(String filename) {
 
 		try {
-			InputStream inputStream = ClassLoader.getSystemResourceAsStream("csv/" + filename);
+			
+			InputStream inputStream = ClassLoader.getSystemResourceAsStream("csv/" + filename.substring(0,4) + ".csv");
 			InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
 			BufferedReader in = new BufferedReader(streamReader);
 

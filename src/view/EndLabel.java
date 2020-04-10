@@ -14,7 +14,7 @@ import javafx.scene.text.Font;
 
 
 public class EndLabel extends Label {
-	private final static String FONT_PATH = "res/VAGRoundedBT-Regular.otf";
+	private final static String FONT_PATH = ClassLoader.getSystemResource("VAGRoundedBT-Regular.otf").toString();
 	
 	public EndLabel(String text,int w,int h) {
 
@@ -27,7 +27,7 @@ public class EndLabel extends Label {
 		setAlignment(Pos.CENTER);
 		setLayoutY(h/2 -120);
 		setTextFill(Color.web("#FFFFFF"));
-	
+		
 		
 	
 		
@@ -36,8 +36,8 @@ public class EndLabel extends Label {
 	
 	private void setLabelFont() {
 		try {
-			setFont(Font.loadFont(new FileInputStream(new File(FONT_PATH)), 200));
-		} catch(FileNotFoundException e) {
+			setFont(Font.loadFont(FONT_PATH, 200));
+		} catch(Exception e) {
 			setFont(Font.font("verdana",40));
 		}
 	}

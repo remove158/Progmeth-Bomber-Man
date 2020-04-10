@@ -15,9 +15,9 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.text.Font;
 
 public class InfoLabel extends Label {
+	private final static String FONT_PATH = ClassLoader.getSystemResource("VAGRoundedBT-Regular.otf").toString();
+	private final static String BACKGROUND_IMAGE = ClassLoader.getSystemResource("title.png").toString();
 
-	private final static String FONT_PATH = "res/VAGRoundedBT-Regular.otf";
-	public final static String BACKGROUND_IMAGE = "title.png";
 	public InfoLabel(String text) {
 		setPrefWidth(380);
 		setPrefHeight(49);
@@ -32,8 +32,8 @@ public class InfoLabel extends Label {
 	private void setLabelFont() {
 		
 		try {
-			setFont(Font.loadFont(new FileInputStream(new File(FONT_PATH)),23));
-		} catch (FileNotFoundException e) {
+			setFont(Font.loadFont(FONT_PATH, 23));
+		} catch (Exception e) {
 			setFont(Font.font("Verdana",23));
 		}
 		

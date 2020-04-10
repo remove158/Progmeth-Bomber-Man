@@ -67,10 +67,16 @@ public class ViewManager {
 		box.setPadding(new Insets(0, 50, 50, 50));
 		mapList = new ArrayList<>();
 		box.setLayoutX(500);
+		
 		for(MAP e: MAP.values()) {
+	
 			MapPicker mapToPick = new MapPicker(e);
+			
 			box.getChildren().add(mapToPick);
+		
 			mapList.add(mapToPick);
+			
+			
 			
 			mapToPick.setOnMouseClicked( f -> {
 				for(MapPicker tmp : mapList) {
@@ -98,14 +104,17 @@ public class ViewManager {
 		chooseCharLabel.setLayoutX(110);
 		chooseCharLabel.setLayoutY(25);
 		
+		
 		GameButton go = new GameButton("GO!");
 		go.setButtonPos(450 ,350);
 		
 		go.setOnAction(e -> {
 			if( choosenMap != null) {
-	
+				System.out.println("-> " + choosenMap.getMap() );
 				Game gameManager = new Game(choosenMap);
+				
 				gameManager.createNewGame(mainStage);
+				
 				
 			}
 			
@@ -134,7 +143,6 @@ public class ViewManager {
 		creditsSubScene = new GameSubScene();
 		helpSubScene = new GameSubScene();
 		scoreSubScene = new GameSubScene();
-		
 		createMapChooserSubScene();
 		
 		mainPane.getChildren().add(creditsSubScene);
@@ -174,8 +182,8 @@ public class ViewManager {
 
 	private void createLogo() {
 	
-	
-		ImageView logo = new ImageView("logo.gif");
+		String image_path = ClassLoader.getSystemResource("logo.gif").toString();
+		ImageView logo = new ImageView(image_path);
 		
 		logo.setLayoutX(WIDTH/2 - 679/2 + 20);
 		logo.setLayoutY(50);
@@ -185,7 +193,8 @@ public class ViewManager {
 	}
 
 	private void createBackground() {
-		Image backgroundImage = new Image("background.png", WIDTH, HEIGHT, false, true);
+		String image_path = ClassLoader.getSystemResource("background.png").toString();
+		Image backgroundImage = new Image(image_path, WIDTH, HEIGHT, false, true);
 		BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT,
 				BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, null);
 		mainPane.setBackground(new Background(background));

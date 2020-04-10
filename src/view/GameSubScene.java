@@ -13,8 +13,8 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.util.Duration;
 
 public class GameSubScene extends SubScene {
-	private final static String FONT_PATH = "res/VAGRoundedBT-Regular.otf";
-	private final static String BACKGROUND_IMAGE = "panel.png";
+	private final static String FONT_PATH = ClassLoader.getSystemResource("VAGRoundedBT-Regular.otf").toString();
+	private final static String BACKGROUND_IMAGE = ClassLoader.getSystemResource("panel.png").toString();
 	private boolean isHidden;
 	
 	public GameSubScene() {
@@ -22,7 +22,7 @@ public class GameSubScene extends SubScene {
 		super(new AnchorPane(),600,400);
 		prefWidth(600);
 		prefHeight(400);
-		
+	
 		BackgroundImage image = new BackgroundImage(new Image(BACKGROUND_IMAGE,600,400,false,true),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT,null);
 		// TODO Auto-generated constructor stub
 		

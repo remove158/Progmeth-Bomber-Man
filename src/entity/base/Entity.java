@@ -1,6 +1,7 @@
 package entity.base;
 
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
@@ -13,7 +14,7 @@ abstract public class Entity  {
 	private Boolean isSolid=true;
 	private String mapStyle;
 	public Entity(Pane gamePane,int x,int y,String mapStyle) {
-		this.mapStyle = mapStyle;
+		this.mapStyle = mapStyle.substring(0,4);
 		setX(x);
 		setY(y);
 		this.gamePane = gamePane;
@@ -64,8 +65,8 @@ abstract public class Entity  {
 	}
 	
 	public void drawEntity() {
-	
-		myImage = new ImageView(mapStyle +  getSymbol() + frame +".png"); //map1/tree0.png
+		String image_path = ClassLoader.getSystemResource( mapStyle+  getSymbol() + frame +".png").toString();
+		myImage = new ImageView(image_path ); //map1/tree0.png
 		setPos(myImage);
 		gamePane.getChildren().add(myImage);
 		

@@ -19,7 +19,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.text.Font;
 
 public class SmallInfoLabel extends AnchorPane {
-	private final static String FONT_PATH = "res/VAGRoundedBT-Regular.otf";
+	private final static String FONT_PATH  = ClassLoader.getSystemResource("VAGRoundedBT-Regular.otf").toString();
 	private final int CELL_WIDTH = 65;
 	private Label bomb,speed,radius;
 	private Player myPlayer;
@@ -34,10 +34,15 @@ public class SmallInfoLabel extends AnchorPane {
 		setLabelFont(radius);
 		setPrefHeight(65*3);
 		setPrefWidth(65*4);
-		BackgroundImage bg = new BackgroundImage(new Image("/score.png",CELL_WIDTH*3+65,CELL_WIDTH*3,false,true),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT,null);
+		String BG_PATH = ClassLoader.getSystemResource( "score.png").toString();
+		
+		BackgroundImage bg = new BackgroundImage(new Image(BG_PATH,CELL_WIDTH*3+65,CELL_WIDTH*3,false,true),BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT,null);
 		setBackground(new Background(bg));
-		System.out.println();
-		ImageView myImg = new ImageView(player.getImgUrl()); 
+		
+		
+		
+		String PLAYER_PATH = ClassLoader.getSystemResource( player.getImgUrl()).toString();
+		ImageView myImg = new ImageView(PLAYER_PATH); 
 		
 		myImg.setLayoutX(20);
 		myImg.setLayoutY(30);
@@ -80,8 +85,8 @@ public class SmallInfoLabel extends AnchorPane {
 	private void setLabelFont(Label text) {
 		try {
 			
-			text.setFont(Font.loadFont(new FileInputStream(new File(FONT_PATH)), 20));
-		} catch(FileNotFoundException e) {
+			text.setFont(Font.loadFont(FONT_PATH, 16));
+		} catch(Exception e) {
 			text.setFont(Font.font("verdana",16));
 		}
 		text.setTextFill(Color.web("#000000"));

@@ -79,14 +79,18 @@ public class Game {
 		this.allPlayer = new ArrayList<Player>();
 		this.animate = new ArrayList<Cell>();
 		this.choosenMap = choosenMap;
-		this.BACKGROUND_IMAGE = choosenMap.getUrlMap().substring(0, 5) + "background1.png";
+		this.BACKGROUND_IMAGE = ClassLoader.getSystemResource(choosenMap.getMap()+ "background1.png").toString();
+		
 		initializeStage();
+		
+		
 		createKeyListeners();
 
 		createGameLoop();
 
 		out = out();
 		out.remove(97);
+		
 
 	}
 
@@ -224,7 +228,7 @@ public class Game {
 		playerInfo = new AnchorPane();
 		playerInfo.setPrefWidth(65 * 4);
 		gamePane = new AnchorPane();
-		ImageView border = new ImageView("map1/border.png");
+		ImageView border = new ImageView(ClassLoader.getSystemResource("map1/border.png").toString());
 		gamePane.setLayoutX(playerInfo.getPrefWidth());
 
 		root.getChildren().addAll(gamePane, border, playerInfo);
@@ -454,27 +458,27 @@ public class Game {
 								bombThis(xx - 2, yy);
 								gameCell[yy][xx - 1].removeEntity();
 								gameCell[yy][xx - 1].setEntity(
-										new Block(gamePane, xx - 1, yy, choosenMap.getUrlMap().substring(0, 4)));
+										new Block(gamePane, xx - 1, yy, choosenMap.getMap()));
 								gameCell[yy][xx - 2].removeEntity();
 								gameCell[yy][xx - 2].setEntity(
-										new Block(gamePane, xx - 2, yy, choosenMap.getUrlMap().substring(0, 4)));
+										new Block(gamePane, xx - 2, yy, choosenMap.getMap()));
 							}
 							if (gameCell[yy][xx].getEntity() == null) {
 
 								gameCell[yy][xx]
-										.setEntity(new Block(gamePane, xx, yy, choosenMap.getUrlMap().substring(0, 4)));
+										.setEntity(new Block(gamePane, xx, yy,choosenMap.getMap()));
 
 							} else if (gameCell[yy][xx].getEntity() instanceof Block) {
 
 							} else if (gameCell[yy][xx].getEntity() instanceof Element) {
 								gameCell[yy][xx].removeEntity();
 								gameCell[yy][xx]
-										.setEntity(new Block(gamePane, xx, yy, choosenMap.getUrlMap().substring(0, 4)));
+										.setEntity(new Block(gamePane, xx, yy,choosenMap.getMap()));
 							} else if (gameCell[yy][xx].getEntity() instanceof Item) {
 
 								gameCell[yy][xx].removeEntity();
 								gameCell[yy][xx]
-										.setEntity(new Block(gamePane, xx, yy, choosenMap.getUrlMap().substring(0, 4)));
+										.setEntity(new Block(gamePane, xx, yy,choosenMap.getMap()));
 
 							}
 							rewrite(xx, yy);
@@ -719,7 +723,7 @@ public class Game {
 
 	private void drawGameBoard() {
 
-		String mapStyle = choosenMap.getUrlMap().substring(0, 4);
+		String mapStyle = choosenMap.getMap();
 		map = new GameMap(gamePane, mapStyle);
 		gameCell = map.getCell();
 
@@ -733,6 +737,7 @@ public class Game {
 		this.menuStage = menuStage;
 		menuStage.close();
 
+		
 		createAvatar(choosenMap);
 		gameStage.setTitle("FINAL Project");
 		gameStage.show();

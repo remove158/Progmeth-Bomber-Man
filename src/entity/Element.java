@@ -55,7 +55,7 @@ public abstract class Element extends Entity implements AnimateAble {
 		this.setframe(0);
 		this.speed = 4;
 		try {
-			System.out.println("smoke" +this.getX() + this.getY());
+			
 			update();
 		} catch (FileNotFoundException e) {
 			// TODO: handle exception
@@ -82,7 +82,8 @@ public abstract class Element extends Entity implements AnimateAble {
 		if (!smoke)
 			this.setframe(0);
 		try {
-			a.setImage(new Image(getMapStyle() + show + this.getframe() % 4 + ".png"));
+			
+			a.setImage(new Image(ClassLoader.getSystemResource( getMapStyle() + show + this.getframe() % 4 + ".png").toString()));
 		} catch (Exception e) {
 			setBasic();
 			throw new FileNotFoundException();
