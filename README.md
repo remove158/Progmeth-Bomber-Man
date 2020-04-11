@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # CPCU Bomber
     Final Project 2110105  Updated  4/11/2020 (3 Gamemap , 1 Character)
 
