@@ -152,38 +152,43 @@ public class Player {
 		if (removed) {
 			game.getgameLogic().bombThis(nx,ny);
 			int radius = bombRadius;
+			// two time bomb because if bomb first it will set to Smoke 
 			for(int i=1 ; i<=radius;i++) {
-				game.getgameLogic().bombThis(nx,ny+i);
+		
 				if(ny+i >=10|| ! (gameCell[ny+i][nx].getIsEmpty() || gameCell[ny+i][nx].getEntity()  instanceof Bomb ||  gameCell[ny+i][nx].getEntity() instanceof Smoke)) {
+					game.getgameLogic().bombThis(nx,ny+i);
 					break;
 				}
+				game.getgameLogic().bombThis(nx,ny+i);
 				
 			
 			}
 			
 			for(int i=1 ; i<=radius;i++) {
-				game.getgameLogic().bombThis(nx,ny-i);
+				
 				if(ny-i <= 0 || !( gameCell[ny-i][nx].getIsEmpty()  || gameCell[ny-i][nx].getEntity()  instanceof Bomb ||  gameCell[ny-i][nx].getEntity() instanceof Smoke)) {
-					
+					game.getgameLogic().bombThis(nx,ny-i);
 					break;
 				}
+				game.getgameLogic().bombThis(nx,ny-i);
 				
 				
 			}
 			for(int i=1; i<=radius;i++) {
-				game.getgameLogic().bombThis(nx+i,ny);
+				
 				if(nx+i >=15|| ! (gameCell[ny][nx+i].getIsEmpty() || gameCell[ny][nx+i].getEntity()  instanceof Bomb ||  gameCell[ny][nx+i].getEntity() instanceof Smoke)) {
-					
+					game.getgameLogic().bombThis(nx+i,ny);
 					break;
 				}
-				
+				game.getgameLogic().bombThis(nx+i,ny);
 			}
 			for(int i=1 ; i<=radius;i++) {
-				game.getgameLogic().bombThis(nx-i,ny);
+				
 				if(nx-i<=0 || ! (gameCell[ny][nx-i].getIsEmpty() || gameCell[ny][nx-i].getEntity()  instanceof Bomb ||  gameCell[ny][nx-i].getEntity() instanceof Smoke)) {
-
+					game.getgameLogic().bombThis(nx-i,ny);
 					break;
 				}
+				game.getgameLogic().bombThis(nx-i,ny);
 				
 			}
 		
