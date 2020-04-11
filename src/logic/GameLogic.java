@@ -110,19 +110,19 @@ public class GameLogic {
 		Animate animate = game.getAnimate();
 		if (num == 1) {
 			gameCell[y][x].setEntity(new Speed(gamePane, x, y, "map1/"));
-			animate.addItem(gameCell[y][x]);
+			animate.add(gameCell[y][x]);
 
 		} else if (num == 2) {
 			gameCell[y][x].setEntity(new AddBomb(gamePane, x, y, "map1/"));
-			animate.addItem(gameCell[y][x]);
+			animate.add(gameCell[y][x]);
 
 		} else if (num == 3) {
 			gameCell[y][x].setEntity(new AddRadius(gamePane, x, y, "map1/"));
-			animate.addItem(gameCell[y][x]);
+			animate.add(gameCell[y][x]);
 
 		} else if (num == 4) {
 			gameCell[y][x].setEntity(new ShieldOnPlayer(gamePane, x, y, "map1/"));
-			animate.addItem(gameCell[y][x]);
+			animate.add(gameCell[y][x]);
 		}
 
 		((Item) gameCell[y][x].getEntity()).setSmoke(); // showSmoke1Loop
@@ -287,7 +287,7 @@ public class GameLogic {
 							System.out.println("Cannot SetSmoke ," + e.message);
 						}
 
-						animate.addSmoke(gameCell[yy][xx]);
+						animate.add(gameCell[yy][xx]);
 
 					} else if (gameCell[yy][xx].getEntity() instanceof Element) {
 						bombThis(xx, yy);
@@ -413,22 +413,22 @@ public class GameLogic {
 			// case null or smoke => set new Smoke(x,y);
 			if (gameCell[y][x].getEntity() == null || gameCell[y][x].getEntity() instanceof Smoke) {
 				if (gameCell[y][x].getEntity() instanceof Smoke) {
-					animate.removeSmoke(gameCell[y][x]);
+					animate.remove(gameCell[y][x]);
 					gameCell[y][x].removeEntity();
 				}
 				gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
 				rewrite(x, y);
-				animate.addSmoke(gameCell[y][x]);
+				animate.add(gameCell[y][x]);
 			}
 
 			// remove if it is item
 			if (gameCell[y][x].getEntity() instanceof Item) {
 
-				animate.removeItem(gameCell[y][x]);
+				animate.remove(gameCell[y][x]);
 				gameCell[y][x].removeEntity();
 
 				gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
-				animate.addSmoke(gameCell[y][x]);
+				animate.add(gameCell[y][x]);
 
 				rewrite(x, y);
 			}
@@ -452,7 +452,7 @@ public class GameLogic {
 					if (!got) {
 
 						gameCell[y][x].setEntity(new Smoke(gamePane, x, y, "map1/"));
-						animate.addSmoke(gameCell[y][x]);
+						animate.add(gameCell[y][x]);
 					}
 
 				}

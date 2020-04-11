@@ -3,6 +3,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import entity.Bomb;
 import entity.Element;
 import entity.Player;
 import entity.Smoke;
@@ -14,12 +15,14 @@ import view.Game;
 public class Animate {
 	List<Cell> itemList;
 	List<Cell> smokeList;
+	List<Cell> bombList;
 	Game game;
 	Player player1, player2;
-	
+
 	public Animate() {
 		itemList = new ArrayList<Cell>();
 		smokeList = new ArrayList<Cell>();
+		bombList = new ArrayList<Cell>();
 	}
 
 	public void update() {
@@ -36,7 +39,80 @@ public class Animate {
 
 	private void bombAnimate() {
 		// TODO Auto-generated method stub
-		
+		int nx = 0, ny = 0;
+		Boolean removed = false;
+		Cell[][] gameCell = game.getGameCell();
+		int r = 0;
+		// code for set image;
+		for (Cell tmp : bombList) {
+			removed = false;
+
+			if (tmp.getEntity() instanceof Bomb) {
+				removed = ((Bomb) tmp.getEntity()).tick();
+				if (removed) {
+					r = ((Bomb) tmp.getEntity()).getRadius();
+					((Bomb) tmp.getEntity()).decreaseBombCount();
+					nx = tmp.getEntity().getX();
+					ny = tmp.getEntity().getY();
+					tmp.removeEntity();
+
+					break;
+				}
+			}
+
+		}
+
+		if (removed) {
+			game.getgameLogic().bombThis(nx, ny);
+			int radius = r;
+			// two time bomb because if bomb first it will set to Smoke
+			for (int i = 1; i <= radius; i++) {
+
+				if (ny + i >= 10
+						|| !(gameCell[ny + i][nx].getIsEmpty() || gameCell[ny + i][nx].getEntity() instanceof Bomb
+								|| gameCell[ny + i][nx].getEntity() instanceof Smoke)) {
+					game.getgameLogic().bombThis(nx, ny + i);
+					break;
+				}
+				game.getgameLogic().bombThis(nx, ny + i);
+
+			}
+
+			for (int i = 1; i <= radius; i++) {
+
+				if (ny - i <= 0
+						|| !(gameCell[ny - i][nx].getIsEmpty() || gameCell[ny - i][nx].getEntity() instanceof Bomb
+								|| gameCell[ny - i][nx].getEntity() instanceof Smoke)) {
+					game.getgameLogic().bombThis(nx, ny - i);
+					break;
+				}
+				game.getgameLogic().bombThis(nx, ny - i);
+
+			}
+			for (int i = 1; i <= radius; i++) {
+
+				if (nx + i >= 15
+						|| !(gameCell[ny][nx + i].getIsEmpty() || gameCell[ny][nx + i].getEntity() instanceof Bomb
+								|| gameCell[ny][nx + i].getEntity() instanceof Smoke)) {
+					game.getgameLogic().bombThis(nx + i, ny);
+					break;
+				}
+				game.getgameLogic().bombThis(nx + i, ny);
+			}
+			for (int i = 1; i <= radius; i++) {
+
+				if (nx - i <= 0
+						|| !(gameCell[ny][nx - i].getIsEmpty() || gameCell[ny][nx - i].getEntity() instanceof Bomb
+								|| gameCell[ny][nx - i].getEntity() instanceof Smoke)) {
+					game.getgameLogic().bombThis(nx - i, ny);
+					break;
+				}
+				game.getgameLogic().bombThis(nx - i, ny);
+
+			}
+
+			bombList.remove(gameCell[ny][nx]);
+		}
 	}
 
 	private void smokeAnimate() {
@@ -123,25 +199,32 @@ public class Animate {
 		game.InfoUpdate();
 	}
 
-	public void addItem(Cell item) {
-		itemList.add(item);
+	public void add(Cell tmp) {
+
+		if (tmp.getEntity() instanceof Item) {
+			itemList.add(tmp);
+		}  else if (tmp.getEntity() instanceof Bomb) {
+			bombList.add(tmp);
+		}else  { // case smoke
+			smokeList.add(tmp);
+		}
 	}
 
-	public void addSmoke(Cell bomb) {
-		smokeList.add(bomb);
-	}
+	public void remove(Cell tmp) {
 
-	public void removeItem(Cell item) {
-		itemList.remove(item);
-	}
-
-	public void removeSmoke(Cell bomb) {
-		smokeList.remove(bomb);
+		if (tmp.getEntity() instanceof Item) {
+			itemList.remove(tmp);
+		} else if (tmp.getEntity() instanceof Bomb) {
+			bombList.remove(tmp);
+		} else  {//case smoke;
+			smokeList.remove(tmp);
+		}
 	}
 
 	public void clear() {
 		smokeList.removeAll(smokeList);
 		itemList.removeAll(itemList);
+		bombList.removeAll(bombList);
 	}
 
 }

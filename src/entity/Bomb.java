@@ -9,11 +9,19 @@ import logic.Sprite;
 public class Bomb extends Element {
 	private int counter = 0;
 	private int speed = 25;
-
+	private Player myPlayer;
 	public Bomb(Pane gamePane, int x, int y,String mapStyle) {
 		super(gamePane, x, y,mapStyle);
 		// TODO Auto-generated constructor stub
 		setSolid(false);
+		
+
+	}
+	public Bomb(Pane gamePane,int x, int y ,String mapStyle,Player player) {
+		super(gamePane, x, y,mapStyle);
+		// TODO Auto-generated constructor stub
+		setSolid(false);	
+		this.myPlayer = player;
 
 	}
 
@@ -21,6 +29,13 @@ public class Bomb extends Element {
 	public String getSymbol() {
 		// TODO Auto-generated method stub
 		return Sprite.BOMB;
+	}
+	public int getRadius() {
+		return myPlayer.getBombRadius();
+	}
+	
+	public void decreaseBombCount() {
+		myPlayer.decreaseBombCount();
 	}
 	
 	public boolean tick() {
