@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 
 import entity.base.AnimateAble;
 import entity.base.Entity;
+import exception.SetSmokeException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;

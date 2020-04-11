@@ -6,7 +6,6 @@ public enum MAP {
 	MAP3(Sprite.MAP3,Sprite.LIFE,"map3/");
 	
 	private String showMAP;
-	private String avatar;
 	private String life;
 	private String map;
 	private MAP(String showMAP,String life,String map) {

@@ -1,16 +1,15 @@
 package logic;
 
-import entity.*;
+
 import entity.base.*;
 public class Cell {
 	
 	private Entity myEntity;
 	private Boolean isEmpty;
-	private Boolean isItem;
+
 	private int x,y;
 	public Cell(int x,int y) {
 		isEmpty = true;
-		isItem = false;
 		set(x,y);
 		
 		
@@ -30,15 +29,12 @@ public class Cell {
 	public boolean setEntity(Entity e) {
 		this.myEntity = e;
 		isEmpty = myEntity.isSolid();
-		
 		return true;
 		
 	}
 	
 	
-	public void setIsItem(Boolean x) {
-		isItem = x;
-	}
+
 	
 	
 	public Boolean getIsEmpty() {
@@ -61,7 +57,7 @@ public class Cell {
 		myEntity.remove();
 		myEntity = null;
 		setIsEmpty(true);
-		setIsItem(false);
+	
 		return true;
 	}
 	

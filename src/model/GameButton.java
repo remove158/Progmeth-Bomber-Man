@@ -1,19 +1,9 @@
 package model;
 
 
-import java.io.FileNotFoundException;
-
-
-
-import java.awt.event.MouseEvent;
-import java.io.FileInputStream;
-
 import javafx.scene.text.Font;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
 public class GameButton extends Button {

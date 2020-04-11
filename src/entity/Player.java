@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import entity.base.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.Glow;
 import logic.Cell;
-import logic.Sprite;
 import view.Game;
 
 public class Player {
@@ -22,8 +19,6 @@ public class Player {
 	Cell[][] gameCell;
 	private final static int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
 	private int CELL_WIDTH = 65;
-	private static final int WIDTH = 16 * 65;
-	private static final int HEIGHT = 11 * 65;
 	private int count_bomb=0;
 	private int BOMB_MAX=1;
 	private boolean immune=false;
@@ -106,7 +101,7 @@ public class Player {
 	public void addAnimate(Cell e) {
 		this.animate.add(e);
 	}
-	 int speed = 30;
+	int speed = 30;
 	public void Animate() {
 		frameCount++;
 		if(this.frameCount%speed == 0) {
@@ -155,10 +150,10 @@ public class Player {
 		
 		
 		if (removed) {
-			game.bombThis(nx,ny);
+			game.getgameLogic().bombThis(nx,ny);
 			int radius = bombRadius;
 			for(int i=1 ; i<=radius;i++) {
-				game.bombThis(nx,ny+i);
+				game.getgameLogic().bombThis(nx,ny+i);
 				if(ny+i >=10|| ! (gameCell[ny+i][nx].getIsEmpty() || gameCell[ny+i][nx].getEntity()  instanceof Bomb ||  gameCell[ny+i][nx].getEntity() instanceof Smoke)) {
 					break;
 				}
@@ -167,7 +162,7 @@ public class Player {
 			}
 			
 			for(int i=1 ; i<=radius;i++) {
-				game.bombThis(nx,ny-i);
+				game.getgameLogic().bombThis(nx,ny-i);
 				if(ny-i <= 0 || !( gameCell[ny-i][nx].getIsEmpty()  || gameCell[ny-i][nx].getEntity()  instanceof Bomb ||  gameCell[ny-i][nx].getEntity() instanceof Smoke)) {
 					
 					break;
@@ -176,7 +171,7 @@ public class Player {
 				
 			}
 			for(int i=1; i<=radius;i++) {
-				game.bombThis(nx+i,ny);
+				game.getgameLogic().bombThis(nx+i,ny);
 				if(nx+i >=15|| ! (gameCell[ny][nx+i].getIsEmpty() || gameCell[ny][nx+i].getEntity()  instanceof Bomb ||  gameCell[ny][nx+i].getEntity() instanceof Smoke)) {
 					
 					break;
@@ -184,7 +179,7 @@ public class Player {
 				
 			}
 			for(int i=1 ; i<=radius;i++) {
-				game.bombThis(nx-i,ny);
+				game.getgameLogic().bombThis(nx-i,ny);
 				if(nx-i<=0 || ! (gameCell[ny][nx-i].getIsEmpty() || gameCell[ny][nx-i].getEntity()  instanceof Bomb ||  gameCell[ny][nx-i].getEntity() instanceof Smoke)) {
 
 					break;
@@ -220,7 +215,7 @@ public class Player {
 
 	public void rewrite(int x, int y) {
 		if(!isDie) {
-			game.rewrite(x, y);	
+			game.getgameLogic().rewrite(x, y);	
 		}
 		
 	}
@@ -318,10 +313,7 @@ public class Player {
 	}
 	
 	public void Immuned() {   //add
-		Glow glow = new Glow();
-		Random rd = new Random();
-		
-		
+	
 		
 		Random n = new Random();
 		colorAdjust.setHue(-n.nextDouble());

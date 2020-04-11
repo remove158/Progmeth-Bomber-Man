@@ -7,8 +7,8 @@ import entity.Element;
 import entity.Player;
 import entity.Smoke;
 import entity.base.AnimateAble;
+import exception.UseItemException;
 import item.Item;
-import item.UseItemException;
 import view.Game;
 
 public class Animate {

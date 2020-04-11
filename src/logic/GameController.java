@@ -60,10 +60,10 @@ public class GameController extends Scene {
 			int y = (int) (e.getSceneY()) / 65;
 			if (e.getButton() == MouseButton.PRIMARY) {
 				
-				game.getGameMethod().bombThis(x, y);
+				game.getgameLogic().bombThis(x, y);
 			}
 			if (e.getButton() == MouseButton.SECONDARY) {
-				game.getGameMethod().setTime(26);
+				game.getgameLogic().setTime(26);
 			}
 
 		});

@@ -1,35 +1,24 @@
 package view;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import entity.*;
 
 import javafx.animation.AnimationTimer;
-
-import javafx.scene.Scene;
-
-import javafx.scene.control.Label;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-
 import javafx.stage.Stage;
 import logic.Animate;
 import logic.Cell;
 import logic.GameController;
+import logic.GameLogic;
 import logic.GameMap;
 import model.MAP;
-import item.*;
+import model.SmallInfoLabel;
+
 
 public class Game {
 
@@ -57,29 +46,26 @@ public class Game {
 
 	private Animate animate;
 
-	private GameLogic gameMethod;
+	private GameLogic gameLogic;
 
 	public Game(MAP choosenMap) {
 
 		this.animate = new Animate();
-
 		this.choosenMap = choosenMap;
 		this.BACKGROUND_IMAGE = ClassLoader.getSystemResource(choosenMap.getMap() + "background1.png").toString();
-
 		initializeStage();
-
 		createGameLoop();
 
 	}
 
 	private void createGameElements() {
 
-		gameMethod = new GameLogic();
-		gameMethod.initialize(this);
+		gameLogic = new GameLogic();
+		gameLogic.initialize(this);
 		animate.initialize(this);
-		playerInfo.getChildren().add(gameMethod.getTime());
-		gameMethod.addPlayer(player1);
-		gameMethod.addPlayer(player2);
+		playerInfo.getChildren().add(gameLogic.getTime());
+		gameLogic.addPlayer(player1);
+		gameLogic.addPlayer(player2);
 		player1Label = new SmallInfoLabel(player1);
 		player1Label.setLayoutX(25);
 		player1Label.setLayoutY(50);
@@ -89,10 +75,6 @@ public class Game {
 		playerInfo.getChildren().add(player1Label);
 		playerInfo.getChildren().add(player2Label);
 
-	}
-
-	public void bombThis(int x, int y) {
-		gameMethod.bombThis(x, y);
 	}
 
 	public MAP getChoosenMap() {
@@ -110,7 +92,6 @@ public class Game {
 	private void initializeStage() {
 		// TODO Auto-generated method stub
 		AnchorPane root = new AnchorPane();
-
 		playerInfo = new AnchorPane();
 		playerInfo.setPrefWidth(65 * 4);
 		gamePane = new AnchorPane();
@@ -133,8 +114,8 @@ public class Game {
 
 	}
 
-	public GameLogic getGameMethod() {
-		return this.gameMethod;
+	public GameLogic getgameLogic() {
+		return this.gameLogic;
 	}
 
 	private void createGameLoop() {
@@ -144,8 +125,8 @@ public class Game {
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 
-				gameMethod.counttime();
-				gameMethod.endgame();
+				gameLogic.counttime();
+				gameLogic.endgame();
 				gameScene.update();
 				player1.Animate();
 				player2.Animate();
@@ -164,12 +145,7 @@ public class Game {
 		player2Label.update();
 	}
 
-	public void rewrite(int x, int y) {
-
-		gameMethod.rewrite(x, y);
-
-	}
-
+	
 	public void gameRestart() {
 		timer.stop();
 		gameStage.close();
@@ -177,17 +153,17 @@ public class Game {
 		gameManager = new Game(choosenMap);
 		gameManager.createNewGame(menuStage);
 
-		restore();
+		gameLogic.restore();
 
 	}
 
 	public void gameEscape() {
 		timer.stop();
-		restore();
+		gameLogic.restore();
 		gameStage.close();
 		menuStage.show();
-		gameMethod.setOut_game(true);
-		restore();
+		gameLogic.setOut_game(true);
+		gameLogic.restore();
 	}
 
 	GameMap map;
@@ -213,10 +189,7 @@ public class Game {
 
 	}
 
-	private void restore() {
-		gameMethod.restore();
 
-	}
 
 	public Cell[][] getGameCell() {
 		return this.gameCell;
@@ -232,7 +205,7 @@ public class Game {
 		player2 = new Player(gameCell, gamePane, PLAYER2_X_SET, PLAYER2_Y_SET, choosenMap.getAvatar2(), this);
 
 		createGameElements();
-		rewrite(0, 0);
+		gameLogic.rewrite(0, 0);
 
 	}
 

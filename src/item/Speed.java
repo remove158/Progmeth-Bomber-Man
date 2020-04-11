@@ -2,6 +2,7 @@ package item;
 
 
 import entity.Player;
+import exception.UseItemException;
 import javafx.scene.layout.Pane;
 import logic.Sprite;
 
