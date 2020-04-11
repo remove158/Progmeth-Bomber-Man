@@ -1,18 +1,18 @@
 # CPCU Bomber
-###  Final Project 2110105
-### Updated  4/11/2020 (Refactor Code) 
+    Final Project 2110105  Updated  4/11/2020 (3 Gamemap , 1 Character)
 
 # Contents
 * [Application](#Application)
 * [Entity](#Entity)
 * [Exception](#Exception)
 * [Item](#Item)
+* [Logic](#Logic)
 * [Model](#Model)
 * [View](#View)
 
 
 #  Application
-- main.java 
+- [main.java](/tree/master/src/application/main.java)
 
         Main.java is show PrimaryStage that come from ViewManager.getMainStage()
         
@@ -30,9 +30,9 @@
 
 # Entity
 
-- Base
-    - Entity.java
-    - AnimateAble.java
+- [Base](/tree/master/src/entity/base)
+    - [Entity.java](/tree/master/src/entity/base/Entity.java)
+    - [AnimateAble.java](/tree/master/src/entity/base/AnimateAble.java)
 - Block.java
 - Bomb.java
 - Box.java
