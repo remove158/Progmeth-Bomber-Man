@@ -1,5 +1,5 @@
 # CPCU Bomber
-    Final Project 2110205  Updated  4/11/2020 (3 Gamemap , 1 Character)
+    Final Project 2110205  Updated  4/11/2020 (3 Gamemap , 1 Character,  map from image)
 
 # Contents
 * [Application](#Application)
@@ -11,8 +11,9 @@
 * [View](#View)
 
 
-#  Application
-- main.java
+#  Application 
+
+-  main.java
 
         Main.java is show PrimaryStage that come from ViewManager.getMainStage()
         
@@ -123,7 +124,7 @@
 # Logic
 - Animate.java
 - Cell.java
-- CSVParser.java
+- IMGParser.java
 - GameControllet.java
 - GameLogic.java
 - GameMap.java
@@ -145,7 +146,7 @@
     ## GameMap.java
 
     public GameMap(Pane gamePane,String mapStyle) {
-        String[][] map= CSVParser.readCSV(mapStyle);
+        String[][] map= IMGParser.readIMG(mapStyle);
     }
     ```
 

@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 public class GameMap {
 	private Cell[][] myMap;
 	public GameMap(Pane gamePane,String mapStyle) {
-		String[][] map= CSVParser.readCSV(mapStyle);
+		String[][] map= IMGParser.readIMG(mapStyle);
 		int y= map.length;
 		int x = map[0].length;
 		int countx=0,county=0;
