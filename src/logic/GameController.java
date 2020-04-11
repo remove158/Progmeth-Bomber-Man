@@ -1,10 +1,15 @@
 package logic;
+import java.awt.Color;
+
+
 import entity.Player;
+import javafx.animation.RotateTransition;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import view.Game;
 
 public class GameController extends Scene {
@@ -22,8 +27,12 @@ public class GameController extends Scene {
 		// TODO Auto-generated constructor stub
 		super(root,width,height);
 		
+		
+		
+		
 	}
 	public void  update() {
+	
 		Player player1=game.getPlayer1(),player2=game.getPlayer2();
 		if (!player1.isDie()) {
 			if (w)

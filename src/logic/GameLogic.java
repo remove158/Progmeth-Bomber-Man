@@ -8,6 +8,7 @@ import entity.Block;
 import entity.Box;
 import entity.Element;
 import entity.Player;
+import entity.Red;
 import entity.Smoke;
 import entity.Tree;
 import exception.SetSmokeException;
@@ -17,6 +18,7 @@ import item.Item;
 import item.ShieldOnPlayer;
 import item.Speed;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Glow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -177,9 +179,13 @@ public class GameLogic {
 			gamePane.getChildren().remove(showDanger);
 		}
 		if (!game_win) {
+	
 			if (sec <= 25 && sec >= 23) {
+			
 				gamePane.getChildren().remove(showDanger);
 				gamePane.getChildren().add(showDanger);
+				
+				
 			}
 
 		}
@@ -267,22 +273,16 @@ public class GameLogic {
 				if (bombx < 98) {
 
 					int xx = out.get(bombx).getx(), yy = out.get(bombx).getY();
-					int p1_x = player1.getX();
-					int p1_y = player1.getY();
-					int p2_x = player2.getX();
-					int p2_y = player2.getY();
-					if (p1_x == xx && p1_y == yy)
-						player1.die();
-					if (p2_x == xx && p2_y == yy)
-						player2.die();
+					
 					if (gameCell[yy][xx].getEntity() == null) {
-						bombThis(xx, yy);
+						setRed(xx, yy);
 
 					} else if (gameCell[yy][xx].getEntity() instanceof Block) {
 						
-						Element element = (Element) gameCell[yy][xx].getEntity();
+						Element element = (Block) gameCell[yy][xx].getEntity();
 						try {
-							element.setSmoke();
+						
+							((Block)element).setSmoke();
 						} catch (SetSmokeException e) {
 							System.out.println("Cannot SetSmoke ," + e.message);
 						}
@@ -290,12 +290,13 @@ public class GameLogic {
 						animate.add(gameCell[yy][xx]);
 
 					} else if (gameCell[yy][xx].getEntity() instanceof Element) {
-						bombThis(xx, yy);
+						setRed(xx, yy);
 
 					} else if (gameCell[yy][xx].getEntity() instanceof Item) {
-						bombThis(xx, yy);
+						setRed(xx, yy);
 
 					}
+					rewrite(xx,yy);
 
 				}
 
@@ -303,6 +304,18 @@ public class GameLogic {
 					AnchorPane gamePane = game.getGamePane();
 					int xx = out.get(bombx - 3).getx(), yy = out.get(bombx - 3).getY();
 					bombThis(xx, yy);
+					int p1_x = player1.getX();
+					int p1_y = player1.getY();
+					int p2_x = player1.getX();
+					int p2_y = player1.getY();
+					if(p1_x == xx && p1_y == yy) {
+						player1.die();
+				
+					}
+					if(p2_x == xx && p2_y == yy) {
+						player2.die();
+						
+					}
 					MAP choosenMap = game.getChoosenMap();
 					if (bombx == 5) {
 						bombThis(xx - 1, yy);
@@ -388,7 +401,42 @@ public class GameLogic {
 			showwin("WIN");
 		}
 	}
+	public void setRed(int x,int y) {
+		AnchorPane gamePane = game.getGamePane();
+		if (gameCell[y][x].getEntity() == null || gameCell[y][x].getEntity() instanceof Smoke) {
+			if (gameCell[y][x].getEntity() instanceof Smoke) {
+				animate.remove(gameCell[y][x]);
+				gameCell[y][x].removeEntity();
+			}
+			gameCell[y][x].setEntity(new Red(gamePane, x, y, "map1/"));
+			animate.add(gameCell[y][x]);
 
+		}
+
+		// remove if it is item
+		if (gameCell[y][x].getEntity() instanceof Item) {
+
+			animate.remove(gameCell[y][x]);
+			gameCell[y][x].removeEntity();
+			gameCell[y][x].setEntity(new Red(gamePane, x, y, "map1/"));
+			animate.add(gameCell[y][x]);
+
+
+		
+		}
+
+		// if it can get item
+		if (!gameCell[y][x].getIsEmpty()
+				&& (gameCell[y][x].getEntity() instanceof Tree || gameCell[y][x].getEntity() instanceof Box)) {
+
+				gameCell[y][x].removeEntity();
+				gameCell[y][x].setEntity(new Red(gamePane, x, y, "map1/"));
+				animate.add(gameCell[y][x]);
+
+			}
+			rewrite(x, y);
+		
+	}
 	public void bombThis(int x, int y) {
 		AnchorPane gamePane = game.getGamePane();
 

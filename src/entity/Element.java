@@ -76,7 +76,7 @@ public abstract class Element extends Entity implements AnimateAble {
 	public void update() throws FileNotFoundException {
 		// TODO Auto-generated method stub
 	
-		String show = smoke ? Sprite.SMOKE : getSymbol();
+		String show = smoke ? Sprite.RED : getSymbol();
 
 		ImageView a = this.getImage();
 		countframe();

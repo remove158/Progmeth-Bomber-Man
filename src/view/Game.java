@@ -10,6 +10,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import logic.Animate;
 import logic.Cell;
@@ -18,7 +19,9 @@ import logic.GameLogic;
 import logic.GameMap;
 import model.MAP;
 import model.SmallInfoLabel;
-
+import javafx.animation.RotateTransition;
+import javafx.animation.Transition;
+import javafx.util.Duration;
 
 public class Game {
 
@@ -95,6 +98,13 @@ public class Game {
 		playerInfo = new AnchorPane();
 		playerInfo.setPrefWidth(65 * 4);
 		gamePane = new AnchorPane();
+		
+		Rectangle rec = new Rectangle();
+		rec.setFill(javafx.scene.paint.Color.BLACK);
+		rec.setHeight(1500);
+		rec.setWidth(1500);
+		root.getChildren().add(0,rec);
+
 		ImageView border = new ImageView(ClassLoader.getSystemResource("map1/border.png").toString());
 		gamePane.setLayoutX(playerInfo.getPrefWidth());
 
@@ -117,21 +127,47 @@ public class Game {
 	public GameLogic getgameLogic() {
 		return this.gameLogic;
 	}
-
+	
+	int count = 0;
+	int angle = 0;
+	boolean rotate = false;
 	private void createGameLoop() {
-
+		
 		timer = new AnimationTimer() {
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
-
+				count++;
+				
+				if(count%5==0) {
+					if(rotate) {
+						if(angle > 0) {
+							gamePane.setRotate(angle);
+							angle -=2;
+						
+						}
+						if(angle < 0) {
+							gamePane.setRotate(angle);
+							angle +=2;
+						}
+						
+						if(angle == 0) {
+							rotate =false;
+							gamePane.setRotate(0);
+						}
+						
+					
+					}
+					count=0;
+					
+				}
 				gameLogic.counttime();
 				gameLogic.endgame();
 				gameScene.update();
 				player1.Animate();
 				player2.Animate();
 				animate.update();
-
+				
 			}
 
 		};
@@ -139,7 +175,10 @@ public class Game {
 		timer.start();
 
 	}
-
+	public void rotate(int angle) {
+		this.rotate = true;
+		this.angle = angle;
+	}
 	public void InfoUpdate() {
 		player1Label.update();
 		player2Label.update();
@@ -172,7 +211,7 @@ public class Game {
 		String mapStyle = choosenMap.getMap();
 		map = new GameMap(gamePane, mapStyle);
 		gameCell = map.getCell();
-
+		
 	}
 
 	public Stage getGameStage() {

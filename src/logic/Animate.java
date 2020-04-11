@@ -2,6 +2,8 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.RandomAccess;
 
 import entity.Bomb;
 import entity.Element;
@@ -10,7 +12,10 @@ import entity.Smoke;
 import entity.base.AnimateAble;
 import exception.UseItemException;
 import item.Item;
+import javafx.animation.TranslateTransition;
+import javafx.util.Duration;
 import view.Game;
+
 
 public class Animate {
 	List<Cell> itemList;
@@ -36,7 +41,8 @@ public class Animate {
 		player1 = game.getPlayer1();
 		player2 = game.getPlayer2();
 	}
-
+	
+	boolean rot = false;
 	private void bombAnimate() {
 		// TODO Auto-generated method stub
 		int nx = 0, ny = 0;
@@ -44,6 +50,7 @@ public class Animate {
 		Cell[][] gameCell = game.getGameCell();
 		int r = 0;
 		// code for set image;
+		
 		for (Cell tmp : bombList) {
 			removed = false;
 
@@ -55,7 +62,24 @@ public class Animate {
 					nx = tmp.getEntity().getX();
 					ny = tmp.getEntity().getY();
 					tmp.removeEntity();
-
+					
+					
+					if(rot) {
+						game.rotate(10);
+						rot = false;
+					}else {
+						game.rotate(-10);
+						rot = true;
+					}
+					
+					
+					TranslateTransition eff = new TranslateTransition(Duration.millis(30),game.getGamePane());
+					eff.setCycleCount(20);
+					eff.setAutoReverse(true);
+					eff.setToY(20);
+					eff.setNode(game.getGamePane());
+					eff.playFromStart();
+		
 					break;
 				}
 			}
@@ -114,6 +138,8 @@ public class Animate {
 			bombList.remove(gameCell[ny][nx]);
 		}
 	}
+	
+	
 
 	private void smokeAnimate() {
 		// TODO Auto-generated method stub

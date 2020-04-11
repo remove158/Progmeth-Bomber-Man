@@ -47,6 +47,7 @@ public class Player {
 		this.imTime = 0;
 		this.frameCount = 0;
 		colorAdjust = new ColorAdjust();
+		direction  = 2;
 	}
 
 	public void setCell(Cell[][] gameCell) {
@@ -86,8 +87,8 @@ public class Player {
 	}
 
 	public void drawPlayer() {
-
-		avatar = new ImageView(new Image(ClassLoader.getSystemResource(img_url).toString()));
+		String a = img_url.substring(0, 7)  +   frame + ".png";
+		avatar = new ImageView(new Image(ClassLoader.getSystemResource(a).toString()));
 		avatar.setLayoutX(65 * x);
 		avatar.setLayoutY(65 * y - 25);
 		gamePane.getChildren().add(avatar);
@@ -113,7 +114,8 @@ public class Player {
 	}
 
 	int speed = 30;
-
+	int count=0;
+	int frame = 0;
 	public void Animate() {
 		frameCount++;
 		if (this.frameCount % speed == 0) {
@@ -125,6 +127,17 @@ public class Player {
 			}
 
 		}
+		
+		count++;
+		if(count%12==0) {
+			count=0;
+			frame++;
+			if(frame%4==0) {
+				frame=0;
+			}
+			set(direction);
+		}
+		
 		if (this.frameCount % 60 == 0) {
 			if (immune)
 				this.imTime--;
@@ -152,7 +165,7 @@ public class Player {
 	}
 
 	private void set(int dir) {
-		String a = img_url.substring(0, 6) + dir + ".png";
+		String a = img_url.substring(0, 6) + direction + frame + ".png";
 		Image tmp = new Image(ClassLoader.getSystemResource(a).toString());
 		avatar.setImage(tmp);
 		this.direction = dir;
@@ -166,6 +179,7 @@ public class Player {
 	}
 
 	private boolean checkMove(int dir) {
+		this.direction = dir;
 		int pos_left = ((int) avatar.getLayoutX());
 		int pos_right = pos_left + CELL_WIDTH;
 		int pos_top = ((int) avatar.getLayoutY()) + 25;

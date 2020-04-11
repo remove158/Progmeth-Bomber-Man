@@ -10,4 +10,5 @@ public class Sprite {
 	public static String ADDBOMB = "/addbomb";
 	public static String ADDRADIUS = "/addradius";
 	public static String SHIELD = "/shield";
+	public static String RED = "/red";
 }

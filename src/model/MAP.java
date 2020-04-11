@@ -23,10 +23,10 @@ public enum MAP {
 	}
 
 	public String getAvatar1() {
-		return "char1/2.png";
+		return "char1/20.png";
 	}
 	public String getAvatar2() {
-		return "char2/2.png";
+		return "char2/20.png";
 	}
 	public String getLife() {
 		return this.life;
