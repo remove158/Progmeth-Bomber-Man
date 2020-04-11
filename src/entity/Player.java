@@ -158,7 +158,20 @@ public class Player {
 	public void addBombMax() {
 		this.BOMB_MAX += 1;
 	}
-
+	
+	public int getTop() {
+		return ((int) avatar.getLayoutY()) + 25;
+	}
+	public int getDown() {
+		return getTop() + CELL_WIDTH;
+	}
+;	
+	public int getLeft() {
+		return ((int) avatar.getLayoutX());
+	}
+	public int getRight() {
+		return getLeft() + CELL_WIDTH;
+	}
 	private void updatePosition() {
 		this.x = (int) ((avatar.getLayoutX() + CELL_WIDTH / 2) / CELL_WIDTH);
 		this.y = (int) ((avatar.getLayoutY() + 25 + CELL_WIDTH / 2) / CELL_WIDTH);
@@ -299,6 +312,10 @@ public class Player {
 
 	public ImageView getAvatar() {
 		return this.avatar;
+	}
+	
+	public int getBombCount() {
+		return this.count_bomb;
 	}
 
 	public int getX() {

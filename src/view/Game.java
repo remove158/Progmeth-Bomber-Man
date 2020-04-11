@@ -13,6 +13,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import logic.Animate;
+import logic.Bot;
 import logic.Cell;
 import logic.GameController;
 import logic.GameLogic;
@@ -50,7 +51,7 @@ public class Game {
 	private Animate animate;
 
 	private GameLogic gameLogic;
-
+	private Bot gameBot;
 	public Game(MAP choosenMap) {
 
 		this.animate = new Animate();
@@ -62,7 +63,7 @@ public class Game {
 	}
 
 	private void createGameElements() {
-
+		
 		gameLogic = new GameLogic();
 		gameLogic.initialize(this);
 		animate.initialize(this);
@@ -94,6 +95,7 @@ public class Game {
 
 	private void initializeStage() {
 		// TODO Auto-generated method stub
+		
 		AnchorPane root = new AnchorPane();
 		playerInfo = new AnchorPane();
 		playerInfo.setPrefWidth(65 * 4);
@@ -115,12 +117,14 @@ public class Game {
 		gameStage = new Stage();
 		gameStage.setScene(gameScene);
 		gameStage.setResizable(false);
-
+		
 		BackgroundImage image = new BackgroundImage(new Image(BACKGROUND_IMAGE, 65, 130, false, true),
 				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
 		gamePane.setBackground(new Background(image));
 
 		drawGameBoard();
+		
+		
 
 	}
 
@@ -138,7 +142,7 @@ public class Game {
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 				count++;
-				
+				gameBot.run();
 				if(count%5==0) {
 					if(rotate) {
 						if(angle > 0) {
@@ -193,7 +197,7 @@ public class Game {
 		gameManager.createNewGame(menuStage);
 
 		gameLogic.restore();
-
+		gameBot = new Bot(player2,this);
 	}
 
 	public void gameEscape() {
@@ -202,7 +206,9 @@ public class Game {
 		gameStage.close();
 		menuStage.show();
 		gameLogic.setOut_game(true);
+		
 		gameLogic.restore();
+		gameBot = new Bot(player2,this);
 	}
 
 	GameMap map;
@@ -245,7 +251,7 @@ public class Game {
 
 		createGameElements();
 		gameLogic.rewrite(0, 0);
-
+		gameBot = new Bot(player2,this);
 	}
 
 	public AnchorPane getGamePane() {

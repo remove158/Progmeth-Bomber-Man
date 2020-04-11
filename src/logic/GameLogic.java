@@ -380,6 +380,7 @@ public class GameLogic {
 		end_game = false;
 		out_game = false;
 		animate.clear();
+		
 
 	}
 
