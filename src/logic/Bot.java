@@ -44,63 +44,95 @@ public class Bot {
 			}else {
 				if(myPlayer.getBombCount() == 0) {
 					myPlayer.setBomb();
-					calculate();
+					sample = new ArrayList<>();
+					System.out.print("Bot :");
+					moveList.addAll(calculate(myPlayer.getX(),myPlayer.getY(),sample));
+					System.out.println("");
 				}
 			}
 
 		}
 	}
 
-	
-	private void calculate() {
-		
-		// TODO Auto-generated method stub
-		int x=myPlayer.getX();
-		int y= myPlayer.getY();
-		List<List<Integer>> sample = new ArrayList<>();
-		for(int i=0;i<4;i++) {
-			if(checkCanGo(x, y, i)) {
-				List tmp = new ArrayList<Integer>();
-				tmp.add(i);
-				for(int j =0 ;j<4;j++) {
-					
-					if(!(( (i+2)%4 == j)  || (j+2)%4 == i)) {
-						if(i==0) {
-							if(checkCanGo(x, y-1, j)) {
-								
-								tmp.add(j);
-								sample.add(tmp);
-							}
-						}else if(i==1) {
-							if(checkCanGo(x+1, y, j)) {
-							
-								tmp.add(j);
-								sample.add(tmp);
-							}
-						}else if(i==2) {
-							if(checkCanGo(x, y+1, j)) {
-							
-								tmp.add(j);
-								sample.add(tmp);
-							}
-						}else if(i==3) {
-							if(checkCanGo(x-1, y, j)) {
-								
-								tmp.add(j);
-								sample.add(tmp);
+	List<Integer> sample;
+	private List<Integer> calculate(int x,int y ,List<Integer> e) {
+		Random n = new Random();
+		if(e.size() <= myPlayer.getBombRadius()*2 + n.nextInt(3)) {
+			List<Integer> tmp = new ArrayList<>();
+			List<Integer> another = new ArrayList<>();
+			for(int i=0;i<4;i++) {
+				if(checkCanGo(x,y,i)) {
+					if(sample.size() != 0) {
+						int last = sample.get(sample.size()-1);
+						if(!((last+2)%4 == i||(i+2)%4 == last)) {
+							if(checkBest(x, y, i)) {
+								tmp.add(i);
+							}else {
+								another.add(i);
 							}
 						}
+					}else {
+						if(checkBest(x, y, i)) {
+							tmp.add(i);
+						}
 					}
+					
 				}
-				
 			}
+			
+			if(tmp.size() == 0) {
+				if(another.size()==0) {
+					return e;
+				}else {
+					tmp.add(another.get(n.nextInt(another.size())));
+				}
+			}
+			
+			int select = tmp.get(n.nextInt(tmp.size()));
+			System.out.print("-> " + IntToString(select));
+			sample.add(select);
+			if(select==0) {
+				calculate(x,y-1,sample);
+			}else if(select==1) {
+				calculate(x+1,y,sample);
+			}else if(select==2) {
+				calculate(x,y+1,sample);
+			}else if(select==3) {
+				calculate(x-1,y,sample);
+			}
+			
+		}
+		return e;
+	}
+	public String IntToString(int x) {
+		if(x==0) {
+			return "UP";
+		}else if(x==1) {
+			return "RIGHT";
+		}else if(x==2) {
+			return "DOWN";
+		}
+			return "LEFT";
+	
+	}
+	private boolean checkBest(int x, int y,int direc) {
+		if(direc==0) {
+			y--;
+		}else if (direc==1) {
+			x++;
+		}else if (direc==2) {
+			y++;
+		}else if(direc==3) {
+			x--;
 		}
 		
-		Random num = new Random();
-		int index = num.nextInt(sample.size());
-		
-		moveList.add((sample.get(index)).get(0));
-		moveList.add((sample.get(index)).get(1));
+		int count=0;
+		for(int i=0;i<4;i++) {
+			if(checkCanGo(x,y,i)) {
+				count++;
+			}
+		}
+		return count>1;
 	}
 	private boolean checkCanGo(int x, int y,int direction) {
 		Cell[][] gameCell = game.getGameCell();

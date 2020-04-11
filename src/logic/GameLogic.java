@@ -390,7 +390,7 @@ public class GameLogic {
 
 		if (player1.getLife() == 0) {
 			player1.die();
-			showwin("WIN");
+			showwin("LOSE");
 		}
 	}
 
@@ -513,7 +513,7 @@ public class GameLogic {
 
 		if (player1.getLife() == 0) {
 			player1.die();
-			showwin("WIN");
+			showwin("LOSE");
 		}
 		if (player2.getLife() == 0) {
 			player2.die();
