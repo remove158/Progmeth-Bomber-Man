@@ -49,8 +49,10 @@ public class Bot {
 				}
 				
 			} else {
-
-				if (myPlayer.getBombCount()==0) {
+				int putbomb = game.getgameLogic().getSec() < 100 ?  2:1;
+				putbomb = game.getgameLogic().getSec() < 60 ?  3:putbomb;
+				putbomb = game.getgameLogic().getSec() < 20 ?  1:putbomb;
+				if (myPlayer.getBombCount() < putbomb) {
 					myPlayer.setBomb();
 				} 
 				if (bombCheck(myPlayer.getX(), myPlayer.getY()) > 0) {
