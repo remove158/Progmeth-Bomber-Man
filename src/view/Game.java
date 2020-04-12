@@ -155,7 +155,7 @@ public class Game {
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 				count++;
-				gameBot1.run();
+				//gameBot1.run();
 				gameBot2.run();
 				if(count%5==0) {
 					if(rotate) {

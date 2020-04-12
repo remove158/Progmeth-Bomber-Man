@@ -15,7 +15,7 @@ public class Cell {
 		
 	}
 	
-	public int getx() {
+	public int getX() {
 		return x;
 	}
 	

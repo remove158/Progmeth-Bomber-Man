@@ -23,11 +23,13 @@ public class Animate {
 	List<Cell> bombList;
 	Game game;
 	Player player1, player2;
-
+	
 	public Animate() {
 		itemList = new ArrayList<Cell>();
 		smokeList = new ArrayList<Cell>();
 		bombList = new ArrayList<Cell>();
+		
+	
 	}
 
 	public void update() {
@@ -40,9 +42,32 @@ public class Animate {
 		this.game = game;
 		player1 = game.getPlayer1();
 		player2 = game.getPlayer2();
+		
+		
+		
 	}
 	
 	boolean rot = false;
+	
+	private void shake() {
+	
+	
+		TranslateTransition transition = new TranslateTransition();
+		transition.setDuration(Duration.millis(30));
+		transition.setNode(game.getGamePane());
+		transition.setAutoReverse(true);
+		transition.setCycleCount(25);
+		if(rot) {
+			transition.setToY(10);
+		}else {
+			transition.setToY(0);
+		}
+		
+	
+		transition.playFromStart();
+		
+		
+	}
 	private void bombAnimate() {
 		// TODO Auto-generated method stub
 		int nx = 0, ny = 0;
@@ -71,15 +96,8 @@ public class Animate {
 						game.rotate(0);
 						rot = true;
 					}
-					
-					
-					TranslateTransition eff = new TranslateTransition(Duration.millis(30),game.getGamePane());
-					eff.setCycleCount(20);
-					eff.setAutoReverse(true);
-					eff.setToY(20);
-					eff.setNode(game.getGamePane());
-					eff.playFromStart();
-		
+					shake();
+
 					break;
 				}
 			}

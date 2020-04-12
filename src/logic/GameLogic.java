@@ -275,7 +275,7 @@ public class GameLogic {
 			if (sec <= 20 && count % 12 == 0) {
 				if (bombx < 98) {
 
-					int xx = out.get(bombx).getx(), yy = out.get(bombx).getY();
+					int xx = out.get(bombx).getX(), yy = out.get(bombx).getY();
 					
 					if (gameCell[yy][xx].getEntity() == null) {
 						setRed(xx, yy);
@@ -305,7 +305,7 @@ public class GameLogic {
 
 				if (sec <= 19 && bombx - 3 < 98) {
 					AnchorPane gamePane = game.getGamePane();
-					int xx = out.get(bombx - 3).getx(), yy = out.get(bombx - 3).getY();
+					int xx = out.get(bombx - 3).getX(), yy = out.get(bombx - 3).getY();
 					bombThis(xx, yy);
 					int p1_x = player1.getX();
 					int p1_y = player1.getY();
