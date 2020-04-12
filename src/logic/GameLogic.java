@@ -31,7 +31,7 @@ public class GameLogic {
 	private Cell[][] gameCell;
 	private Player player1, player2;
 	private Game game;
-	private Label win, smallwin;;// show win label;
+	// show win label;
 	private Boolean end_game, game_win, out_game;
 	private Label showDanger;
 	private int sec = 180;
@@ -50,6 +50,7 @@ public class GameLogic {
 		game_win = false;
 		end_game = false;
 		allPlayer = new ArrayList<Player>();
+		//win = new EndLabel("5555", 13 * CELL_WIDTH, 11 * CELL_WIDTH);
 
 	}
 
@@ -172,8 +173,10 @@ public class GameLogic {
 			}
 		}
 		if (game_win) {
+			/*
 			gamePane.getChildren().remove(win);
 			gamePane.getChildren().add(win);
+			*/
 			gamePane.getChildren().remove(smallwin);
 			gamePane.getChildren().add(smallwin);
 			gamePane.getChildren().remove(showDanger);
@@ -356,17 +359,18 @@ public class GameLogic {
 			System.out.println("Cannot Set Endgame , Index out of range. ");
 		}
 	}
-
+	Label smallwin;
 	public void showwin(String text) {
 
 		AnchorPane gamePane = game.getGamePane();
-		win = new EndLabel(text, 13 * CELL_WIDTH, 11 * CELL_WIDTH);
+		
+		game.showwin(text);
 		smallwin = new Label("<< Press R to regame , Press ESC to select map >>");
 		smallwin.setLayoutX(WIDTH / 2 - 200);
 		smallwin.setLayoutY(HEIGHT / 2 + 65 * 2 - 25);
 		smallwin.setTextFill(Color.WHITE);
 		game_win = true;
-		gamePane.getChildren().add(win);
+	
 		gamePane.getChildren().add(smallwin);
 
 	}
@@ -390,7 +394,7 @@ public class GameLogic {
 
 		if (player1.getLife() == 0) {
 			player1.die();
-			showwin("LOSE");
+			if(!game_win) showwin("LOSE");
 		}
 	}
 
@@ -399,7 +403,7 @@ public class GameLogic {
 		player2.getHurt();
 		if (player2.getLife() == 0) {
 			player2.die();
-			showwin("WIN");
+			if(!game_win) showwin("WIN");
 		}
 	}
 	public void setRed(int x,int y) {
@@ -513,11 +517,11 @@ public class GameLogic {
 
 		if (player1.getLife() == 0) {
 			player1.die();
-			showwin("LOSE");
+			if(!game_win) showwin("LOSE");
 		}
 		if (player2.getLife() == 0) {
 			player2.die();
-			showwin("WIN");
+			if(!game_win) showwin("WIN");
 		}
 
 	}

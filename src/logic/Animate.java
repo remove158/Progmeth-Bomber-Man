@@ -65,10 +65,10 @@ public class Animate {
 					
 					
 					if(rot) {
-						game.rotate(10);
+						game.rotate(0);
 						rot = false;
 					}else {
-						game.rotate(-10);
+						game.rotate(0);
 						rot = true;
 					}
 					
@@ -87,6 +87,7 @@ public class Animate {
 		}
 
 		if (removed) {
+			bombList.remove(gameCell[ny][nx]);
 			game.getgameLogic().bombThis(nx, ny);
 			int radius = r;
 			// two time bomb because if bomb first it will set to Smoke
@@ -135,7 +136,7 @@ public class Animate {
 
 			}
 
-			bombList.remove(gameCell[ny][nx]);
+			
 		}
 	}
 	
@@ -224,7 +225,9 @@ public class Animate {
 
 		game.InfoUpdate();
 	}
-
+	public List<Cell> getBomb(){
+		return this.bombList;
+	}
 	public void add(Cell tmp) {
 
 		if (tmp.getEntity() instanceof Item) {

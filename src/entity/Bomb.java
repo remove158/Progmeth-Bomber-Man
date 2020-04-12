@@ -34,6 +34,7 @@ public class Bomb extends Element {
 		return myPlayer.getBombRadius();
 	}
 	
+	
 	public void decreaseBombCount() {
 		myPlayer.decreaseBombCount();
 	}

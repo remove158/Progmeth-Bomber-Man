@@ -1,5 +1,7 @@
 # CPCU Bomber
-    Final Project 2110205  Updated  4/11/2020 (3 Gamemap , 1 Character,  map from image)
+    Final Project 2110205   
+    - Updated  11/4/2020 (3 Gamemap , 1 Character,  map from image)
+    - Updated 12/4/2020 (add bot , fix bug show GameEnd)
 
 # Contents
 * [Application](#Application)
@@ -58,7 +60,7 @@
 
     
     public void tick() {...};
-    public void setSmoke() {...}; //setsmoke for 1 Loop
+    public void setSmoke() {...}; //set Blok to red box (that use in game end)
     public void update() {...};
     
     ```
@@ -112,7 +114,7 @@
     }
 
     public void tick() {...};
-    public void setSmoke() {...};  //setsmoke 1 time
+    public void setSmoke() {...};  //setsmoke 1 time (use to show smoke before show item)
     public void update() {...};
 
     
@@ -129,6 +131,7 @@
 - GameLogic.java
 - GameMap.java
 - Sprite.java  
+- Bot.java
         
     ```Java
 
@@ -137,7 +140,7 @@
     public void update() {
 		itemUpdate();
 		smokeAnimate();
-		bombAnimate();
+        bombAnimate();
 	}
     ```
 
@@ -180,6 +183,28 @@
     public boolean randomItem(int x, int y, float percent) {...} //return getItem or not 
     public void rewrite(int x, int y) {...} //swap Layer Image for  right view
     
+	}
+    ```
+
+     ```Java
+
+    ## Bot.java
+    
+    public void update() {
+		if (!myPlayer.isDie()) {
+			if (!moveList.isEmpty()) {
+				boolean success = move(moveList.get(0));
+				if (success) {
+					moveList.remove(0);
+				}
+			} else {
+				if (myPlayer.getBombCount() == 0) {
+					myPlayer.setBomb();
+					moveList.addAll(calculate(myPlayer.getX(), myPlayer.getY(), sample));
+				}
+			}
+
+		}
 	}
     ```
 
@@ -249,11 +274,26 @@
         }
         
         private void initializeStage() {
-            root.getChildren().addAll(gamePane, border, playerInfo);
+            root.getChildren().addAll(gamePane, border, playerInfo,winPane);
             drawGameBoard();
             createAvatar(MAP choosenMap);
         }
+        private void createGameLoop() {
+            
+            timer = new AnimationTimer() {
+                public void handle(long arg0) {
+				gameBot1.run();
+                //gameBot2.run();
+                gameLogic.counttime();
+				gameLogic.endgame();
+				gameScene.update();
+				player1.Animate();
+				player2.Animate();
+				animate.update();
+                }
+            }
 
+        }
         
     }
     

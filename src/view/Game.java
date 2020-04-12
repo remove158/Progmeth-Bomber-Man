@@ -3,6 +3,7 @@ package view;
 import entity.*;
 
 import javafx.animation.AnimationTimer;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -18,6 +19,7 @@ import logic.Cell;
 import logic.GameController;
 import logic.GameLogic;
 import logic.GameMap;
+import model.EndLabel;
 import model.MAP;
 import model.SmallInfoLabel;
 import javafx.animation.RotateTransition;
@@ -47,11 +49,11 @@ public class Game {
 
 	private Game gameManager;
 	private SmallInfoLabel player1Label, player2Label;
-
+	private Label winlabel;
 	private Animate animate;
 
 	private GameLogic gameLogic;
-	private Bot gameBot;
+	private Bot gameBot1,gameBot2;
 	public Game(MAP choosenMap) {
 
 		this.animate = new Animate();
@@ -78,7 +80,14 @@ public class Game {
 		player2Label.setLayoutY(50 + 65 * 3);
 		playerInfo.getChildren().add(player1Label);
 		playerInfo.getChildren().add(player2Label);
+	
 
+	}
+	
+	
+	public void showwin(String text) {
+		System.out.println(text);
+		winlabel.setText(text);
 	}
 
 	public MAP getChoosenMap() {
@@ -106,11 +115,15 @@ public class Game {
 		rec.setHeight(1500);
 		rec.setWidth(1500);
 		root.getChildren().add(0,rec);
-
+		
+		AnchorPane winPane = new AnchorPane();
+		winPane.setLayoutX(playerInfo.getPrefWidth()/2);
+		winlabel = new EndLabel("", WIDTH,HEIGHT);
+		winPane.getChildren().add(winlabel);
 		ImageView border = new ImageView(ClassLoader.getSystemResource("map1/border.png").toString());
 		gamePane.setLayoutX(playerInfo.getPrefWidth());
 
-		root.getChildren().addAll(gamePane, border, playerInfo);
+		root.getChildren().addAll(gamePane, border, playerInfo,winPane);
 
 		gameScene = new GameController(root, WIDTH, HEIGHT);
 		gameScene.initialize(this);
@@ -142,7 +155,8 @@ public class Game {
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 				count++;
-				gameBot.run();
+				gameBot1.run();
+				gameBot2.run();
 				if(count%5==0) {
 					if(rotate) {
 						if(angle > 0) {
@@ -197,7 +211,8 @@ public class Game {
 		gameManager.createNewGame(menuStage);
 
 		gameLogic.restore();
-		gameBot = new Bot(player2,this);
+		gameBot2 = new Bot(player2,this);
+		gameBot1 = new Bot(player1,this);
 	}
 
 	public void gameEscape() {
@@ -208,7 +223,8 @@ public class Game {
 		gameLogic.setOut_game(true);
 		
 		gameLogic.restore();
-		gameBot = new Bot(player2,this);
+		gameBot2 = new Bot(player2,this);
+		gameBot1 = new Bot(player1,this);
 	}
 
 	GameMap map;
@@ -251,7 +267,8 @@ public class Game {
 
 		createGameElements();
 		gameLogic.rewrite(0, 0);
-		gameBot = new Bot(player2,this);
+		gameBot2 = new Bot(player2,this);
+		gameBot1 = new Bot(player1,this);
 	}
 
 	public AnchorPane getGamePane() {
