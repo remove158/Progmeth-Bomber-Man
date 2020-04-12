@@ -206,7 +206,7 @@ public class Player {
 
 		rewrite(x, y);
 		// brinBelowCelltoTop
-		int corner = 2;
+		int corner = 3;
 		if (dir == UP) {
 			set(UP);
 			int ny = (pos_top - 1) / CELL_WIDTH;

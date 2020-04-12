@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import entity.Block;
+import entity.Bomb;
 import entity.Box;
 import entity.Element;
 import entity.Player;
@@ -332,8 +333,11 @@ public class GameLogic {
 
 						gameCell[yy][xx].setEntity(new Block(gamePane, xx, yy, choosenMap.getMap()));
 
-					} else if (gameCell[yy][xx].getEntity() instanceof Block) {
-
+					} else if (gameCell[yy][xx].getEntity() instanceof Bomb ) {
+						animate.remove(gameCell[yy][xx]);
+						gameCell[yy][xx].removeEntity();
+						gameCell[yy][xx].setEntity(new Block(gamePane, xx, yy, choosenMap.getMap()));
+						
 					} else if (gameCell[yy][xx].getEntity() instanceof Element) {
 						gameCell[yy][xx].removeEntity();
 						gameCell[yy][xx].setEntity(new Block(gamePane, xx, yy, choosenMap.getMap()));
