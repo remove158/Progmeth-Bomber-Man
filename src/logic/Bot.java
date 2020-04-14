@@ -50,7 +50,6 @@ public class Bot {
 				
 			} else {
 				int putbomb = game.getgameLogic().getSec() < 100 ?  2:1;
-				putbomb = game.getgameLogic().getSec() < 60 ?  3:putbomb;
 				putbomb = game.getgameLogic().getSec() < 20 ?  1:putbomb;
 				if (myPlayer.getBombCount() < putbomb) {
 					myPlayer.setBomb();
@@ -96,7 +95,7 @@ public class Bot {
 							} else if(j==0) { //case if have bomb but can go
 								another.add(0,i);
 							}else { //dont go its all bomb
-								another1.add(i);
+								//another1.add(i);
 								
 							}
 						}
