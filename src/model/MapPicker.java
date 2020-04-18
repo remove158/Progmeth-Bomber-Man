@@ -33,7 +33,7 @@ public class MapPicker extends VBox {
 		this.getChildren().add(MapImage);
 		setOnMouseEntered(e -> {setEffect(new Glow());new Sound("mouse_over",1);});
 		setOnMousePressed(e -> {new Sound("mouse_click",1);});
-		setOnMouseExited(e -> {setEffect(null);});
+		setOnMouseExited(e -> {setEffect(null);new Sound("mouseout", 0.2);});
 		
 	}
 	public MAP getMap() {

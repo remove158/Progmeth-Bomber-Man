@@ -174,7 +174,7 @@ public class Animate {
 			soundBomb.remove(0);
 			soundBomb.remove(0);
 		}
-		soundBomb.add(new Sound("Bomb"));
+		soundBomb.add(new Sound("boom"));
 		
 		
 	}

@@ -104,7 +104,7 @@ public class Player {
 		// i cell[][].getElement == null can set bomb;
 		
 		if (gameCell[y][x].getEntity() == null && count_bomb < BOMB_MAX) {
-			new Sound("pick",0.1);
+			new Sound("Bomb",1);
 			System.out.println("AddBomb (" + x + "," + y + ")");
 			gameCell[y][x] = new Cell(x, y);
 			gameCell[y][x].setEntity(new Bomb(gamePane, x, y, "map1/", this));
