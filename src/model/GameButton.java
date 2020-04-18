@@ -23,7 +23,6 @@ public class GameButton extends Button {
     	initializeButtonLusteners();
     }
     
-
 	private void setButtonFont() {
 		
     	try {

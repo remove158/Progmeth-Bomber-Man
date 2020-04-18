@@ -11,8 +11,7 @@ public class EndLabel extends Label {
 	private final static String FONT_PATH = ClassLoader.getSystemResource("VAGRoundedBT-Regular.otf").toString();
 	
 	public EndLabel(String text,int w,int h) {
-
-		
+	
 		setText(text);
 		setLabelFont();
 		setPadding(new Insets(0,0,0,0));
@@ -21,15 +20,13 @@ public class EndLabel extends Label {
 		setAlignment(Pos.CENTER);
 		setLayoutY(h/2 -120);
 		setTextFill(Color.web("#FFFFFF"));
-		
-		
-	
-		
+
 	}
 	
 	
 	private void setLabelFont() {
 		try {
+			
 			setFont(Font.loadFont(FONT_PATH, 200));
 		} catch(Exception e) {
 			setFont(Font.font("verdana",40));
