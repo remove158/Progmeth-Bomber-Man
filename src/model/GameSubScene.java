@@ -9,6 +9,7 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.util.Duration;
+import music.Sound;
 
 public class GameSubScene extends SubScene {
 
@@ -36,7 +37,7 @@ public class GameSubScene extends SubScene {
 		   return isHidden;
 	   }
 	public void moveSubScene() {
-		
+		new Sound("swosh",0.2);
 		TranslateTransition transition = new TranslateTransition();
 		transition.setDuration(Duration.seconds(0.3));
 		transition.setNode(this);

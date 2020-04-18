@@ -2,6 +2,7 @@ package view;
 
 import model.MAP;
 import model.MapPicker;
+import music.Sound;
 import model.GameButton;
 import model.GameSubScene;
 import model.InfoLabel;
@@ -24,20 +25,19 @@ public class ViewManager {
 	private static final int WIDTH = 1024;
 	private static final int HEIGHT = WIDTH * 3 / 4;
 	private AnchorPane mainPane;
-	private Scene mainScene;
+	private static Scene  mainScene;
 	private Stage mainStage;
 
 	private final static int MENU_BUTTON_START_X = 175;
-	private final static int MENU_BUTTON_START_Y = 250;
+	private final static int MENU_BUTTON_START_Y = 300;
 	List<GameButton> menuButton;
 	List<GameSubScene> allPanel;
 	List<MapPicker> mapList;
 	private MAP choosenMap;
 	private GameSubScene creditsSubScene;
 	private GameSubScene helpSubScene;
-	private GameSubScene scoreSubScene;
 	private GameSubScene chooseSubScene;
-
+	static Sound  music;
 	public ViewManager() {
 		mainPane = new AnchorPane();
 		mainScene = new Scene(mainPane, WIDTH, HEIGHT);
@@ -47,12 +47,20 @@ public class ViewManager {
 		mainStage.setTitle("FINAL Project ");
 		mainStage.setScene(mainScene);
 		mainStage.setResizable(false);
-
+		
+		createMusic();
 		createSubSCenes();
 		createBackground();
 		createMenuButton();
 		createLogo();
 
+	}
+
+	private void createMusic() {
+		music = new Sound("Stuff",0.1);
+	}
+	public static void startMusic() {
+		music.start();
 	}
 
 	private HBox createMapToChoose() {
@@ -95,6 +103,7 @@ public class ViewManager {
 
 		go.setOnAction(e -> {
 			if (choosenMap != null) {
+				music.stop();
 				System.out.println("-> " + choosenMap.getMap());
 				Game gameManager = new Game(choosenMap);
 
@@ -107,6 +116,10 @@ public class ViewManager {
 		chooseSubScene.getPane().getChildren().add(chooseCharLabel);
 		chooseSubScene.getPane().getChildren().add(createMapToChoose());
 		chooseSubScene.getPane().getChildren().add(go);
+	}
+	
+	public static Scene getMainScene() {
+		return mainScene;
 	}
 
 	private void showSubScene(GameSubScene subScene) {
@@ -124,16 +137,15 @@ public class ViewManager {
 		// TODO Auto-generated method stub
 		creditsSubScene = new GameSubScene();
 		helpSubScene = new GameSubScene();
-		scoreSubScene = new GameSubScene();
+
 		createMapChooserSubScene();
 
 		mainPane.getChildren().add(creditsSubScene);
 		mainPane.getChildren().add(helpSubScene);
-		mainPane.getChildren().add(scoreSubScene);
+
 
 		allPanel.add(creditsSubScene);
 		allPanel.add(helpSubScene);
-		allPanel.add(scoreSubScene);
 
 	}
 
@@ -143,7 +155,6 @@ public class ViewManager {
 
 	private void createMenuButton() {
 		createButtons("START").setOnAction(e -> showSubScene(chooseSubScene));
-		createButtons("SCORES").setOnAction(e -> showSubScene(scoreSubScene));
 		createButtons("HELP").setOnAction(e -> showSubScene(helpSubScene));
 		createButtons("CREDITS").setOnAction(e -> showSubScene(creditsSubScene));
 		createButtons("EXIT").setOnAction(e -> System.exit(0));

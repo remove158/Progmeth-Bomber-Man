@@ -1,14 +1,8 @@
 package logic;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Random;
-import java.util.Set;
-
 
 import entity.Bomb;
 import entity.Player;
@@ -20,7 +14,6 @@ public class Bot {
 	private final int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
 	private List<Integer> moveList;
 	private Game game;
-	int[][] cell = new int[16][16];
 
 	public Bot(Player player, Game game) {
 		this.myPlayer = player;
@@ -38,7 +31,6 @@ public class Bot {
 	}
 
 	int notrun = 0;
-
 	public void update() {
 		if (!myPlayer.isDie()) {
 
@@ -48,52 +40,47 @@ public class Bot {
 				if (success) {
 					moveList.remove(0);
 					set = false;
-
-					notrun = 0;
+					
+					notrun=0;
 				}
-				if (notrun >= 30) {
-					notrun = 0;
+				if(notrun >=30) {
+					notrun=0;
 					moveList.removeAll(moveList);
 				}
-
+				
 			} else {
-				int putbomb = game.getgameLogic().getSec() < 100 ? 2 : 1;
-				putbomb = game.getgameLogic().getSec() < 20 ? 1 : putbomb;
+				int putbomb = game.getgameLogic().getSec() < 100 ?  2:1;
+				putbomb = game.getgameLogic().getSec() < 20 ?  1:putbomb;
 				if (myPlayer.getBombCount() < putbomb) {
 					myPlayer.setBomb();
-				}
+				} 
 				if (bombCheck(myPlayer.getX(), myPlayer.getY()) > 0) {
-					 doCalculate();
+					doCalculate();
+				}
 				
 
-				}
-
 			}
-
+			
 		}
 	}
 
 	List<Integer> sample;
 
-	
-
 	private void doCalculate() {
 		sample = new ArrayList<>();
-		System.out.print("Bot:");
+		System.out.print("Bot :");
 		moveList.addAll(calculate(myPlayer.getX(), myPlayer.getY(), sample));
 		System.out.println("");
 	}
 
-
-	
-
 	private List<Integer> calculate(int x, int y, List<Integer> e) {
 		Random n = new Random();
 		/*
-		 * tmp is list of sample space that player can go if tmp is empty it will random
-		 * form another another contain sample that isn't bestway
+		 * tmp is list of sample space that player can go
+		 * if tmp is empty it will random form another
+		 * another contain sample that isn't bestway
 		 */
-		if (e.size() <= myPlayer.getBombRadius() * 2 + n.nextInt(3)) {
+		if (e.size() <= myPlayer.getBombRadius() * 2 + n.nextInt(3) + 1) {
 			List<Integer> tmp = new ArrayList<>();
 			List<Integer> another = new ArrayList<>();
 			List<Integer> another1 = new ArrayList<>();
@@ -101,26 +88,26 @@ public class Bot {
 				if (checkCanGo(x, y, i)) { // check it can go
 					if (e.size() != 0) {
 						int last = e.get(e.size() - 1);
-						if (!((last + 2) % 4 == i || (i + 2) % 4 == last)) { // isn't the way player come
-							int j = checkBest(x, y, i);
-							if (j > 0) { // case best
+						if (!((last + 2) % 4 == i || (i + 2) % 4 == last)) { //isn't the way player come
+							int  j =checkBest(x, y, i) ;
+							if (j>0) { //case best  
 								tmp.add(i);
-							} else if (j == 0) { // case if have bomb but can go
-								another.add(0, i);
-							} else { // dont go its all bomb
-								// another1.add(i);
-
+							} else if(j==0) { //case if have bomb but can go
+								another.add(0,i);
+							}else { //dont go its all bomb
+								//another1.add(i);
+								
 							}
 						}
-					} else { // checkBest(x, y, i) ;
-						int j = checkBest(x, y, i);
-						if (j > 0) { // case best
+					} else { // case start calculate
+						int  j =checkBest(x, y, i) ;
+						if (j>0) { //case best  
 							tmp.add(i);
-						} else if (j == 0) { // case if have bomb but can go
+						} else if(j==0) { //case if have bomb but can go
 							another.add(i);
-						} else { // dont go its all bomb
-							another1.add(i);
-
+						}else { //dont go its all bomb
+							//another1.add(i);
+							
 						}
 					}
 
@@ -129,10 +116,10 @@ public class Bot {
 
 			if (tmp.size() == 0) {
 				if (another.size() == 0) {
-					if (another1.size() == 0) {
+					if(another1.size()==0) {
 						return e;
-					} else {
-						 System.out.print("X");
+					}else {
+						System.out.print("X");
 						tmp.add(another1.get(n.nextInt(another1.size())));
 					}
 				} else {
@@ -183,27 +170,26 @@ public class Bot {
 		int count = 0;
 		for (int i = 0; i < 4; i++) {
 			if (checkCanGo(x, y, i)) {
-				// System.out.print(i);
+				//System.out.print(i);
 				count += 1;
 			}
 		}
-		// System.out.print("{"+ direc + "}BOMB:(" +bombCheck(x, y) + ")SUM:(" + count
-		// +") " );
+		//System.out.print("{"+ direc + "}BOMB:(" +bombCheck(x, y) + ")SUM:(" + count +")  " );
 		count -= bombCheck(x, y);
-
+		
 		return count;
 	}
 
 	public int bombCheck(int x, int y) {
 		int count = 0;
 		for (Cell tmp : game.getAnimate().getBomb()) {
-			int radius = ((Bomb) tmp.getEntity()).getRadius();
+			int radius= ((Bomb) tmp.getEntity()).getRadius();
 			int nx = tmp.getX();
 			int ny = tmp.getY();
-			List<Cell> bombDamageList = new ArrayList<Cell>();
+			List<Cell> bombDamageList =  new ArrayList<Cell>();
 			Cell[][] gameCell = game.getGameCell();
-
-			/* mock bomb */
+			
+			/* mock bomb  */
 			bombDamageList.add(gameCell[ny][nx]);
 			for (int i = 1; i <= radius; i++) {
 
@@ -249,16 +235,23 @@ public class Bot {
 				bombDamageList.add(gameCell[ny][nx - i]);
 
 			}
-
-			if (bombDamageList.contains(gameCell[y][x])) {
+			
+			if(bombDamageList.contains(gameCell[y][x])) {
 				count++;
 			}
-
+			
+			
+			
 			/*
-			 * if(y==tmp.getY()) { if((tmp.getX() - r <= x) && (x <= tmp.getX() + r)){
-			 * count++; } }else if(x==tmp.getX()) { if((tmp.getY() - r <= y) && (y <=
-			 * tmp.getY() + r)){ count++; } }
-			 */
+			if(y==tmp.getY()) {
+				if((tmp.getX() - r  <= x) && (x <= tmp.getX() + r)){
+					count++;
+				}
+			}else if(x==tmp.getX()) {
+				if((tmp.getY() - r  <= y) && (y <= tmp.getY() + r)){
+					count++;
+				}
+			}	*/
 		}
 
 		return count;
@@ -279,7 +272,7 @@ public class Bot {
 			return false;
 		}
 		return gameCell[y][x].getIsEmpty();
-
+		
 	}
 
 	boolean set = false;

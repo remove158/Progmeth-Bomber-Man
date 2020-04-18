@@ -7,7 +7,7 @@ import javafx.scene.text.Font;
 
 
 public class TimeLabel extends Label {
-	private final static String FONT_PATH  = ClassLoader.getSystemResource("VAGRoundedBT-Regular.otf").toString();
+	private final static String FONT_PATH = FontStyle.FONT_PATH;
 	
 	public TimeLabel(String text,int w,int h) {
 

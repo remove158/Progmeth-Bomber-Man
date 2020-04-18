@@ -2,12 +2,13 @@ package model;
 
 
 import javafx.scene.text.Font;
+import music.Sound;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 
 public class GameButton extends Button {
-	private final static String FONT_PATH  = ClassLoader.getSystemResource("VAGRoundedBT-Regular.otf").toString();
+	private final static String FONT_PATH = FontStyle.FONT_PATH;
 	private final static String btn1 = ClassLoader.getSystemResource("button1.png").toString();
 	private final static String btn2 = ClassLoader.getSystemResource("button2.png").toString();
 	private final String BUTTON_PRESSED_STYLE = "-fx-background-color: transparent; -fx-background-image: url(" + btn1 +")";
@@ -40,6 +41,7 @@ public class GameButton extends Button {
     	setStyle(BUTTON_PRESSED_STYLE);
     	setPrefHeight(45);
     	setLayoutY(getLayoutY()+4);
+    	new Sound("mouse_click",1);
     }
     private void setButtonReleasedStyle() {
     	setStyle(BUTTON_FREE_STYLE);
@@ -47,6 +49,11 @@ public class GameButton extends Button {
     	setLayoutY(getLayoutY()-4);
     }
     
+    private void setButtonEntered(){
+    	setStyle(BUTTON_PRESSED_STYLE);
+    	setEffect(new DropShadow());
+    	new Sound("mouse_over",1);
+    }
 
    private void initializeButtonLusteners() {
 	  
@@ -54,7 +61,7 @@ public class GameButton extends Button {
 	   
 	   setOnMousePressed(e -> setButtonPressedStyle());
 	   setOnMouseReleased(e -> setButtonReleasedStyle());
-	   setOnMouseEntered(e -> {setStyle(BUTTON_PRESSED_STYLE);setEffect(new DropShadow());});
+	   setOnMouseEntered(e -> setButtonEntered() );
 	   setOnMouseExited(e -> {setStyle(BUTTON_FREE_STYLE);setEffect(null);});
 	  
    }

@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.effect.ColorAdjust;
 import logic.Cell;
+import music.Sound;
 import view.Game;
 
 public class Player {
@@ -98,11 +99,12 @@ public class Player {
 	public String getImgUrl() {
 		return this.img_url;
 	}
-
+	
 	public void setBomb() {
 		// i cell[][].getElement == null can set bomb;
-
+		
 		if (gameCell[y][x].getEntity() == null && count_bomb < BOMB_MAX) {
+			new Sound("pick",0.1);
 			System.out.println("AddBomb (" + x + "," + y + ")");
 			gameCell[y][x] = new Cell(x, y);
 			gameCell[y][x].setEntity(new Bomb(gamePane, x, y, "map1/", this));

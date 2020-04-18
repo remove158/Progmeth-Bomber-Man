@@ -1,5 +1,6 @@
 package view;
 
+import application.Main;
 import entity.*;
 
 import javafx.animation.AnimationTimer;
@@ -11,6 +12,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import logic.Animate;
@@ -20,8 +22,12 @@ import logic.GameController;
 import logic.GameLogic;
 import logic.GameMap;
 import model.EndLabel;
+import model.GameButton;
+import model.GameSubScene;
 import model.MAP;
+import model.Pause;
 import model.SmallInfoLabel;
+import music.Sound;
 import javafx.animation.RotateTransition;
 import javafx.animation.Transition;
 import javafx.util.Duration;
@@ -32,7 +38,6 @@ public class Game {
 	private AnchorPane gamePane;
 	private AnchorPane playerInfo;
 	private GameController gameScene;
-	private Stage gameStage;
 	private static final int CELL_WIDTH = 65;
 	private static final int WIDTH = 17 * CELL_WIDTH;
 	private static final int HEIGHT = 11 * CELL_WIDTH + 40;
@@ -51,9 +56,10 @@ public class Game {
 	private SmallInfoLabel player1Label, player2Label;
 	private Label winlabel;
 	private Animate animate;
-
+	Sound music;
 	private GameLogic gameLogic;
 	private Bot gameBot1,gameBot2;
+	private boolean running ;
 	public Game(MAP choosenMap) {
 
 		this.animate = new Animate();
@@ -61,7 +67,8 @@ public class Game {
 		this.BACKGROUND_IMAGE = ClassLoader.getSystemResource(choosenMap.getMap() + "background1.png").toString();
 		initializeStage();
 		createGameLoop();
-
+		running = true;
+		
 	}
 
 	private void createGameElements() {
@@ -80,6 +87,10 @@ public class Game {
 		player2Label.setLayoutY(50 + 65 * 3);
 		playerInfo.getChildren().add(player1Label);
 		playerInfo.getChildren().add(player2Label);
+		GameButton pause = new GameButton("pause");
+		pause.setButtonPos(130,710);
+		pause.setOnMouseClicked(e-> {stop();});
+		playerInfo.getChildren().add(pause);
 	
 
 	}
@@ -101,14 +112,23 @@ public class Game {
 	public Player getPlayer2() {
 		return player2;
 	}
-
+	
+	private void createMusic() {
+		 music = new Sound("ingame",0.06);
+		 
+		
+	}
+	
+	AnchorPane root ;
+	AnchorPane stopPane ;
 	private void initializeStage() {
 		// TODO Auto-generated method stub
-		
-		AnchorPane root = new AnchorPane();
+		createMusic();
+		root = new AnchorPane();
 		playerInfo = new AnchorPane();
 		playerInfo.setPrefWidth(65 * 4);
 		gamePane = new AnchorPane();
+		createStopPane();
 		
 		Rectangle rec = new Rectangle();
 		rec.setFill(javafx.scene.paint.Color.BLACK);
@@ -121,15 +141,17 @@ public class Game {
 		winlabel = new EndLabel("", WIDTH,HEIGHT);
 		winPane.getChildren().add(winlabel);
 		ImageView border = new ImageView(ClassLoader.getSystemResource("map1/border.png").toString());
+		
 		gamePane.setLayoutX(playerInfo.getPrefWidth());
-
+		
+		
+			
 		root.getChildren().addAll(gamePane, border, playerInfo,winPane);
 
+		
 		gameScene = new GameController(root, WIDTH, HEIGHT);
 		gameScene.initialize(this);
-		gameStage = new Stage();
-		gameStage.setScene(gameScene);
-		gameStage.setResizable(false);
+		
 		
 		BackgroundImage image = new BackgroundImage(new Image(BACKGROUND_IMAGE, 65, 130, false, true),
 				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
@@ -138,9 +160,63 @@ public class Game {
 		drawGameBoard();
 		
 		
+		
 
 	}
+	Pause pauseScene;
+	private void createStopPane() {
+		// TODO Auto-generated method stub
+		stopPane = new AnchorPane();
+		pauseScene = new Pause();
+		stopPane.getChildren().add(pauseScene);
+		GameButton btn_menu,btx_resume,btn_restart;
+		btn_menu = new GameButton("exit");
+		btn_menu.setButtonPos(300, 300);
+		btn_menu.setOnAction(e->{pauseScene.moveSubScene();gameEscape();});
+		
+		btx_resume = new GameButton("resume");
+		btx_resume.setButtonPos(300, 100);
+		btx_resume.setOnAction(e->{stop();});
+		
+		btn_restart = new GameButton("restart");
+		btn_restart.setButtonPos(300, 200);
+		btn_restart.setOnAction(e->{pauseScene.moveSubScene();this.gameRestart();});
+		
+		pauseScene.getPane().getChildren().addAll(btn_menu,btn_restart,btx_resume);
+		
+		stopPane.setLayoutX(0);
+		stopPane.setLayoutY(0);
+		String BACKGROUND_IMAGE = ClassLoader.getSystemResource("pause.png").toString();
+		BackgroundImage bg = new BackgroundImage(new Image(BACKGROUND_IMAGE, 500, 500, false, true),
+				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
+		stopPane.setBackground(new Background(bg));
+		Label tmp = new Label("");
+		tmp.setLayoutX(1200);
+		tmp.setLayoutY(1200);
+		stopPane.getChildren().add(tmp);
+	}
 
+	public  void stop() {
+		new Sound("swosh",0.5);
+		
+		pauseScene.moveSubScene();
+		
+		if(running) {
+			root.getChildren().remove(stopPane);
+			root.getChildren().add(stopPane);
+			music.stop();
+			timer.stop();
+			running =false;
+		}else {
+			root.getChildren().remove(stopPane);
+			music.start();
+			timer = createLoop();
+			timer.start();
+			running = true;
+		}
+		
+		
+	}
 	public GameLogic getgameLogic() {
 		return this.gameLogic;
 	}
@@ -149,8 +225,13 @@ public class Game {
 	int angle = 0;
 	boolean rotate = false;
 	private void createGameLoop() {
+		 timer = createLoop();
+		 timer.start();
 		
-		timer = new AnimationTimer() {
+
+	}
+	public AnimationTimer createLoop() {
+		AnimationTimer tmp = new AnimationTimer() {
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
@@ -189,9 +270,8 @@ public class Game {
 			}
 
 		};
-
-		timer.start();
-
+		return tmp;
+		
 	}
 	public void rotate(int angle) {
 		this.rotate = true;
@@ -204,8 +284,11 @@ public class Game {
 
 	
 	public void gameRestart() {
+
+		music.stop();
+
 		timer.stop();
-		gameStage.close();
+
 
 		gameManager = new Game(choosenMap);
 		gameManager.createNewGame(menuStage);
@@ -216,9 +299,13 @@ public class Game {
 	}
 
 	public void gameEscape() {
+		new Sound("swosh",0.5);
+		ViewManager.startMusic();
+		music.stop();
 		timer.stop();
 		gameLogic.restore();
-		gameStage.close();
+		menuStage.hide();
+		menuStage.setScene(ViewManager.getMainScene());
 		menuStage.show();
 		gameLogic.setOut_game(true);
 		
@@ -236,17 +323,26 @@ public class Game {
 		
 	}
 
-	public Stage getGameStage() {
-		return gameStage;
-	}
+
 
 	public void createNewGame(Stage menuStage) {
 		this.menuStage = menuStage;
-		menuStage.close();
+		
+		try {
+			menuStage.hide();
+			menuStage.setScene(gameScene);
+			menuStage.show();
+		} catch (NullPointerException e) {
+		
+			// TODO: handle exception
+		}
+		
+		
+	
+		
 
 		createAvatar(choosenMap);
-		gameStage.setTitle("FINAL Project");
-		gameStage.show();
+
 
 	}
 

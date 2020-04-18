@@ -10,7 +10,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.text.Font;
 
 public class InfoLabel extends Label {
-	private final static String FONT_PATH = ClassLoader.getSystemResource("VAGRoundedBT-Regular.otf").toString();
+	private final static String FONT_PATH = FontStyle.FONT_PATH;
 	private final static String BACKGROUND_IMAGE = ClassLoader.getSystemResource("title.png").toString();
 
 	public InfoLabel(String text) {

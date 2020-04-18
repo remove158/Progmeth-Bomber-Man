@@ -14,7 +14,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.text.Font;
 
 public class SmallInfoLabel extends AnchorPane {
-	private final static String FONT_PATH  = ClassLoader.getSystemResource("VAGRoundedBT-Regular.otf").toString();
+	private final static String FONT_PATH = FontStyle.FONT_PATH;
 	private final int CELL_WIDTH = 65;
 	private Label bomb,speed,radius;
 	private Player myPlayer;

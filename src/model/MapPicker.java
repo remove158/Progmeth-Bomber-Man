@@ -5,6 +5,7 @@ import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import music.Sound;
 
 public class MapPicker extends VBox {
 
@@ -30,7 +31,8 @@ public class MapPicker extends VBox {
 		this.setSpacing(20);
 		this.getChildren().add(circleImage);
 		this.getChildren().add(MapImage);
-		setOnMouseEntered(e -> {setEffect(new Glow());});
+		setOnMouseEntered(e -> {setEffect(new Glow());new Sound("mouse_over",1);});
+		setOnMousePressed(e -> {new Sound("mouse_click",1);});
 		setOnMouseExited(e -> {setEffect(null);});
 		
 	}

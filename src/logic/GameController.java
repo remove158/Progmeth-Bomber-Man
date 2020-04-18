@@ -1,6 +1,6 @@
 package logic;
-import java.awt.Color;
 
+import java.awt.Color;
 
 import entity.Player;
 import javafx.animation.RotateTransition;
@@ -17,23 +17,22 @@ public class GameController extends Scene {
 	boolean w = false, a = false, s = false, d = false;
 	private final static int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
 	private Game game;
+
 	public GameController(Parent arg0) {
 		super(arg0);
 		// TODO Auto-generated constructor stub
-		
+
 	}
 
 	public GameController(AnchorPane root, int width, int height) {
 		// TODO Auto-generated constructor stub
-		super(root,width,height);
-		
-		
-		
-		
+		super(root, width, height);
+
 	}
-	public void  update() {
-	
-		Player player1=game.getPlayer1(),player2=game.getPlayer2();
+
+	public void update() {
+
+		Player player1 = game.getPlayer1(), player2 = game.getPlayer2();
 		if (!player1.isDie()) {
 			if (w)
 				player1.movePlayer(UP);
@@ -54,8 +53,9 @@ public class GameController extends Scene {
 			if (left)
 				player2.movePlayer(LEFT);
 		}
-		
+
 	}
+
 	public void initialize(Game game) {
 		this.game = game;
 		// TODO Auto-generated method stub
@@ -65,11 +65,11 @@ public class GameController extends Scene {
 	private void createKeyListenner() {
 		// TODO Auto-generated method stub
 		this.setOnMouseClicked(e -> {
-			int x = (int) (e.getSceneX() - 65*4) / 65;
+			int x = (int) (e.getSceneX() - 65 * 4) / 65;
 			int y = (int) (e.getSceneY()) / 65;
 			if (e.getButton() == MouseButton.PRIMARY) {
-				
-				game.getgameLogic().bombThis(x, y);
+
+				//game.getgameLogic().bombThis(x, y);
 			}
 			if (e.getButton() == MouseButton.SECONDARY) {
 				game.getgameLogic().setTime(26);
@@ -77,7 +77,7 @@ public class GameController extends Scene {
 
 		});
 		this.setOnKeyPressed(e -> {
-
+		
 			if (e.getCode() == KeyCode.LEFT)
 				left = true;
 			if (e.getCode() == KeyCode.RIGHT)
@@ -92,20 +92,24 @@ public class GameController extends Scene {
 				d = true;
 			if (e.getCode() == KeyCode.W)
 				w = true;
-			if (e.getCode() == KeyCode.S)
+			if (e.getCode() == KeyCode.S) {
 				s = true;
-			if (e.getCode() == KeyCode.SPACE)
-				game.getPlayer1().setBomb();
-			if (e.getCode() == KeyCode.ENTER)
-				game.getPlayer2().setBomb();
+			}
+			if (e.getCode() == KeyCode.SPACE) {
 
+				game.getPlayer1().setBomb();
+			}
+
+			if (e.getCode() == KeyCode.ENTER) {
+				game.getPlayer2().setBomb();
+			}
 			if (e.getCode() == KeyCode.R) {
 				game.gameRestart();
 
 			}
 
 			if (e.getCode() == KeyCode.ESCAPE) {
-				game.gameEscape();
+				game.stop();
 			}
 
 		});
@@ -129,11 +133,7 @@ public class GameController extends Scene {
 				d = false;
 
 		});
-		
+
 	}
-	
-	
 
-
-	
 }

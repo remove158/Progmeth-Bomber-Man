@@ -1,5 +1,6 @@
 package logic;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,7 +14,10 @@ import entity.base.AnimateAble;
 import exception.UseItemException;
 import item.Item;
 import javafx.animation.TranslateTransition;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import music.Sound;
 import view.Game;
 
 
@@ -68,6 +72,7 @@ public class Animate {
 		
 		
 	}
+	
 	private void bombAnimate() {
 		// TODO Auto-generated method stub
 		int nx = 0, ny = 0;
@@ -82,6 +87,7 @@ public class Animate {
 			if (tmp.getEntity() instanceof Bomb) {
 				removed = ((Bomb) tmp.getEntity()).tick();
 				if (removed) {
+					
 					r = ((Bomb) tmp.getEntity()).getRadius();
 					((Bomb) tmp.getEntity()).decreaseBombCount();
 					nx = tmp.getEntity().getX();
@@ -97,7 +103,7 @@ public class Animate {
 						rot = true;
 					}
 					shake();
-
+					CreateSoundBomb();
 					break;
 				}
 			}
@@ -159,6 +165,19 @@ public class Animate {
 	}
 	
 	
+	List soundBomb = new ArrayList<Sound>();
+	int cur=0;
+	private void CreateSoundBomb() {
+		if(soundBomb.size() > 5) {
+			soundBomb.remove(0);
+			soundBomb.remove(0);
+			soundBomb.remove(0);
+			soundBomb.remove(0);
+		}
+		soundBomb.add(new Sound("Bomb"));
+		
+		
+	}
 
 	private void smokeAnimate() {
 		// TODO Auto-generated method stub
@@ -195,8 +214,11 @@ public class Animate {
 				used = checkUseItem(player1, player2, tmp);
 			}
 
-			if (used)
+			if (used) {
+				createSoundItem();
 				break;
+			}
+				
 
 		}
 
@@ -210,7 +232,7 @@ public class Animate {
 		int p1_y = player1.getY();
 		int p2_x = player2.getX();
 		int p2_y = player2.getY();
-
+		
 		if (item_x == p1_x && item_y == p1_y) {
 			useitem(player1, item);
 
@@ -227,6 +249,26 @@ public class Animate {
 			return true;
 		}
 		return false;
+	}
+	
+	List soundItem = new ArrayList<Sound>();
+
+	private void createSoundItem() {
+		// TODO Auto-generated method stub
+		
+	
+		if(soundItem.size() > 5) {
+			soundItem.remove(0);
+			soundItem.remove(0);
+			soundItem.remove(0);
+			soundItem.remove(0);
+		}
+	
+		soundItem.add(new Sound("pick1",0.5));
+		
+			
+			
+		
 	}
 
 	private void useitem(Player player, Cell tmp) {
