@@ -54,7 +54,7 @@ public class GameButton extends Button {
 	private void setButtonEntered() {
 		setStyle(BUTTON_PRESSED_STYLE);
 		setEffect(new DropShadow());
-		new Sound("mouseover", 2);
+		new Sound("mouse_over", 2);
 	}
 
 	private void setButtonExited() {

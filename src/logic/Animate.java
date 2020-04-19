@@ -165,17 +165,17 @@ public class Animate {
 	}
 	
 	
-	List soundBomb = new ArrayList<Sound>();
-	int cur=0;
+
 	private void CreateSoundBomb() {
+		/*
 		if(soundBomb.size() > 5) {
 			soundBomb.remove(0);
 			soundBomb.remove(0);
 			soundBomb.remove(0);
 			soundBomb.remove(0);
 		}
-		soundBomb.add(new Sound("boom"));
-		
+		soundBomb.add(new Sound("boom"));*/
+		new Sound("boom");
 		
 	}
 
@@ -251,11 +251,11 @@ public class Animate {
 		return false;
 	}
 	
-	List soundItem = new ArrayList<Sound>();
+
 
 	private void createSoundItem() {
 		// TODO Auto-generated method stub
-		
+		/*
 	
 		if(soundItem.size() > 5) {
 			soundItem.remove(0);
@@ -264,8 +264,8 @@ public class Animate {
 			soundItem.remove(0);
 		}
 	
-		soundItem.add(new Sound("pick1",0.5));
-		
+		soundItem.add(new Sound("pick1",0.5));*/
+		new Sound("pick1",0.5);
 			
 			
 		

@@ -1,5 +1,6 @@
 package music;
 
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import java.io.File;
@@ -7,8 +8,7 @@ import java.net.URISyntaxException;
 
 public class Sound {
 	String musicFile;
-	Media sound;
-	MediaPlayer mediaPlayer;
+	AudioClip mediaPlayer;
 
 	public Sound(String path) {
 		this(path, 0.1);
@@ -19,8 +19,8 @@ public class Sound {
 
 		musicFile = "music/" + path + ".wav"; // For exampl
 		musicFile = ClassLoader.getSystemResource(musicFile).toString();
-		sound = new Media(musicFile);
-		mediaPlayer = new MediaPlayer(sound);
+	
+		mediaPlayer = new  AudioClip(musicFile);
 		mediaPlayer.setVolume(x);
 		mediaPlayer.play();
 

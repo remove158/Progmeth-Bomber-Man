@@ -57,10 +57,10 @@ public class ViewManager {
 	}
 
 	private void createMusic() {
-		music = new Sound("Stuff",0.1);
+		//music = new Sound("Stuff",0.1);
 	}
 	public static void startMusic() {
-		music.start();
+		//music.start();
 	}
 
 	private HBox createMapToChoose() {
