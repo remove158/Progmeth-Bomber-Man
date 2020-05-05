@@ -2,12 +2,15 @@ package view;
 
 import model.MAP;
 import model.MapPicker;
+import model.Switch;
 import music.Sound;
+import model.FontStyle;
 import model.GameButton;
 import model.GameSubScene;
 import model.InfoLabel;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.Insets;
@@ -15,17 +18,20 @@ import javafx.scene.*;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
+import javafx.scene.text.Font;
 public class ViewManager {
 	private static final int WIDTH = 1024;
 	private static final int HEIGHT = WIDTH * 3 / 4;
@@ -43,8 +49,9 @@ public class ViewManager {
 	private GameSubScene helpSubScene;
 	private GameSubScene chooseSubScene;
 	static Sound music;
-
+	public static boolean isBotOn;
 	public ViewManager() {
+		isBotOn =true;
 		mainPane = new AnchorPane();
 		mainScene = new Scene(mainPane, WIDTH, HEIGHT);
 		mainStage = new Stage();
@@ -129,7 +136,7 @@ public class ViewManager {
 
 		GameButton go = new GameButton("GO!");
 		go.setButtonPos(450, 350);
-
+		
 		go.setOnAction(e -> {
 			if (choosenMap != null) {
 				music.stop();
@@ -139,6 +146,19 @@ public class ViewManager {
 			}
 
 		});
+
+		Switch BotControl = new Switch("Bot : ","Turn On/Off GameBot\nOn : 1 Player / 1 Bot\nOff : 2 Player");
+		BotControl.setLayoutX(55);
+		BotControl.setLayoutY(335);
+		BotControl.setOnMouseClicked(e ->{
+			BotControl.setStatus(!BotControl.getStatus());
+			isBotOn = BotControl.getStatus();
+		});
+	
+	
+		chooseSubScene.getPane().getChildren().addAll(BotControl);
+		
+		
 
 		chooseSubScene.getPane().getChildren().add(chooseCharLabel);
 		chooseSubScene.getPane().getChildren().add(createMapToChoose());
@@ -155,16 +175,9 @@ public class ViewManager {
 		InfoLabel chooseCharLabel = new InfoLabel("HELP");
 		chooseCharLabel.setLayoutX(110);
 		chooseCharLabel.setLayoutY(25);
-		ToggleGroup isBotOn = new ToggleGroup();
-		ToggleButton botOn = new ToggleButton("ON");
-		ToggleButton botOff = new ToggleButton("OFF");
-		botOn.setToggleGroup(isBotOn);
-		botOff.setToggleGroup(isBotOn);
-		botOn.setSelected(true);
-		botOn.setLayoutX(0);
-		botOff.setLayoutX(35);
+
 		helpSubScene.getPane().getChildren().add(chooseCharLabel);
-		helpSubScene.getPane().getChildren().addAll(botOn,botOff);
+		
 
 	}
 

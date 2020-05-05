@@ -34,11 +34,10 @@ public class Pause extends SubScene {
 	}
 
 	public void moveSubScene() {
-		new Sound("swosh",0.5);
+		
 		TranslateTransition transition = new TranslateTransition();
 		transition.setDuration(Duration.seconds(0.3));
 		transition.setNode(this);
-		
 		if(isHidden) {
 			transition.setToY(400);
 			isHidden =false;
@@ -47,8 +46,13 @@ public class Pause extends SubScene {
 			isHidden =true;
 		}
 		
-		
-		transition.play();
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				new Sound("swosh",0.5);	
+				transition.play();
+			}
+		});
+		t.start();
 	}
 	
 	public AnchorPane getPane() {

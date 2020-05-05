@@ -176,8 +176,11 @@ public class Game {
 		btn_menu = new GameButton("exit");
 		btn_menu.setButtonPos(300, 300);
 		btn_menu.setOnAction(e -> {
-			pauseScene.moveSubScene();
-			gameEscape();
+			
+		
+					pauseScene.moveSubScene();
+					gameEscape();
+		
 		});
 
 		btx_resume = new GameButton("resume");
@@ -190,7 +193,9 @@ public class Game {
 		btn_restart.setButtonPos(300, 200);
 		btn_restart.setOnAction(e -> {
 			pauseScene.moveSubScene();
+			
 			this.gameRestart();
+			
 		});
 
 		pauseScene.getPane().getChildren().addAll(btn_menu, btn_restart, btx_resume);
@@ -212,14 +217,13 @@ public class Game {
 			public void run() {
 				// TODO Auto-generated method stub
 				new Sound("swosh", 0.5);
-
 				pauseScene.moveSubScene();
-
+				
 			}
 		});
 		t.start();
-	
-
+		
+		
 		if (running) {
 			root.getChildren().remove(stopPane);
 			root.getChildren().add(stopPane);
@@ -234,6 +238,7 @@ public class Game {
 			running = true;
 		}
 
+		
 	}
 
 	public GameLogic getgameLogic() {
@@ -257,7 +262,9 @@ public class Game {
 				// TODO Auto-generated method stub
 				count++;
 				// gameBot1.run();
-				gameBot2.run();
+				if(ViewManager.isBotOn) {
+					gameBot2.run();
+				}
 				if (count % 5 == 0) {
 					if (rotate) {
 						if (angle > 0) {

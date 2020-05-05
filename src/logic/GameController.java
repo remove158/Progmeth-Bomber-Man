@@ -12,6 +12,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import view.Game;
+import view.ViewManager;
 
 public class GameController extends Scene {
 	boolean up = false, down = false, right = false, left = false;
@@ -44,7 +45,7 @@ public class GameController extends Scene {
 			if (a)
 				player1.movePlayer(LEFT);
 		}
-		if (!player2.isDie()) {
+		if (!player2.isDie() && !ViewManager.isBotOn) {
 			if (up)
 				player2.movePlayer(UP);
 			if (right)
