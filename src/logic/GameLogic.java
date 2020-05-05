@@ -310,8 +310,8 @@ public class GameLogic {
 					bombThis(xx, yy);
 					int p1_x = player1.getX();
 					int p1_y = player1.getY();
-					int p2_x = player1.getX();
-					int p2_y = player1.getY();
+					int p2_x = player2.getX();
+					int p2_y = player2.getY();
 					if(p1_x == xx && p1_y == yy) {
 						player1.die();
 				

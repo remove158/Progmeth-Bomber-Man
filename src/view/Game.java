@@ -58,8 +58,9 @@ public class Game {
 	private Animate animate;
 	Sound music;
 	private GameLogic gameLogic;
-	private Bot gameBot1,gameBot2;
-	private boolean running ;
+	private Bot gameBot1, gameBot2;
+	private boolean running;
+
 	public Game(MAP choosenMap) {
 
 		this.animate = new Animate();
@@ -68,11 +69,11 @@ public class Game {
 		initializeStage();
 		createGameLoop();
 		running = true;
-		
+
 	}
 
 	private void createGameElements() {
-		
+
 		gameLogic = new GameLogic();
 		gameLogic.initialize(this);
 		animate.initialize(this);
@@ -88,14 +89,14 @@ public class Game {
 		playerInfo.getChildren().add(player1Label);
 		playerInfo.getChildren().add(player2Label);
 		GameButton pause = new GameButton("pause");
-		pause.setButtonPos(130,710);
-		pause.setOnMouseClicked(e-> {stop();});
+		pause.setButtonPos(130, 710);
+		pause.setOnMouseClicked(e -> {
+			stop();
+		});
 		playerInfo.getChildren().add(pause);
-	
 
 	}
-	
-	
+
 	public void showwin(String text) {
 		System.out.println(text);
 		winlabel.setText(text);
@@ -112,15 +113,22 @@ public class Game {
 	public Player getPlayer2() {
 		return player2;
 	}
-	
+
 	private void createMusic() {
-		 music = new Sound("ingame",0.06);
-		 
-		
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				// TODO Auto-generated method stub
+				music = new Sound("ingame", 0.06);
+
+			}
+		});
+		t.start();
+
 	}
-	
-	AnchorPane root ;
-	AnchorPane stopPane ;
+
+	AnchorPane root;
+	AnchorPane stopPane;
+
 	private void initializeStage() {
 		// TODO Auto-generated method stub
 		createMusic();
@@ -129,61 +137,64 @@ public class Game {
 		playerInfo.setPrefWidth(65 * 4);
 		gamePane = new AnchorPane();
 		createStopPane();
-		
+
 		Rectangle rec = new Rectangle();
 		rec.setFill(javafx.scene.paint.Color.BLACK);
 		rec.setHeight(1500);
 		rec.setWidth(1500);
-		root.getChildren().add(0,rec);
-		
+		root.getChildren().add(0, rec);
+
 		AnchorPane winPane = new AnchorPane();
-		winPane.setLayoutX(playerInfo.getPrefWidth()/2);
-		winlabel = new EndLabel("", WIDTH,HEIGHT);
+		winPane.setLayoutX(playerInfo.getPrefWidth() / 2);
+		winlabel = new EndLabel("", WIDTH, HEIGHT);
 		winPane.getChildren().add(winlabel);
 		ImageView border = new ImageView(ClassLoader.getSystemResource("map1/border.png").toString());
-		
-		gamePane.setLayoutX(playerInfo.getPrefWidth());
-		
-		
-			
-		root.getChildren().addAll(gamePane, border, playerInfo,winPane);
 
-		
+		gamePane.setLayoutX(playerInfo.getPrefWidth());
+
+		root.getChildren().addAll(gamePane, border, playerInfo, winPane);
+
 		gameScene = new GameController(root, WIDTH, HEIGHT);
 		gameScene.initialize(this);
-		
-		
+
 		BackgroundImage image = new BackgroundImage(new Image(BACKGROUND_IMAGE, 65, 130, false, true),
 				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
 		gamePane.setBackground(new Background(image));
 
 		drawGameBoard();
-		
-		
-		
 
 	}
+
 	Pause pauseScene;
+
 	private void createStopPane() {
 		// TODO Auto-generated method stub
 		stopPane = new AnchorPane();
 		pauseScene = new Pause();
 		stopPane.getChildren().add(pauseScene);
-		GameButton btn_menu,btx_resume,btn_restart;
+		GameButton btn_menu, btx_resume, btn_restart;
 		btn_menu = new GameButton("exit");
 		btn_menu.setButtonPos(300, 300);
-		btn_menu.setOnAction(e->{pauseScene.moveSubScene();gameEscape();});
-		
+		btn_menu.setOnAction(e -> {
+			pauseScene.moveSubScene();
+			gameEscape();
+		});
+
 		btx_resume = new GameButton("resume");
 		btx_resume.setButtonPos(300, 100);
-		btx_resume.setOnAction(e->{stop();});
-		
+		btx_resume.setOnAction(e -> {
+			stop();
+		});
+
 		btn_restart = new GameButton("restart");
 		btn_restart.setButtonPos(300, 200);
-		btn_restart.setOnAction(e->{pauseScene.moveSubScene();this.gameRestart();});
-		
-		pauseScene.getPane().getChildren().addAll(btn_menu,btn_restart,btx_resume);
-		
+		btn_restart.setOnAction(e -> {
+			pauseScene.moveSubScene();
+			this.gameRestart();
+		});
+
+		pauseScene.getPane().getChildren().addAll(btn_menu, btn_restart, btx_resume);
+
 		stopPane.setLayoutX(0);
 		stopPane.setLayoutY(0);
 		String BACKGROUND_IMAGE = ClassLoader.getSystemResource("pause.png").toString();
@@ -196,109 +207,126 @@ public class Game {
 		stopPane.getChildren().add(tmp);
 	}
 
-	public  void stop() {
-		new Sound("swosh",0.5);
-		
-		pauseScene.moveSubScene();
-		
-		if(running) {
+	public void stop() {
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				// TODO Auto-generated method stub
+				new Sound("swosh", 0.5);
+
+				pauseScene.moveSubScene();
+
+			}
+		});
+		t.start();
+	
+
+		if (running) {
 			root.getChildren().remove(stopPane);
 			root.getChildren().add(stopPane);
 			music.stop();
 			timer.stop();
-			running =false;
-		}else {
+			running = false;
+		} else {
 			root.getChildren().remove(stopPane);
 			music.start();
 			timer = createLoop();
 			timer.start();
 			running = true;
 		}
-		
-		
+
 	}
+
 	public GameLogic getgameLogic() {
 		return this.gameLogic;
 	}
-	
+
 	int count = 0;
 	int angle = 0;
 	boolean rotate = false;
+
 	private void createGameLoop() {
-		 timer = createLoop();
-		 timer.start();
+		timer = createLoop();
+		timer.start();
 
 	}
+
 	public AnimationTimer createLoop() {
 		AnimationTimer tmp = new AnimationTimer() {
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 				count++;
-				//gameBot1.run();
+				// gameBot1.run();
 				gameBot2.run();
-				if(count%5==0) {
-					if(rotate) {
-						if(angle > 0) {
+				if (count % 5 == 0) {
+					if (rotate) {
+						if (angle > 0) {
 							gamePane.setRotate(angle);
-							angle -=2;
-						
+							angle -= 2;
+
 						}
-						if(angle < 0) {
+						if (angle < 0) {
 							gamePane.setRotate(angle);
-							angle +=2;
+							angle += 2;
 						}
-						
-						if(angle == 0) {
-							rotate =false;
+
+						if (angle == 0) {
+							rotate = false;
 							gamePane.setRotate(0);
 						}
-						
-					
+
 					}
-					count=0;
-					
+					count = 0;
+
 				}
 				gameLogic.counttime();
 				gameLogic.endgame();
-				gameScene.update();
-				player1.Animate();
-				player2.Animate();
+				gameScene.update(); // move player
+				player1.Animate(); // animate player1
+				player2.Animate(); // animate player2
 				animate.update();
-				
+
 			}
 
 		};
 		return tmp;
-		
+
 	}
+
 	public void rotate(int angle) {
 		this.rotate = true;
 		this.angle = angle;
 	}
+
 	public void InfoUpdate() {
 		player1Label.update();
 		player2Label.update();
 	}
 
-	
 	public void gameRestart() {
 
 		music.stop();
 
 		timer.stop();
 
-
 		gameManager = new Game(choosenMap);
 		gameManager.createNewGame(menuStage);
 
 		gameLogic.restore();
-		gameBot2 = new Bot(player2,this);
-		gameBot1 = new Bot(player1,this);
+		gameBot2 = new Bot(player2, this);
+		gameBot1 = new Bot(player1, this);
 	}
 
 	public void gameEscape() {
-		new Sound("swosh",0.5);
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				// TODO Auto-generated method stub
+				new Sound("swosh", 0.5);
+
+			}
+		});
+		t.start();
+		
 		ViewManager.startMusic();
 		music.stop();
 		timer.stop();
@@ -307,10 +335,10 @@ public class Game {
 		menuStage.setScene(ViewManager.getMainScene());
 		menuStage.show();
 		gameLogic.setOut_game(true);
-		
+
 		gameLogic.restore();
-		gameBot2 = new Bot(player2,this);
-		gameBot1 = new Bot(player1,this);
+		gameBot2 = new Bot(player2, this);
+		gameBot1 = new Bot(player1, this);
 	}
 
 	GameMap map;
@@ -319,10 +347,8 @@ public class Game {
 		String mapStyle = choosenMap.getMap();
 		map = new GameMap(gamePane, mapStyle);
 		gameCell = map.getCell();
-		
+
 	}
-
-
 
 	public void createNewGame(Stage menuStage) {
 		this.menuStage = menuStage;
@@ -330,12 +356,8 @@ public class Game {
 		menuStage.setScene(gameScene);
 		menuStage.show();
 		createAvatar(choosenMap);
-		
-
 
 	}
-
-
 
 	public Cell[][] getGameCell() {
 		return this.gameCell;
@@ -352,8 +374,8 @@ public class Game {
 
 		createGameElements();
 		gameLogic.rewrite(0, 0);
-		gameBot2 = new Bot(player2,this);
-		gameBot1 = new Bot(player1,this);
+		gameBot2 = new Bot(player2, this);
+		gameBot1 = new Bot(player1, this);
 	}
 
 	public AnchorPane getGamePane() {

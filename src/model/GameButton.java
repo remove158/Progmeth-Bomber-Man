@@ -42,10 +42,18 @@ public class GameButton extends Button {
 	}
 
 	private void setButtonPressedStyle() {
-		setStyle(BUTTON_PRESSED_STYLE);
-		setPrefHeight(45);
-		setLayoutY(getLayoutY() + 4);
-		new Sound("mouse_click", 1);
+		
+		
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				setStyle(BUTTON_PRESSED_STYLE);
+				setPrefHeight(45);
+				setLayoutY(getLayoutY() + 4);
+				new Sound("mouse_click", 1);
+				
+			}
+		});
+		t.start();
 	}
 
 	private void setButtonReleasedStyle() {
@@ -55,15 +63,29 @@ public class GameButton extends Button {
 	}
 
 	private void setButtonEntered() {
-		setStyle(BUTTON_PRESSED_STYLE);
-		setEffect(new DropShadow());
-		new Sound("mouse_over", 2);
+		
+		
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				setStyle(BUTTON_PRESSED_STYLE);
+				setEffect(new DropShadow());
+				new Sound("mouse_over", 2);
+			}
+		});
+		t.start();
 	}
 
 	private void setButtonExited() {
-		setStyle(BUTTON_FREE_STYLE);
-		setEffect(null);
-		new Sound("mouseout", 0.2);
+		
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				setStyle(BUTTON_FREE_STYLE);
+				setEffect(null);
+				new Sound("mouseout", 0.2);
+			}
+		});
+		t.start();
+	
 	}
 
 	private void initializeButtonLusteners() {

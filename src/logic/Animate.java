@@ -1,10 +1,7 @@
 package logic;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.RandomAccess;
 
 import entity.Bomb;
 import entity.Element;
@@ -14,8 +11,7 @@ import entity.base.AnimateAble;
 import exception.UseItemException;
 import item.Item;
 import javafx.animation.TranslateTransition;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+
 import javafx.util.Duration;
 import music.Sound;
 import view.Game;
@@ -54,21 +50,28 @@ public class Animate {
 	boolean rot = false;
 	
 	private void shake() {
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				// TODO Auto-generated method stub
+				TranslateTransition transition = new TranslateTransition();
+				transition.setDuration(Duration.millis(30));
+				transition.setNode(game.getGamePane());
+				transition.setAutoReverse(true);
+				transition.setCycleCount(25);
+				if(rot) {
+					transition.setToY(10);
+				}else {
+					transition.setToY(0);
+				}
+				
+			
+				transition.playFromStart();
+
+			}
+		});
+		t.start();
 	
-	
-		TranslateTransition transition = new TranslateTransition();
-		transition.setDuration(Duration.millis(30));
-		transition.setNode(game.getGamePane());
-		transition.setAutoReverse(true);
-		transition.setCycleCount(25);
-		if(rot) {
-			transition.setToY(10);
-		}else {
-			transition.setToY(0);
-		}
 		
-	
-		transition.playFromStart();
 		
 		
 	}
@@ -167,16 +170,13 @@ public class Animate {
 	
 
 	private void CreateSoundBomb() {
-		/*
-		if(soundBomb.size() > 5) {
-			soundBomb.remove(0);
-			soundBomb.remove(0);
-			soundBomb.remove(0);
-			soundBomb.remove(0);
-		}
-		soundBomb.add(new Sound("boom"));*/
-		new Sound("boom");
 		
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				new Sound("boom");
+			}
+		});
+		t.start();
 	}
 
 	private void smokeAnimate() {
@@ -254,19 +254,14 @@ public class Animate {
 
 
 	private void createSoundItem() {
-		// TODO Auto-generated method stub
-		/*
-	
-		if(soundItem.size() > 5) {
-			soundItem.remove(0);
-			soundItem.remove(0);
-			soundItem.remove(0);
-			soundItem.remove(0);
-		}
-	
-		soundItem.add(new Sound("pick1",0.5));*/
-		new Sound("pick1",0.5);
-			
+
+		
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				new Sound("pick1",0.5);
+			}
+		});
+		t.start();
 			
 		
 	}
