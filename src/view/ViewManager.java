@@ -15,6 +15,7 @@ import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -47,6 +48,11 @@ public class ViewManager {
 	private GameSubScene chooseSubScene;
 	static Sound music;
 	public static boolean isBotOn=true;
+	public boolean allHidden=true;
+	String image_path1 = ClassLoader.getSystemResource("cha1.png").toString();
+	ImageView player1 = new ImageView(image_path1);
+	String image_path2 = ClassLoader.getSystemResource("cha2.png").toString();
+	ImageView player2 = new ImageView(image_path2);
 	public ViewManager() {
 		mainPane = new AnchorPane();
 		mainScene = new Scene(mainPane, WIDTH, HEIGHT);
@@ -62,6 +68,7 @@ public class ViewManager {
 		createBackground();
 		createMenuButton();
 		createLogo();
+		picChar();
 
 	}
 
@@ -106,11 +113,19 @@ public class ViewManager {
 	}
 
 	private void showSubScene(GameSubScene subScene) {
-
 		for (GameSubScene e : allPanel) {
 			if (!e.getHidde() && e != subScene) {
 				e.moveSubScene();
+				allHidden = true 	;
 			}
+		}
+		if(allHidden) {
+			player1.setX(WIDTH / 2 - 679 / 2 + 550);player2.setX(WIDTH / 2 - 679 / 2 + 550);
+			allHidden=false;
+		}
+		else {
+			allHidden=false;
+			player1.setX(1024);player2.setX(1024);
 		}
 		subScene.moveSubScene();
 
@@ -260,11 +275,19 @@ public class ViewManager {
 	}
 
 	private void createMenuButton() {
-		createButtons("START").setOnAction(e -> showSubScene(chooseSubScene));
+		createButtons("START").setOnAction(e -> {
+			showSubScene(chooseSubScene);
+			hideCharacter();
+		});
 		createButtons("HELP").setOnAction(e -> showSubScene(helpSubScene));
 		createButtons("CREDITS").setOnAction(e -> showSubScene(creditsSubScene));
 		createButtons("EXIT").setOnAction(e -> System.exit(0));
 
+	}
+
+	private void hideCharacter() {
+		player1.setLayoutX(1024);
+		player2.setLayoutY(1024);
 	}
 
 	private GameButton createButtons(String text) {
@@ -296,11 +319,18 @@ public class ViewManager {
 	}
 
 	private void createBackground() {
-		String image_path = ClassLoader.getSystemResource("background.png").toString();
+		String image_path = ClassLoader.getSystemResource("background2.png").toString();
 		Image backgroundImage = new Image(image_path, WIDTH, HEIGHT, false, true);
 		BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT,
 				BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, null);
 		mainPane.setBackground(new Background(background));
 
+	}
+	
+	private void picChar() {
+		player1.setLayoutX(WIDTH / 2 - 679 / 2 + 550); player1.setLayoutY(560);
+		player2.setLayoutX(WIDTH / 2 - 679 / 2 + 650); player2.setLayoutY(560);
+		mainPane.getChildren().add(player1);
+		mainPane.getChildren().add(player2);
 	}
 }
