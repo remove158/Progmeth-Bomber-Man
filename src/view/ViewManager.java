@@ -11,11 +11,21 @@ import model.InfoLabel;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.control.Label;
+
 import javafx.scene.effect.Glow;
+
+
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
+import javafx.scene.effect.Glow;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -24,9 +34,10 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.HBox;
-
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class ViewManager {
@@ -68,8 +79,6 @@ public class ViewManager {
 		createBackground();
 		createMenuButton();
 		createLogo();
-		picChar();
-
 	}
 
 	private void createMusic() {
@@ -78,6 +87,7 @@ public class ViewManager {
 
 	public static void startMusic() {
 		music.start();
+		music.loop();
 	}
 
 	private HBox createMapToChoose() {
@@ -116,19 +126,10 @@ public class ViewManager {
 		for (GameSubScene e : allPanel) {
 			if (!e.getHidde() && e != subScene) {
 				e.moveSubScene();
-				allHidden = true 	;
+				allHidden = true ;
 			}
-		}
-		if(allHidden) {
-			player1.setX(WIDTH / 2 - 679 / 2 + 550);player2.setX(WIDTH / 2 - 679 / 2 + 550);
-			allHidden=false;
-		}
-		else {
-			allHidden=false;
-			player1.setX(1024);player2.setX(1024);
-		}
-		subScene.moveSubScene();
-
+		
+		}subScene.moveSubScene();
 	}
 	private void createSubSCenes() {
 		createMapChooserSubScene();
@@ -161,13 +162,39 @@ public class ViewManager {
 		BotControl.setLayoutX(55);
 		BotControl.setLayoutY(335);
 		BotControl.setOnMouseClicked(e ->{
+			new Sound("pick",1);
 			BotControl.setStatus(!BotControl.getStatus());
 			isBotOn = BotControl.getStatus();
 		});
-	
-	
-		chooseSubScene.getPane().getChildren().addAll(BotControl);
 		
+		ImageView player11 = new ImageView(image_path1);
+		ImageView player22 = new ImageView(image_path2);
+		
+		player11.setLayoutX(185); player11.setLayoutY(290);
+		player22.setLayoutX(260); player22.setLayoutY(290);
+		Tooltip tooltip = new Tooltip() ;
+		tooltip.setFont(new Font(15));
+		player22.setOnMouseEntered(e -> {
+			new Sound("pick",1);
+			tooltip.setText("Player 2");
+			tooltip.show(mainStage,  mainStage.getX()+612, mainStage.getY()+650);
+		});
+		player22.setOnMouseExited(e ->{
+			tooltip.hide();
+		});
+	
+		player11.setOnMouseEntered(e -> {
+			new Sound("pick",1);
+			tooltip.setText("Player 1");
+			tooltip.show(mainStage,  mainStage.getX()+535, mainStage.getY()+650);
+		});
+		player11.setOnMouseExited(e ->{
+			tooltip.hide();
+		});
+		
+		chooseSubScene.getPane().getChildren().addAll(BotControl);
+		chooseSubScene.getPane().getChildren().add(player11);
+		chooseSubScene.getPane().getChildren().add(player22);
 		chooseSubScene.getPane().getChildren().add(chooseCharLabel);
 		chooseSubScene.getPane().getChildren().add(createMapToChoose());
 		chooseSubScene.getPane().getChildren().add(go);
@@ -215,6 +242,20 @@ public class ViewManager {
 		moveHelp3.setLayoutX(100);
 		moveHelp3.setLayoutY(360);
 		
+//		String pt_path = ClassLoader.getSystemResource("pt.png").toString();
+//		ImageView pt = new ImageView(pt_path);
+//		pt.setLayoutX(240); pt.setLayoutY(160);
+//		pt.setFitHeight(150);pt.setFitWidth(150);
+//		
+//		String m_path = ClassLoader.getSystemResource("makk.jpg").toString();
+//		ImageView makk = new ImageView(m_path);
+//		makk.setLayoutX(410); makk.setLayoutY(160);
+//		makk.setFitHeight(150);makk.setFitWidth(150);
+//		
+		player1.setLayoutX(15); player1.setLayoutY(25);
+		player2.setLayoutX(520); player2.setLayoutY(25);
+		
+		
 		helpSubScene.getPane().getChildren().add(help1);
 		helpSubScene.getPane().getChildren().add(help2);
 		helpSubScene.getPane().getChildren().add(help3);
@@ -222,7 +263,8 @@ public class ViewManager {
 		helpSubScene.getPane().getChildren().add(moveHelp2);
 		helpSubScene.getPane().getChildren().add(moveHelp3);
 		helpSubScene.getPane().getChildren().add(chooseCharLabel);
-		
+		helpSubScene.getPane().getChildren().add(player1);
+		helpSubScene.getPane().getChildren().add(player2);
 	}
 
 	private void createCreditsSubScene() {
@@ -277,17 +319,11 @@ public class ViewManager {
 	private void createMenuButton() {
 		createButtons("START").setOnAction(e -> {
 			showSubScene(chooseSubScene);
-			hideCharacter();
 		});
 		createButtons("HELP").setOnAction(e -> showSubScene(helpSubScene));
 		createButtons("CREDITS").setOnAction(e -> showSubScene(creditsSubScene));
 		createButtons("EXIT").setOnAction(e -> System.exit(0));
 
-	}
-
-	private void hideCharacter() {
-		player1.setLayoutX(1024);
-		player2.setLayoutY(1024);
 	}
 
 	private GameButton createButtons(String text) {
@@ -324,13 +360,6 @@ public class ViewManager {
 		BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT,
 				BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, null);
 		mainPane.setBackground(new Background(background));
-
 	}
 	
-	private void picChar() {
-		player1.setLayoutX(WIDTH / 2 - 679 / 2 + 550); player1.setLayoutY(560);
-		player2.setLayoutX(WIDTH / 2 - 679 / 2 + 650); player2.setLayoutY(560);
-		mainPane.getChildren().add(player1);
-		mainPane.getChildren().add(player2);
-	}
 }

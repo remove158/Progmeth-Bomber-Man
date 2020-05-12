@@ -2,6 +2,7 @@
     Final Project 2110205   
     - Updated  11/4/2020 (3 Gamemap , 1 Character,  map from image)
     - Updated 12/4/2020 (add bot , fix bug show GameEnd)
+    - Updated 19/4/2020 (add sound fx)
 
 # Contents
 * [Application](#Application)
@@ -10,6 +11,7 @@
 * [Item](#Item)
 * [Logic](#Logic)
 * [Model](#Model)
+* [Music](#Music)
 * [View](#View)
 
 
@@ -209,6 +211,7 @@
     ```
 
 # Model
+- FontStyle.java
 - Endlabel.java
 - GameButton.java
 - GameSubScene.java
@@ -245,8 +248,30 @@
     }
 
     ```
+
+# Music
+- Sound.java
+    ```Java
+
+    ## Sound.java
+
+   	public Sound(String path, double x) {
+
+		musicFile = "music/" + path + ".wav"; // For exampl
+		musicFile = ClassLoader.getSystemResource(musicFile).toString();
+		sound = new Media(musicFile);
+		mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.setVolume(x);
+		mediaPlayer.play();
+
+	}
+
+    ```
+
 # View
 - Game.java
+
+
 - ViewManager.java
     ```Java
 

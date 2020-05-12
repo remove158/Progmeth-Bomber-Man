@@ -50,7 +50,7 @@ public class MapPicker extends VBox {
 	private void setFxMousePressed() {
 		Thread t = new Thread(new Runnable() {
 			public void run() {
-				new Sound("mouse_click", 1);
+				new Sound("pick",1);
 			}
 		});
 		t.start();

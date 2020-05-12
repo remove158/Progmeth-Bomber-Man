@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+import music.Sound;
 
 public class Switch extends HBox{
 	private ImageView img_swt;
@@ -35,10 +36,12 @@ public class Switch extends HBox{
 		this.setOnMouseEntered(e -> {
 			tooltip.setText(detail);
 			tooltip.show(this, e.getScreenX(), e.getScreenY()+10);
+			
 		
 		});
 		this.setOnMouseExited(e ->{
 			tooltip.hide();
+	
 			
 		});
 		this.setOnMouseClicked(e ->{
