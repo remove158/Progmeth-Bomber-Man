@@ -49,14 +49,14 @@ public class Game {
 	private AnimationTimer timer;
 	private static Cell[][] gameCell;
 	private MAP choosenMap;
-	int pos_top, pos_down, pos_left, pos_right, p1_x, p1_y;
+	private int pos_top, pos_down, pos_left, pos_right, p1_x, p1_y;
 	private Player player1, player2;
 
 	private Game gameManager;
 	private SmallInfoLabel player1Label, player2Label;
 	private Label winlabel;
 	private Animate animate;
-	Sound music;
+	private Sound music;
 	private GameLogic gameLogic;
 	private Bot gameBot1, gameBot2;
 	private boolean running;
@@ -126,8 +126,8 @@ public class Game {
 
 	}
 
-	AnchorPane root;
-	AnchorPane stopPane;
+	private AnchorPane root;
+	private AnchorPane stopPane;
 
 	private void initializeStage() {
 		// TODO Auto-generated method stub
@@ -165,7 +165,7 @@ public class Game {
 
 	}
 
-	Pause pauseScene;
+	private Pause pauseScene;
 
 	private void createStopPane() {
 		// TODO Auto-generated method stub
@@ -245,9 +245,9 @@ public class Game {
 		return this.gameLogic;
 	}
 
-	int count = 0;
-	int angle = 0;
-	boolean rotate = false;
+	private int count = 0;
+	private int angle = 0;
+	private boolean rotate = false;
 
 	private void createGameLoop() {
 		timer = createLoop();
@@ -348,7 +348,7 @@ public class Game {
 		gameBot1 = new Bot(player1, this);
 	}
 
-	GameMap map;
+	private GameMap map;
 
 	private void drawGameBoard() {
 		String mapStyle = choosenMap.getMap();

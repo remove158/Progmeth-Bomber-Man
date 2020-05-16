@@ -15,8 +15,8 @@ import view.Game;
 import view.ViewManager;
 
 public class GameController extends Scene {
-	boolean up = false, down = false, right = false, left = false;
-	boolean w = false, a = false, s = false, d = false;
+	private boolean up = false, down = false, right = false, left = false;
+	private boolean w = false, a = false, s = false, d = false;
 	private final static int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
 	private Game game;
 

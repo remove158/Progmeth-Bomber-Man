@@ -36,9 +36,9 @@ public class GameLogic {
 	private Boolean end_game, game_win, out_game;
 	private Label showDanger;
 	private int sec = 120;
-	int count = 0;
+	private int count = 0;
 	private Label time = new TimeLabel("" + sec, 13 * CELL_WIDTH, 11 * CELL_WIDTH);;
-	int bombx = 0;
+	private int bombx = 0;
 	private static final int CELL_WIDTH = 65;
 	private List<Cell> out;
 	private static final int WIDTH = 17 * CELL_WIDTH;
