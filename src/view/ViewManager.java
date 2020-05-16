@@ -50,9 +50,9 @@ public class ViewManager {
 	private final static int MENU_BUTTON_START_X = 175;
 	private final static int MENU_BUTTON_START_Y = 300;
 	private final static String FONT_PATH = FontStyle.FONT_PATH;
-	List<GameButton> menuButton;
-	List<GameSubScene> allPanel;
-	List<MapPicker> mapList;
+	private List<GameButton> menuButton;
+	private List<GameSubScene> allPanel;
+	private List<MapPicker> mapList;
 	private MAP choosenMap;
 	private GameSubScene creditsSubScene;
 	private GameSubScene helpSubScene;
@@ -60,10 +60,10 @@ public class ViewManager {
 	static Sound music;
 	public static boolean isBotOn=true;
 	public boolean allHidden=true;
-	String image_path1 = ClassLoader.getSystemResource("cha1.png").toString();
-	ImageView player1 = new ImageView(image_path1);
-	String image_path2 = ClassLoader.getSystemResource("cha2.png").toString();
-	ImageView player2 = new ImageView(image_path2);
+	private String image_path1 = ClassLoader.getSystemResource("cha1.png").toString();
+	private ImageView player1 = new ImageView(image_path1);
+	private String image_path2 = ClassLoader.getSystemResource("cha2.png").toString();
+	private ImageView player2 = new ImageView(image_path2);
 	public ViewManager() {
 		mainPane = new AnchorPane();
 		mainScene = new Scene(mainPane, WIDTH, HEIGHT);

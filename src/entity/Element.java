@@ -11,10 +11,9 @@ import javafx.scene.layout.Pane;
 import logic.Sprite;
 
 public abstract class Element extends Entity implements AnimateAble {
-	int counter = 0;
-	int speed = 14;
-	boolean smoke = false;
-	boolean used = false;
+	private int counter = 0;
+	private int speed = 14;
+	private boolean smoke = false;
 
 	public Element(Pane gamePane, int x, int y, String mapStyle) {
 		super(gamePane, x, y, mapStyle);

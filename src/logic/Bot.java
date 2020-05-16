@@ -10,7 +10,7 @@ import entity.Smoke;
 import view.Game;
 
 public class Bot {
-	Player myPlayer;
+	private Player myPlayer;
 	private final int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
 	private List<Integer> moveList;
 	private Game game;
@@ -30,7 +30,7 @@ public class Bot {
 
 	}
 
-	int notrun = 0;
+	private int notrun = 0;
 	public void update() {
 		if (!myPlayer.isDie()) {
 
@@ -64,7 +64,7 @@ public class Bot {
 		}
 	}
 
-	List<Integer> sample;
+	private List<Integer> sample;
 
 	private void doCalculate() {
 		sample = new ArrayList<>();
@@ -275,9 +275,9 @@ public class Bot {
 		
 	}
 
-	boolean set = false;
-	int ox, oy;
-	int CELL_WIDTH = 65;
+	private boolean set = false;
+	private int ox, oy;
+	private int CELL_WIDTH = 65;
 
 	private boolean move(int direction) {
 		if (!set) {

@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import javafx.scene.image.Image;
@@ -17,7 +15,7 @@ public class Player {
 	private int x = 0, y = 0;
 	private String img_url;
 	private Pane gamePane;
-	Cell[][] gameCell;
+	private Cell[][] gameCell;
 	private final static int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
 	private int CELL_WIDTH = 65;
 	private int count_bomb = 0;
@@ -26,7 +24,6 @@ public class Player {
 	private int imTime;
 	private int frameCount;
 	private Game game;
-	private List<Cell> animate; // [
 	private int LIFE = 1;
 	private Boolean isDie;
 	private int bombRadius = 1;
@@ -43,7 +40,6 @@ public class Player {
 		this.y = y;
 		drawPlayer();
 		this.gameCell = gameCell;
-		this.animate = new ArrayList<Cell>();
 		this.isDie = false;
 		this.imTime = 0;
 		this.frameCount = 0;
@@ -123,9 +119,9 @@ public class Player {
 
 	}
 
-	int speed = 30;
-	int count=0;
-	int frame = 0;
+	private int speed = 30;
+	private int count=0;
+	private int frame = 0;
 	public void Animate() {
 		frameCount++;
 		if (this.frameCount % speed == 0) {
