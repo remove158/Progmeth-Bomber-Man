@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="application.Main" project="final" file="/final/src/application/Main.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="360" y="-142"/>    
+    <position height="117" width="113" x="1675" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="view.ViewManager" project="final" file="/final/src/view/ViewManager.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="138" y="155"/>    
+    <position height="567" width="213" x="3073" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="music.Sound" project="final" file="/final/src/music/Sound.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="353" y="57"/>    
+    <position height="207" width="139" x="3073" y="1693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="view.Game" project="final" file="/final/src/view/Game.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="533" y="311"/>    
+    <position height="819" width="171" x="4325" y="824"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="logic.Bot" project="final" file="/final/src/logic/Bot.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1101" y="89"/>    
+    <position height="441" width="232" x="4325" y="1693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="logic.GameController" project="final" file="/final/src/logic/GameController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1355" y="44"/>    
+    <position height="369" width="196" x="3727" y="1693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="logic.GameMap" project="final" file="/final/src/logic/GameMap.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="930" y="553"/>    
+    <position height="99" width="137" x="3963" y="1693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="logic.Animate" project="final" file="/final/src/logic/Animate.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1204" y="694"/>    
+    <position height="351" width="224" x="3252" y="1693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="logic.Sprite" project="final" file="/final/src/logic/Sprite.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1553" y="-10"/>    
+    <position height="261" width="120" x="564" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="logic.IMGParser" project="final" file="/final/src/logic/IMGParser.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1720" y="-89"/>    
+    <position height="99" width="145" x="2677" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="logic.GameLogic" project="final" file="/final/src/logic/GameLogic.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1927" y="260"/>    
+    <position height="747" width="179" x="4683" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="logic.Cell" project="final" file="/final/src/logic/Cell.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1552" y="671"/>    
+    <position height="279" width="148" x="3963" y="3321"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="model.Sprite" project="final" file="/final/src/model/Sprite.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="73" y="1049"/>    
+    <position height="153" width="88" x="2183" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="model.Switch" project="final" file="/final/src/model/Switch.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="227" y="1085"/>    
+    <position height="225" width="141" x="2002" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="model.TimeLabel" project="final" file="/final/src/model/TimeLabel.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="407" y="1031"/>    
+    <position height="117" width="138" x="1321" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="model.GameSubScene" project="final" file="/final/src/model/GameSubScene.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="830" y="1067"/>    
+    <position height="171" width="171" x="3113" y="824"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +147,7 @@
   </class>  
   <class id="17" language="java" name="model.Pause" project="final" file="/final/src/model/Pause.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1041" y="1049"/>    
+    <position height="153" width="171" x="3516" y="1693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,7 +156,7 @@
   </class>  
   <class id="18" language="java" name="model.InfoLabel" project="final" file="/final/src/model/InfoLabel.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1252" y="1040"/>    
+    <position height="135" width="171" x="2862" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,7 +165,7 @@
   </class>  
   <class id="19" language="java" name="model.SmallInfoLabel" project="final" file="/final/src/model/SmallInfoLabel.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1450" y="1085"/>    
+    <position height="207" width="145" x="4140" y="1693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -174,7 +174,7 @@
   </class>  
   <class id="20" language="java" name="model.EndLabel" project="final" file="/final/src/model/EndLabel.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1630" y="1031"/>    
+    <position height="117" width="134" x="1828" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -183,7 +183,7 @@
   </class>  
   <class id="21" language="java" name="model.FontStyle" project="final" file="/final/src/model/FontStyle.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1796" y="1022"/>    
+    <position height="99" width="118" x="406" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -192,7 +192,7 @@
   </class>  
   <class id="22" language="java" name="model.GameButton" project="final" file="/final/src/model/GameButton.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1991" y="1121"/>    
+    <position height="297" width="192" x="2610" y="824"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -201,7 +201,7 @@
   </class>  
   <enumeration id="23" language="java" name="model.MAP" project="final" file="/final/src/model/MAP.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1129" y="1359"/>    
+    <position height="279" width="146" x="2887" y="1693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -210,7 +210,7 @@
   </enumeration>  
   <class id="24" language="java" name="model.MapPicker" project="final" file="/final/src/model/MapPicker.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="610" y="1112"/>    
+    <position height="279" width="189" x="2842" y="824"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -219,7 +219,7 @@
   </class>  
   <class id="25" language="java" name="exception.UseItemException" project="final" 
     file="/final/src/exception/UseItemException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1817" y="1352"/>    
+    <position height="99" width="147" x="2311" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -228,7 +228,7 @@
   </class>  
   <class id="26" language="java" name="exception.SetSmokeException" project="final" 
     file="/final/src/exception/SetSmokeException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2009" y="1352"/>    
+    <position height="99" width="157" x="724" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -237,7 +237,7 @@
   </class>  
   <class id="27" language="java" name="item.AddRadius" project="final" file="/final/src/item/AddRadius.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1310" y="1640"/>    
+    <position height="117" width="170" x="4075" y="4494"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -246,7 +246,7 @@
   </class>  
   <class id="28" language="java" name="item.AddBomb" project="final" file="/final/src/item/AddBomb.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1517" y="1640"/>    
+    <position height="117" width="164" x="3871" y="4494"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -255,7 +255,7 @@
   </class>  
   <class id="29" language="java" name="item.Speed" project="final" file="/final/src/item/Speed.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1713" y="1640"/>    
+    <position height="117" width="148" x="4515" y="4494"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -264,7 +264,7 @@
   </class>  
   <class id="30" language="java" name="item.Item" project="final" file="/final/src/item/Item.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1600" y="1420"/>    
+    <position height="243" width="136" x="4072" y="4211"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -273,7 +273,7 @@
   </class>  
   <class id="31" language="java" name="item.ShieldOnPlayer" project="final" file="/final/src/item/ShieldOnPlayer.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1922" y="1640"/>    
+    <position height="117" width="190" x="4285" y="4494"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -291,7 +291,7 @@
   </class>  
   <class id="33" language="java" name="entity.Player" project="final" file="/final/src/entity/Player.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="452" y="1988"/>    
+    <position height="1107" width="210" x="4410" y="2174"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -318,7 +318,7 @@
   </class>  
   <class id="36" language="java" name="entity.Element" project="final" file="/final/src/entity/Element.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="952" y="1726"/>    
+    <position height="225" width="154" x="3845" y="4211"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -354,7 +354,7 @@
   </class>  
   <class id="40" language="java" name="entity.base.Entity" project="final" file="/final/src/entity/base/Entity.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="710" y="1566"/>    
+    <position height="531" width="144" x="3963" y="3640"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -363,7 +363,7 @@
   </class>  
   <interface id="41" language="java" name="entity.base.AnimateAble" project="final" 
     file="/final/src/entity/base/AnimateAble.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="903" y="1404"/>    
+    <position height="99" width="103" x="3728" y="4494"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -372,7 +372,7 @@
   </interface>  
   <class id="42" language="java" name="entity.Red" project="final" file="/final/src/entity/Red.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="709" y="1987"/>    
+    <position height="171" width="136" x="1499" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -381,7 +381,7 @@
   </class>  
   <class id="43" language="java" name="entity.Smoke" project="final" file="/final/src/entity/Smoke.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1108" y="1987"/>    
+    <position height="171" width="149" x="41" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -390,7 +390,7 @@
   </class>  
   <class id="44" language="java" name="entity.Block" project="final" file="/final/src/entity/Block.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1294" y="1951"/>    
+    <position height="99" width="143" x="1138" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -399,7 +399,7 @@
   </class>  
   <class id="45" language="java" name="entity.Box" project="final" file="/final/src/entity/Box.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1474" y="1951"/>    
+    <position height="99" width="136" x="230" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -408,7 +408,7 @@
   </class>  
   <class id="46" language="java" name="entity.Tree" project="final" file="/final/src/entity/Tree.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1651" y="1951"/>    
+    <position height="99" width="139" x="2498" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -417,7 +417,7 @@
   </class>  
   <class id="47" language="java" name="entity.Bomb" project="final" file="/final/src/entity/Bomb.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="905" y="2014"/>    
+    <position height="243" width="177" x="921" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -425,59 +425,62 @@
     </display>  
   </class>  
   <association id="48">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="49" name="myEntity">        
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="49" name="player2Label">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="50" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="40" navigable="true"/>    
+    <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="51">    
-    <end type="SOURCE" refId="32"/>    
-    <end type="TARGET" refId="36"/>  
-  </generalization>  
-  <association id="52">    
+  <association id="51">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="53" name="menuButton">        
+      <attribute id="52" name="helpSubScene">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="54" minimum="0" maximum="2147483647">        
+      <multiplicity id="53" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="22" navigable="true"/>    
+    <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="55">    
-    <end type="SOURCE" refId="36"/>    
-    <end type="TARGET" refId="41"/>  
-  </realization>  
-  <generalization id="56">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="30"/>  
-  </generalization>  
-  <association id="57">    
+  <association id="54">    
+    <bendpoint x="4650" y="1693"/>    
+    <bendpoint x="4650" y="2174"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="58" name="pauseScene">        
+      <attribute id="55" name="gameCell">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="59" minimum="0" maximum="1">        
+      <multiplicity id="56" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="57">    
+    <bendpoint x="3617" y="2174"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="58" name="bombList">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="59" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="60">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="61" name="creditsSubScene">        
+      <attribute id="61" name="allPanel">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="62" minimum="0" maximum="1">        
+      <multiplicity id="62" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
@@ -485,328 +488,342 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="63">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="64" name="choosenMap">        
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="64" name="gameBot1">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="65" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="23" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="66">    
-    <end type="SOURCE" refId="30"/>    
-    <end type="TARGET" refId="40"/>  
-  </generalization>  
-  <association id="67">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="68" name="player2Label">        
+  <association id="66">    
+    <bendpoint x="3972" y="2174"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="67" name="myMap">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="69" minimum="0" maximum="1">        
+      <multiplicity id="68" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="70">    
+  <association id="69">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="71" name="music">        
+      <attribute id="70" name="map">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="72" minimum="0" maximum="1">        
+      <multiplicity id="71" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="72">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="36"/>  
+  </generalization>  
+  <generalization id="73">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <association id="74">    
+    <bendpoint x="3082" y="824"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="75" name="music">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="76" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="73">    
+  <association id="77">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="74" name="player1Label">        
+      <attribute id="78" name="gameLogic">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="75" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="76">    
-    <end type="SOURCE" refId="29"/>    
-    <end type="TARGET" refId="30"/>  
-  </generalization>  
-  <generalization id="77">    
-    <end type="SOURCE" refId="35"/>    
-    <end type="TARGET" refId="36"/>  
-  </generalization>  
-  <association id="78">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="79" name="itemList">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="80" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="81">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="82" name="mapList">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="83" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="84">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="85" name="player1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="86" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="33" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="87">    
-    <end type="SOURCE" refId="34"/>    
-    <end type="TARGET" refId="36"/>  
-  </generalization>  
-  <association id="88">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="89" name="allPanel">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="90" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="91">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="92" name="choosenMap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="93" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="23" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="94">    
-    <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="95" name="map">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="96" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="23" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="97">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="98" name="myMap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="99" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="100">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="101" name="bombList">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="102" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="103">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="104" name="game">        
-        <position height="0" width="0" x="-13" y="-75"/>      
-      </attribute>      
-      <multiplicity id="105" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-13" y="-75"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="106">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="107" name="gameLogic">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="108" minimum="0" maximum="1">        
+      <multiplicity id="79" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="109">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="110" name="allPlayer">        
+  <association id="80">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="81" name="gameBot2">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="111" minimum="0" maximum="2147483647">        
+      <multiplicity id="82" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="83">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="84" name="game">        
+        <position height="0" width="0" x="-13" y="-75"/>      
+      </attribute>      
+      <multiplicity id="85" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-13" y="-75"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="87" name="map">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="88" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="89">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="90" name="mapList">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="91" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="92">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="41"/>  
+  </realization>  
+  <generalization id="93">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="36"/>  
+  </generalization>  
+  <generalization id="94">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <generalization id="95">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="36"/>  
+  </generalization>  
+  <association id="96">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="97" name="game">        
+        <position height="0" width="0" x="-13" y="-75"/>      
+      </attribute>      
+      <multiplicity id="98" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-13" y="-75"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="99">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="100" name="pauseScene">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="101" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="102">    
+    <bendpoint x="4713" y="824"/>    
+    <bendpoint x="4713" y="1693"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="103" name="player2">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="104" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="33" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="112">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="113" name="animate">        
+  <association id="105">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="106" name="myPlayer">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="114" minimum="0" maximum="1">        
+      <multiplicity id="107" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="108">    
+    <bendpoint x="3061" y="824"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="109" name="choosenMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="110" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="111">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="112" name="player1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="113" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="114">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="115" name="animate">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="116" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="115">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="116" name="chooseSubScene">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="117" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="118">    
+  <association id="117">    
+    <bendpoint x="4734" y="824"/>    
+    <bendpoint x="4734" y="1693"/>    
+    <bendpoint x="4734" y="2174"/>    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="119" name="player1">        
+      <attribute id="118" name="out">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="120" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="33" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="121">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="122" name="gameCell">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="123" minimum="0" maximum="2147483647">        
+      <multiplicity id="119" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="124">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="125" name="player2">        
+  <association id="120">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="121" name="player1Label">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="126" minimum="0" maximum="1">        
+      <multiplicity id="122" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="33" navigable="true"/>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="123">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <association id="124">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="125" name="gameManager">        
+        <position height="0" width="0" x="-13" y="-75"/>      
+      </attribute>      
+      <multiplicity id="126" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-13" y="-75"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="127">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="128" name="game">        
-        <position height="0" width="0" x="-13" y="-75"/>      
-      </attribute>      
-      <multiplicity id="129" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-13" y="-75"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="130">    
-    <end type="SOURCE" refId="39" navigable="false">      
-      <attribute id="131" name="myPlayer">        
+    <bendpoint x="4755" y="824"/>    
+    <bendpoint x="4755" y="1693"/>    
+    <bendpoint x="4755" y="2174"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="128" name="gameCell">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="132" minimum="0" maximum="1">        
+      <multiplicity id="129" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="130">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="36"/>  
+  </generalization>  
+  <association id="131">    
+    <bendpoint x="3596" y="2174"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="132" name="itemList">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="133" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="134">    
+    <bendpoint x="3638" y="2174"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="135" name="smokeList">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="136" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="137">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="138" name="myEntity">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="139" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="40" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="140">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="141" name="myPlayer">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="142" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="33" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="133">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="134" name="music">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="135" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="136">    
-    <end type="SOURCE" refId="33" navigable="false">      
-      <attribute id="137" name="game">        
-        <position height="0" width="0" x="-13" y="-75"/>      
-      </attribute>      
-      <multiplicity id="138" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-13" y="-75"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="139">    
-    <end type="SOURCE" refId="30"/>    
-    <end type="TARGET" refId="41"/>  
-  </realization>  
-  <association id="140">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="141" name="game">        
-        <position height="0" width="0" x="-13" y="-75"/>      
-      </attribute>      
-      <multiplicity id="142" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-13" y="-75"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="143">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="144" name="myPlayer">        
+    <bendpoint x="4587" y="1693"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="144" name="player1">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="145" minimum="0" maximum="1">        
@@ -817,221 +834,228 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="146">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="147" name="gameScene">        
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="147" name="player2">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="148" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="33" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="149">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="150" name="gameBot2">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="151" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <realization id="149">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="41"/>  
+  </realization>  
+  <generalization id="150">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="36"/>  
+  </generalization>  
+  <generalization id="151">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
   <association id="152">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="153" name="smokeList">        
-        <position height="0" width="0" x="0" y="0"/>      
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="153" name="game">        
+        <position height="0" width="0" x="-13" y="-75"/>      
       </attribute>      
-      <multiplicity id="154" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="154" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-13" y="-75"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="155">    
+    <bendpoint x="4671" y="824"/>    
+    <bendpoint x="4671" y="1693"/>    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="156" name="out">        
+      <attribute id="156" name="allPlayer">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="157" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
+    <end type="TARGET" refId="33" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="158">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="30"/>  
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="40"/>  
   </generalization>  
   <association id="159">    
-    <end type="SOURCE" refId="33" navigable="false">      
-      <attribute id="160" name="gameCell">        
+    <bendpoint x="4692" y="824"/>    
+    <bendpoint x="4692" y="1693"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="160" name="player1">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="161" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="162">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="163" name="player2">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="164" minimum="0" maximum="1">        
+      <multiplicity id="161" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="33" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="165">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="166" name="gameCell">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="167" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="168">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="169" name="gameManager">        
-        <position height="0" width="0" x="-13" y="-75"/>      
-      </attribute>      
-      <multiplicity id="170" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-13" y="-75"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="171">    
-    <end type="SOURCE" refId="36"/>    
-    <end type="TARGET" refId="40"/>  
+  <generalization id="162">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="36"/>  
   </generalization>  
-  <association id="172">    
+  <association id="163">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="173" name="helpSubScene">        
+      <attribute id="164" name="chooseSubScene">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="174" minimum="0" maximum="1">        
+      <multiplicity id="165" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="175">    
-    <end type="SOURCE" refId="39"/>    
-    <end type="TARGET" refId="36"/>  
-  </generalization>  
-  <association id="176">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="177" name="map">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="178" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="179">    
+  <association id="166">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="180" name="animate">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="181" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="182">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="183" name="gameBot1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="184" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="185">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="186" name="player1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="187" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="33" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="188">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="189" name="myPlayer">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="190" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="33" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="191">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="192" name="player2">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="193" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="33" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="194">    
-    <end type="SOURCE" refId="37"/>    
-    <end type="TARGET" refId="36"/>  
-  </generalization>  
-  <generalization id="195">    
-    <end type="SOURCE" refId="31"/>    
-    <end type="TARGET" refId="30"/>  
-  </generalization>  
-  <association id="196">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="197" name="game">        
+      <attribute id="167" name="game">        
         <position height="0" width="0" x="-13" y="-75"/>      
       </attribute>      
-      <multiplicity id="198" minimum="0" maximum="1">        
+      <multiplicity id="168" minimum="0" maximum="1">        
         <position height="0" width="0" x="-13" y="-75"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="199">    
-    <end type="SOURCE" refId="38"/>    
-    <end type="TARGET" refId="36"/>  
+  <association id="169">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="170" name="music">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="171" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="172">    
+    <bendpoint x="4629" y="1693"/>    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="173" name="game">        
+        <position height="0" width="0" x="-13" y="-75"/>      
+      </attribute>      
+      <multiplicity id="174" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-13" y="-75"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="175">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="176" name="gameCell">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="177" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="178">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="179" name="gameScene">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="180" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="181">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="182" name="menuButton">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="183" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="184">    
+    <bendpoint x="4608" y="1693"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="185" name="player2">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="186" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="187">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="40"/>  
   </generalization>  
+  <association id="188">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="189" name="choosenMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="190" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="191">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="192" name="creditsSubScene">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="193" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="194">    
+    <bendpoint x="3977" y="824"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="195" name="animate">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="196" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="197">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="198" name="myPlayer">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="199" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

@@ -61,6 +61,9 @@ public abstract class Element extends Entity implements AnimateAble {
 			// TODO: handle exception
 
 			throw new SetSmokeException("path File Fail.");
+		} catch (ArrayIndexOutOfBoundsException e) {
+			// TODO: handle exception
+			throw new SetSmokeException("Smoke Out of range..");
 		}
 
 	}
