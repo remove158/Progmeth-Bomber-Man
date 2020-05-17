@@ -49,7 +49,6 @@ public class Game {
 	private AnimationTimer timer;
 	private static Cell[][] gameCell;
 	private MAP choosenMap;
-	private int pos_top, pos_down, pos_left, pos_right, p1_x, p1_y;
 	private Player player1, player2;
 
 	private Game gameManager;

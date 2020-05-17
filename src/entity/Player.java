@@ -253,9 +253,7 @@ public class Player {
 		return this.speedNorm;
 	}
 
-	public void setSpeedZero() {
-		this.speedNorm = 3;
-	}
+	
 
 	public void setSpeed(int x) {
 		this.speedNorm = x;

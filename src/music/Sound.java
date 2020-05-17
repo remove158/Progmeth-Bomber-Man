@@ -7,8 +7,8 @@ import java.io.File;
 import java.net.URISyntaxException;
 
 public class Sound {
-	String musicFile;
-	AudioClip mediaPlayer;
+	private String musicFile;
+	private AudioClip mediaPlayer;
 
 	public Sound(String path) {
 		this(path, 0.1);

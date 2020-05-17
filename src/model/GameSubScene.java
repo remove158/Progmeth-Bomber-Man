@@ -16,7 +16,6 @@ public class GameSubScene extends SubScene {
 
 	private final static String BACKGROUND_IMAGE = ClassLoader.getSystemResource("panel.png").toString();
 	private boolean isHidden;
-	private boolean allHidden;
 	public GameSubScene() {
 		
 		super(new AnchorPane(),600,400);
@@ -34,7 +33,7 @@ public class GameSubScene extends SubScene {
 		setLayoutY(250);
 		
 	}
-	   public boolean getHidde() {
+	   public boolean getHide() {
 		   return isHidden;
 	   }
 	public void moveSubScene() {
@@ -53,7 +52,7 @@ public class GameSubScene extends SubScene {
 				}else {
 					transition.setToX(0);
 					isHidden =true;
-					allHidden = true;
+				
 				}
 				
 				

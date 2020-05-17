@@ -24,7 +24,7 @@ public class GameButton extends Button {
 		setPrefWidth(190);
 		setPrefHeight(49);
 		setStyle(BUTTON_FREE_STYLE);
-		initializeButtonLusteners();
+		initializeButtonListeners();
 	
 	}
 
@@ -88,7 +88,7 @@ public class GameButton extends Button {
 	
 	}
 
-	private void initializeButtonLusteners() {
+	private void initializeButtonListeners() {
 
 		setOnMousePressed(e -> setButtonPressedStyle());
 		setOnMouseReleased(e -> setButtonReleasedStyle());

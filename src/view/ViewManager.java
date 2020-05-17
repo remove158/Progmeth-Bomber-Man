@@ -1,4 +1,4 @@
-package view;
+ package view;
 
 import model.MAP;
 import model.MapPicker;
@@ -57,19 +57,22 @@ public class ViewManager {
 	private GameSubScene creditsSubScene;
 	private GameSubScene helpSubScene;
 	private GameSubScene chooseSubScene;
-	static Sound music;
+	protected static Sound music;
 	public static boolean isBotOn=true;
-	public boolean allHidden=true;
-	private String image_path1 = ClassLoader.getSystemResource("cha1.png").toString();
-	private ImageView player1 = new ImageView(image_path1);
-	private String image_path2 = ClassLoader.getSystemResource("cha2.png").toString();
-	private ImageView player2 = new ImageView(image_path2);
+	private String image_path1;
+	private ImageView player1;
+	private String image_path2 ;
+	private ImageView player2;
 	public ViewManager() {
 		mainPane = new AnchorPane();
 		mainScene = new Scene(mainPane, WIDTH, HEIGHT);
 		mainStage = new Stage();
 		menuButton = new ArrayList<GameButton>();
 		allPanel = new ArrayList<GameSubScene>();
+		image_path1 = ClassLoader.getSystemResource("cha1.png").toString();
+		image_path2 = ClassLoader.getSystemResource("cha2.png").toString();
+		player1 = new ImageView(image_path1);
+		player2 = new ImageView(image_path2);
 		mainStage.setTitle("CPCU Bomber");
 		mainStage.setScene(mainScene);
 		mainStage.setResizable(false);
@@ -124,9 +127,9 @@ public class ViewManager {
 
 	private void showSubScene(GameSubScene subScene) {
 		for (GameSubScene e : allPanel) {
-			if (!e.getHidde() && e != subScene) {
+			if (!e.getHide() && e != subScene) {
 				e.moveSubScene();
-				allHidden = true ;
+			
 			}
 		
 		}subScene.moveSubScene();
